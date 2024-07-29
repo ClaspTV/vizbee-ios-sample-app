@@ -8,6 +8,7 @@
 #import <VizbeeKit/VizbeeKit.h>
 #import "SettingsViewController.h"
 #import "VideoDetailsViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface VideoListViewController ()
 
@@ -26,6 +27,12 @@
     [self.videoListTableView setDataSource:self];
     [self.videoListTableView setDelegate:self];
     
+    _counter = 0;
+    [self configureAudioSession];
+    [self updateNowPlayingInfo];
+    [self setupRemoteCommandCenter];
+    [self startUpdatingPlaybackInfo];
+    
     //------------------------------
     // [Begin] Vizbee Integration Code
     //------------------------------
@@ -37,6 +44,108 @@
     //------------------------------
     // [End] Vizbee Integration Code
     //------------------------------
+}
+
+- (void)configureAudioSession {
+    NSLog(@"Configuring audio session");
+    
+    NSError *error = nil;
+    BOOL success;
+
+    success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                                      mode:AVAudioSessionModeDefault
+                                                   options:0
+                                                     error:&error];
+    if (!success) {
+        NSLog(@"Failed to set up audio session category: %@", error);
+        return;
+    }
+
+    success = [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    if (!success) {
+        NSLog(@"Failed to activate audio session: %@", error);
+    }
+}
+
+- (void)updateNowPlayingInfo {
+    NSLog(@"Updating now playing info");
+    
+    NSDictionary *nowPlayingInfo = @{
+        MPMediaItemPropertyTitle: @"Your Song Title",
+        MPMediaItemPropertyArtist: @"Your Artist",
+        MPMediaItemPropertyPlaybackDuration: @300, // Duration in seconds
+        MPNowPlayingInfoPropertyElapsedPlaybackTime: @0 // Current playback time
+    };
+
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
+}
+
+- (void)setupRemoteCommandCenter {
+    NSLog(@"Setting up remote command center");
+    
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+
+    [commandCenter.playCommand addTarget:self action:@selector(handlePlayCommand:)];
+    [commandCenter.pauseCommand addTarget:self action:@selector(handlePauseCommand:)];
+    [commandCenter.nextTrackCommand addTarget:self action:@selector(handleNextTrackCommand:)];
+    [commandCenter.previousTrackCommand addTarget:self action:@selector(handlePreviousTrackCommand:)];
+}
+
+- (MPRemoteCommandHandlerStatus)handlePlayCommand:(MPRemoteCommandEvent *)event {
+    [self play];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus)handlePauseCommand:(MPRemoteCommandEvent *)event {
+    [self pause];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus)handleNextTrackCommand:(MPRemoteCommandEvent *)event {
+    [self nextTrack];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (MPRemoteCommandHandlerStatus)handlePreviousTrackCommand:(MPRemoteCommandEvent *)event {
+    [self previousTrack];
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+- (void)play {
+    NSLog(@"play called");
+}
+
+- (void)pause {
+    NSLog(@"pause called");
+}
+
+- (void)nextTrack {
+    NSLog(@"next track called");
+}
+
+- (void)previousTrack {
+    NSLog(@"prev track called");
+}
+
+- (void)startUpdatingPlaybackInfo {
+    __weak typeof(self) weakSelf = self;
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             repeats:YES
+                                               block:^(NSTimer * _Nonnull timer) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+            [strongSelf updatePlaybackInfo];
+        }
+    }];
+}
+
+- (void)updatePlaybackInfo {
+    _counter = _counter + 1;
+    NSLog(@"Updating playbackinfo %ld", (long)_counter);
+    
+    NSMutableDictionary *nowPlayingInfo = [[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo] mutableCopy];
+    nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(_counter);
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -27,12 +27,23 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_googlecast._tcp</string>
+		<string>_B0A50485._googlecast._tcp</string>
+		<string>_amzn-wplay._tcp</string>
+		<string>_viziocast._tcp</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Officina Sans ITC Bold.ttf</string>
 		<string>Officina Sans ITC Book.ttf</string>
 		<string>ChronicleDisp-SemiboldItal.otf</string>
 		<string>Theinhardt-Regular.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -54,13 +65,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_googlecast._tcp</string>
-		<string>_B0A50485._googlecast._tcp</string>
-		<string>_amzn-wplay._tcp</string>
-		<string>_viziocast._tcp</string>
 	</array>
 </dict>
 </plist>

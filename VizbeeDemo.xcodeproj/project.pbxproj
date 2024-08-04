@@ -21,6 +21,7 @@
 		364F3E771E2E802300FE94B7 /* VideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E761E2E802300FE94B7 /* VideoObject.m */; };
 		364F3E821E2EC6C800FE94B7 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E811E2EC6C800FE94B7 /* VideoPlayer.m */; };
 		587C663E2C380CFD00FA69AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587C663D2C380CFD00FA69AB /* AppDelegate.swift */; };
+		58D001382C58CDCF000560E6 /* silence-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58D001372C58CDCF000560E6 /* silence-short.wav */; };
 		58ED07882C3661FB006EA00D /* VizbeeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED07872C3661FB006EA00D /* VizbeeKit */; };
 		58ED078B2C366211006EA00D /* VizbeeHomeOSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED078A2C366211006EA00D /* VizbeeHomeOSKit */; };
 		58ED078E2C366286006EA00D /* GoogleCast in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED078D2C366286006EA00D /* GoogleCast */; };
@@ -96,6 +97,7 @@
 		364F3E811E2EC6C800FE94B7 /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		364F3E831E2EF81900FE94B7 /* VizbeeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VizbeeDemo.entitlements; sourceTree = "<group>"; };
 		587C663D2C380CFD00FA69AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		58D001372C58CDCF000560E6 /* silence-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "silence-short.wav"; sourceTree = "<group>"; };
 		58ED078F2C367AFF006EA00D /* VizbeeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VizbeeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		58ED07902C367B00006EA00D /* VizbeeAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeAnalyticsHandler.swift; sourceTree = "<group>"; };
 		58ED07912C367B00006EA00D /* VizbeeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeWrapper.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				362EF5AD1E771469003E9E2C /* ChronicleDisp-SemiboldItal.otf */,
 				362EF5AE1E771469003E9E2C /* Officina Sans ITC Book.ttf */,
 				362EF5AF1E771469003E9E2C /* Officina Sans ITC Bold.ttf */,
+				58D001372C58CDCF000560E6 /* silence-short.wav */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				9694EA18225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard in Resources */,
 				364F3E4D1E2E6E4300FE94B7 /* LaunchScreen.storyboard in Resources */,
 				364F3E711E2E7C8600FE94B7 /* VideoListViewController.xib in Resources */,
+				58D001382C58CDCF000560E6 /* silence-short.wav in Resources */,
 				364F3E4A1E2E6E4300FE94B7 /* Assets.xcassets in Resources */,
 				362EF5B01E77163B003E9E2C /* Theinhardt-Regular.otf in Resources */,
 			);

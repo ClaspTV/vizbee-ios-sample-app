@@ -11,7 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface VideoListViewController ()
-
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @end
 
 @implementation VideoListViewController
@@ -28,10 +28,8 @@
     [self.videoListTableView setDelegate:self];
     
     _counter = 0;
-    [self configureAudioSession];
-    [self updateNowPlayingInfo];
-    [self setupRemoteCommandCenter];
-    [self startUpdatingPlaybackInfo];
+    
+    [self setupLockScreenControls];
     
     //------------------------------
     // [Begin] Vizbee Integration Code
@@ -44,108 +42,6 @@
     //------------------------------
     // [End] Vizbee Integration Code
     //------------------------------
-}
-
-- (void)configureAudioSession {
-    NSLog(@"Configuring audio session");
-    
-    NSError *error = nil;
-    BOOL success;
-
-    success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-                                                      mode:AVAudioSessionModeDefault
-                                                   options:0
-                                                     error:&error];
-    if (!success) {
-        NSLog(@"Failed to set up audio session category: %@", error);
-        return;
-    }
-
-    success = [[AVAudioSession sharedInstance] setActive:YES error:&error];
-    if (!success) {
-        NSLog(@"Failed to activate audio session: %@", error);
-    }
-}
-
-- (void)updateNowPlayingInfo {
-    NSLog(@"Updating now playing info");
-    
-    NSDictionary *nowPlayingInfo = @{
-        MPMediaItemPropertyTitle: @"Your Song Title",
-        MPMediaItemPropertyArtist: @"Your Artist",
-        MPMediaItemPropertyPlaybackDuration: @300, // Duration in seconds
-        MPNowPlayingInfoPropertyElapsedPlaybackTime: @0 // Current playback time
-    };
-
-    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
-}
-
-- (void)setupRemoteCommandCenter {
-    NSLog(@"Setting up remote command center");
-    
-    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
-
-    [commandCenter.playCommand addTarget:self action:@selector(handlePlayCommand:)];
-    [commandCenter.pauseCommand addTarget:self action:@selector(handlePauseCommand:)];
-    [commandCenter.nextTrackCommand addTarget:self action:@selector(handleNextTrackCommand:)];
-    [commandCenter.previousTrackCommand addTarget:self action:@selector(handlePreviousTrackCommand:)];
-}
-
-- (MPRemoteCommandHandlerStatus)handlePlayCommand:(MPRemoteCommandEvent *)event {
-    [self play];
-    return MPRemoteCommandHandlerStatusSuccess;
-}
-
-- (MPRemoteCommandHandlerStatus)handlePauseCommand:(MPRemoteCommandEvent *)event {
-    [self pause];
-    return MPRemoteCommandHandlerStatusSuccess;
-}
-
-- (MPRemoteCommandHandlerStatus)handleNextTrackCommand:(MPRemoteCommandEvent *)event {
-    [self nextTrack];
-    return MPRemoteCommandHandlerStatusSuccess;
-}
-
-- (MPRemoteCommandHandlerStatus)handlePreviousTrackCommand:(MPRemoteCommandEvent *)event {
-    [self previousTrack];
-    return MPRemoteCommandHandlerStatusSuccess;
-}
-
-- (void)play {
-    NSLog(@"play called");
-}
-
-- (void)pause {
-    NSLog(@"pause called");
-}
-
-- (void)nextTrack {
-    NSLog(@"next track called");
-}
-
-- (void)previousTrack {
-    NSLog(@"prev track called");
-}
-
-- (void)startUpdatingPlaybackInfo {
-    __weak typeof(self) weakSelf = self;
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                             repeats:YES
-                                               block:^(NSTimer * _Nonnull timer) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (strongSelf) {
-            [strongSelf updatePlaybackInfo];
-        }
-    }];
-}
-
-- (void)updatePlaybackInfo {
-    _counter = _counter + 1;
-    NSLog(@"Updating playbackinfo %ld", (long)_counter);
-    
-    NSMutableDictionary *nowPlayingInfo = [[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo] mutableCopy];
-    nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(_counter);
-    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -273,6 +169,153 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     VideoDetailsViewController *videoDetailsController = [storyboard instantiateViewControllerWithIdentifier:@"VideoDetailsViewController"];
     videoDetailsController.movie = movie;
     [self.navigationController pushViewController:videoDetailsController animated:YES];
+}
+
+//---------------
+#pragma mark - Lock Screen Controls Related
+//---------------
+
+-(void) setupLockScreenControls {
+    
+    [self configureAudioSession];
+//    [self playSilentAudioIfNeeded];
+    [self startUpdatingPlaybackInfo];
+    [self setupRemoteCommandCenter];
+}
+
+//---------------
+#pragma mark Audio Session
+//---------------
+
+-(void) configureAudioSession {
+    NSLog(@"VideoListViewController::AVAudioSession - Configuring audio session");
+    
+    NSError *error = nil;
+    BOOL success;
+
+    success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                                      mode:AVAudioSessionModeDefault
+                                                   options:(AVAudioSessionCategoryOptions)0
+                                                     error:&error];
+    if (!success) {
+        NSLog(@"VideoListViewController::AVAudioSession - Failed to set up audio session category: %@", error);
+        return;
+    }
+
+    success = [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    if (!success) {
+        NSLog(@"VideoListViewController::AVAudioSession - Failed to activate audio session: %@", error);
+    }
+    
+    // Register for the app entering background notification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleDidEnterBackground)
+                                                     name:UIApplicationDidEnterBackgroundNotification
+                                                   object:nil];
+}
+
+// Method to handle the app entering background
+-(void) handleDidEnterBackground {
+    
+    NSLog(@"VideoListViewController::handleDidEnterBackground - App has entered the background.");
+    [self.audioPlayer stop];
+    self.audioPlayer = nil;
+    
+}
+
+//---------------
+#pragma mark Now Playing Info
+//---------------
+
+-(void) startUpdatingPlaybackInfo {
+    __weak typeof(self) weakSelf = self;
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                             repeats:YES
+                                               block:^(NSTimer * _Nonnull timer) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf) {
+            [strongSelf updatePlaybackInfoWithPlaybackTime];
+        }
+    }];
+    
+    [self updateNowPlayingInfo];
+}
+
+-(void) updateNowPlayingInfo {
+    NSLog(@"VideoListViewController::NowPlayingInfo - Updating now playing info");
+    
+    NSDictionary *nowPlayingInfo = @{
+        MPMediaItemPropertyTitle: @"Your Song Title",
+        MPMediaItemPropertyArtist: @"Your Artist",
+        MPMediaItemPropertyPlaybackDuration: @300, // Duration in seconds
+        MPNowPlayingInfoPropertyElapsedPlaybackTime: @0 // Current playback time
+    };
+
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
+}
+
+-(void) updatePlaybackInfoWithPlaybackTime {
+    _counter = _counter + 1;
+    NSLog(@"VideoListViewController::NowPlayingInfo - Updating playbackinfo %ld", (long)_counter);
+    
+    NSMutableDictionary *nowPlayingInfo = [[[MPNowPlayingInfoCenter defaultCenter] nowPlayingInfo] mutableCopy];
+    nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(_counter);
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
+    
+    if (_counter == 10) {
+        NSLog(@"VideoListViewController::NowPlayingInfo - Updating playbackinfo %ld, stopping player", (long)_counter);
+        [self.audioPlayer stop];
+        self.audioPlayer = nil;
+    }
+}
+
+//---------------
+#pragma mark Handle User Actions
+//---------------
+
+-(void)setupRemoteCommandCenter {
+    NSLog(@"VideoListViewController::MPRemoteCommandCenter - Setting up remote command center");
+    
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+
+    [commandCenter.playCommand addTarget:self action:@selector(handlePlayCommand:)];
+    [commandCenter.pauseCommand addTarget:self action:@selector(handlePauseCommand:)];
+    [commandCenter.nextTrackCommand addTarget:self action:@selector(handleNextTrackCommand:)];
+    [commandCenter.previousTrackCommand addTarget:self action:@selector(handlePreviousTrackCommand:)];
+}
+
+-(MPRemoteCommandHandlerStatus) handlePlayCommand:(MPRemoteCommandEvent *)event {
+    NSLog(@"VideoListViewController::Play - play called");
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+-(MPRemoteCommandHandlerStatus) handlePauseCommand:(MPRemoteCommandEvent *)event {
+    NSLog(@"VideoListViewController::Pause - pause called");
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+-(MPRemoteCommandHandlerStatus) handleNextTrackCommand:(MPRemoteCommandEvent *)event {
+    NSLog(@"VideoListViewController::Next - next track called");
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+-(MPRemoteCommandHandlerStatus) handlePreviousTrackCommand:(MPRemoteCommandEvent *)event {
+    NSLog(@"VideoListViewController::Previous - prev track called");
+    return MPRemoteCommandHandlerStatusSuccess;
+}
+
+// Method to play silent audio
+-(void) playSilentAudioIfNeeded {
+    
+    NSURL *silentAudioFilePath = [[NSBundle mainBundle] URLForResource:@"silence-short" withExtension:@"wav"];
+    if (silentAudioFilePath) {
+        NSLog(@"VideoListViewController::NowPlayingInfo - play silent audio");
+        self.audioPlayer.delegate = nil;  // Remove previous delegate if any
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:silentAudioFilePath error:nil];
+        // Set the audio player to repeat indefinitely
+        self.audioPlayer.numberOfLoops = -1;
+        [self.audioPlayer play];
+    }
 }
 
 @end

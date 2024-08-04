@@ -22,6 +22,9 @@
 @property (strong, nonatomic) UIButton *customCastButton;
 @property (strong, nonatomic) VZBCastIconProxy* castIconProxy;
 
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) int counter;
+
 @end
 
 @implementation VideoDetailsViewController
@@ -136,6 +139,27 @@
         
         NSLog(@"Play on phone with status = %@", status);
         
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
+        // Register for the app entering background notification
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(handleDidEnterBackground)
+                                                         name:UIApplicationDidEnterBackgroundNotification
+                                                       object:nil];
+        
+        __weak typeof(self) weakSelf = self;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                 repeats:YES
+                                                   block:^(NSTimer * _Nonnull timer) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (weakSelf) {
+                weakSelf.counter++;
+                if (weakSelf.counter == 10) {
+                    [weakSelf handleDidEnterBackground];
+                }
+            }
+        }];
+        
         [VideoPlayer playVideo:self.movie atPosition:0 presentingViewController:self];
     }];
     
@@ -144,6 +168,13 @@
     //------------------------------
     // [End] Vizbee Integration Code
     //------------------------------
+}
+
+// Method to handle the app entering background
+-(void) handleDidEnterBackground {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)setupPlayButton {

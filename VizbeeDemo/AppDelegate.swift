@@ -1,4 +1,12 @@
+//
+//  AppDelegate.swift
+//  VizbeeDemo
+//
+//  Copyright © Vizbee Inc. All rights reserved.
+//
+
 import UIKit
+import SwiftUI
 import VizbeeKit
 
 @UIApplicationMain
@@ -7,13 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
         
-        // Create root UIViewController
-        let videoViewController = VideoListViewController(nibName: "VideoListViewController", bundle: nil)
-        let navigationController = UINavigationController(rootViewController: videoViewController)
-        
-        // Setup Cast Bar
-        setupCastContainer(with: navigationController)
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let castingViewModel = CastingViewModel()
+        let homeView = HomeView(castingViewModel: castingViewModel)
+        window.rootViewController = CustomHostingController(rootView: homeView)
+        self.window = window
+        window.makeKeyAndVisible()
         
         // Initialize Vizbee SDK
         VizbeeWrapper.shared.initVizbeeSDK()
@@ -23,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // listen for message
         listenForMessages()
-
+        
         return true
     }
     
@@ -51,28 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Add your custom handling logic here
         }
     }
-
-    /**
-     * Let VizbeeKit manage the layout of the mini controller by wrapping your
-     * existing view controller with its own UIViewController.
-     *
-     * - Parameter rootViewController: Application's root UIViewController
-     */
-    func setupCastContainer(with rootViewController: UIViewController) {
-        let castContainer = Vizbee.createUICastContainer(for: rootViewController)
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = castContainer
-        self.window?.makeKeyAndVisible()
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if let userInterfaceStyle = UIApplication.shared.windows.first?.traitCollection.userInterfaceStyle{
+            Vizbee.setUIConfig(DemoAppVizbeeStyle.getUIStyle(style: userInterfaceStyle))
+        }
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {}
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {}
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {}
-    
-    func applicationWillTerminate(_ application: UIApplication) {}
 }

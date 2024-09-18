@@ -1,4 +1,5 @@
 {
+  "originHash" : "1b3ce8f80d0141b5dba4db1c7b1d75c0d49dc203193fd06234e6209cc77b6a5b",
   "pins" : [
     {
       "identity" : "google-cast-sdk-m1",
@@ -23,10 +24,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ClaspTV/vizbee-ios-sdk.git",
       "state" : {
-        "revision" : "b10af1358ddff26c094f34d3ee48f3eb051e5bbb",
-        "version" : "6.6.1"
+        "revision" : "f8424e64f02bad81160ca55578bae697665c196d",
+        "version" : "6.6.5"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

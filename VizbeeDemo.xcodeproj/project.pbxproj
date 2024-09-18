@@ -3,275 +3,121 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		362EF5B01E77163B003E9E2C /* Theinhardt-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 362EF5AC1E771469003E9E2C /* Theinhardt-Regular.otf */; };
-		362EF5B11E77163F003E9E2C /* ChronicleDisp-SemiboldItal.otf in Resources */ = {isa = PBXBuildFile; fileRef = 362EF5AD1E771469003E9E2C /* ChronicleDisp-SemiboldItal.otf */; };
-		362EF5B21E771642003E9E2C /* Officina Sans ITC Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 362EF5AE1E771469003E9E2C /* Officina Sans ITC Book.ttf */; };
-		362EF5B31E771644003E9E2C /* Officina Sans ITC Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 362EF5AF1E771469003E9E2C /* Officina Sans ITC Bold.ttf */; };
-		364F3E451E2E6E4300FE94B7 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E441E2E6E4300FE94B7 /* VideoListViewController.m */; };
-		364F3E4A1E2E6E4300FE94B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 364F3E491E2E6E4300FE94B7 /* Assets.xcassets */; };
-		364F3E4D1E2E6E4300FE94B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364F3E4B1E2E6E4300FE94B7 /* LaunchScreen.storyboard */; };
-		364F3E581E2E6E4400FE94B7 /* VizbeeDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E571E2E6E4400FE94B7 /* VizbeeDemoTests.m */; };
-		364F3E631E2E6E4400FE94B7 /* VizbeeDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E621E2E6E4400FE94B7 /* VizbeeDemoUITests.m */; };
-		364F3E711E2E7C8600FE94B7 /* VideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364F3E701E2E7C8600FE94B7 /* VideoListViewController.xib */; };
-		364F3E741E2E7F0A00FE94B7 /* VideoCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E731E2E7F0A00FE94B7 /* VideoCatalog.m */; };
-		364F3E771E2E802300FE94B7 /* VideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E761E2E802300FE94B7 /* VideoObject.m */; };
-		364F3E821E2EC6C800FE94B7 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 364F3E811E2EC6C800FE94B7 /* VideoPlayer.m */; };
-		587C663E2C380CFD00FA69AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587C663D2C380CFD00FA69AB /* AppDelegate.swift */; };
-		58ED07882C3661FB006EA00D /* VizbeeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED07872C3661FB006EA00D /* VizbeeKit */; };
-		58ED078B2C366211006EA00D /* VizbeeHomeOSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED078A2C366211006EA00D /* VizbeeHomeOSKit */; };
-		58ED078E2C366286006EA00D /* GoogleCast in Frameworks */ = {isa = PBXBuildFile; productRef = 58ED078D2C366286006EA00D /* GoogleCast */; };
-		58ED07932C367B00006EA00D /* VizbeeAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ED07902C367B00006EA00D /* VizbeeAnalyticsHandler.swift */; };
-		58ED07942C367B00006EA00D /* VizbeeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ED07912C367B00006EA00D /* VizbeeWrapper.swift */; };
-		58ED07952C367B00006EA00D /* VizbeeAppAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ED07922C367B00006EA00D /* VizbeeAppAdapter.swift */; };
-		58ED08532C3693E3006EA00D /* DemoAppVizbeeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ED08522C3693E3006EA00D /* DemoAppVizbeeStyle.swift */; };
-		58ED08552C3699B1006EA00D /* MobileToTVMessager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58ED08542C3699B1006EA00D /* MobileToTVMessager.swift */; };
-		96387110225FEA7700820167 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638710F225FEA7700820167 /* libicucore.tbd */; };
-		96387112225FEA7D00820167 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387111225FEA7D00820167 /* libz.tbd */; };
-		96387114225FEA8500820167 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387113225FEA8500820167 /* libc++.tbd */; };
-		96387116225FEA8900820167 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387115225FEA8900820167 /* AudioToolbox.framework */; };
-		96387118225FEA8F00820167 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387117225FEA8F00820167 /* AVFoundation.framework */; };
-		9638711A225FEA9600820167 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387119225FEA9600820167 /* CoreBluetooth.framework */; };
-		9638711C225FEA9B00820167 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638711B225FEA9B00820167 /* CoreGraphics.framework */; };
-		9638711E225FEAA200820167 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638711D225FEAA200820167 /* CoreText.framework */; };
-		96387120225FEAA700820167 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638711F225FEAA700820167 /* Foundation.framework */; };
-		96387122225FEAAC00820167 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387121225FEAAC00820167 /* MediaAccessibility.framework */; };
-		96387124225FEABF00820167 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387123225FEABF00820167 /* MediaPlayer.framework */; };
-		96387126225FEACC00820167 /* MediaToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387125225FEACC00820167 /* MediaToolbox.framework */; };
-		96387128225FEAD200820167 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387127225FEAD200820167 /* QuartzCore.framework */; };
-		9638712A225FEAD800820167 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96387129225FEAD800820167 /* SystemConfiguration.framework */; };
-		9638712C225FEADC00820167 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638712B225FEADC00820167 /* UIKit.framework */; };
-		9638712E225FEAE000820167 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9638712D225FEAE000820167 /* Accelerate.framework */; };
-		96489484225FD05B00BE35A9 /* Roboto_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96489482225FD05B00BE35A9 /* Roboto_Medium.ttf */; };
-		96489485225FD05B00BE35A9 /* Roboto_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96489483225FD05B00BE35A9 /* Roboto_Regular.ttf */; };
-		964CA6F622984A1400D07914 /* VideoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964CA6F522984A1400D07914 /* VideoDetailsViewController.m */; };
-		964CA6FA229852F700D07914 /* VideoDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 964CA6F9229852F700D07914 /* VideoDetailsViewController.storyboard */; };
-		9694EA15225E6CA1001B8885 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EA13225E6CA1001B8885 /* SettingsViewController.m */; };
-		9694EA18225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9694EA17225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard */; };
+		847420672C945A950024CFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420662C945A950024CFA4 /* Assets.xcassets */; };
+		8474206A2C945A950024CFA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420692C945A950024CFA4 /* Preview Assets.xcassets */; };
+		847420742C945A950024CFA4 /* VizbeeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420732C945A950024CFA4 /* VizbeeDemoTests.swift */; };
+		8474207E2C945A950024CFA4 /* VizbeeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474207D2C945A950024CFA4 /* VizbeeDemoUITests.swift */; };
+		847420802C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474207F2C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift */; };
+		8474208D2C945B5A0024CFA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474208C2C945B5A0024CFA4 /* AppDelegate.swift */; };
+		8474208F2C945BA30024CFA4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474208E2C945BA30024CFA4 /* HomeView.swift */; };
+		847420932C945C400024CFA4 /* VideoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420922C945C400024CFA4 /* VideoRow.swift */; };
+		847420952C945E550024CFA4 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420942C945E550024CFA4 /* PlayerView.swift */; };
+		8474209B2C945EB50024CFA4 /* CastButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474209A2C945EB50024CFA4 /* CastButton.swift */; };
+		8474209F2C945FDC0024CFA4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474209E2C945FDC0024CFA4 /* Video.swift */; };
+		847420A12C945FFA0024CFA4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */; };
+		847420A32C9460240024CFA4 /* CastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420A22C9460240024CFA4 /* CastingViewModel.swift */; };
+		847420AA2C9461130024CFA4 /* VizbeeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 847420A92C9461130024CFA4 /* VizbeeKit */; };
+		847420AD2C94611C0024CFA4 /* VizbeeHomeOSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */; };
+		847420B02C9461250024CFA4 /* GoogleCast in Frameworks */ = {isa = PBXBuildFile; productRef = 847420AF2C9461250024CFA4 /* GoogleCast */; };
+		847420B42C9463290024CFA4 /* VizbeeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B32C9463290024CFA4 /* VizbeeAdapter.swift */; };
+		847420B82C9470C70024CFA4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B72C9470C70024CFA4 /* SettingsView.swift */; };
+		847420BA2C9470E80024CFA4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B92C9470E80024CFA4 /* SettingsViewModel.swift */; };
+		847420BD2C9472610024CFA4 /* VizbeeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */; };
+		847420C12C9473730024CFA4 /* MobileToTVMessager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */; };
+		847420C22C9473730024CFA4 /* DemoAppVizbeeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */; };
+		847420C32C9473730024CFA4 /* VizbeeAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */; };
+		847420C52C947C980024CFA4 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420C42C947C980024CFA4 /* ImageLoader.swift */; };
+		847EF6562C99821C009877A9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6552C99821C009877A9 /* DetailView.swift */; };
+		847EF6592C998B2F009877A9 /* CustomHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6582C998B2F009877A9 /* CustomHostingController.swift */; };
+		847EF65C2C99984E009877A9 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF65B2C99984E009877A9 /* VideoData.swift */; };
+		847EF65E2C999D40009877A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF65D2C999D40009877A9 /* Constants.swift */; };
+		847EF6602C999EA0009877A9 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF65F2C999EA0009877A9 /* DetailViewModel.swift */; };
+		847EF6622C99A46E009877A9 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6612C99A46E009877A9 /* VideoPlayer.swift */; };
+		847EF6642C99E7DF009877A9 /* CustomPlayerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6632C99E7DF009877A9 /* CustomPlayerControls.swift */; };
+		847EF6662C9AD023009877A9 /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6652C9AD023009877A9 /* PlayerPresenter.swift */; };
+		84B8CC8F2C9B27FB00ED9F80 /* Roboto_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */; };
+		84B8CC902C9B27FB00ED9F80 /* Roboto_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		364F3E541E2E6E4400FE94B7 /* PBXContainerItemProxy */ = {
+		847420702C945A950024CFA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 364F3E321E2E6E4300FE94B7 /* Project object */;
+			containerPortal = 847420572C945A930024CFA4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 364F3E391E2E6E4300FE94B7;
-			remoteInfo = DemoIntegrationApp;
+			remoteGlobalIDString = 8474205E2C945A930024CFA4;
+			remoteInfo = VizbeeDemo;
 		};
-		364F3E5F1E2E6E4400FE94B7 /* PBXContainerItemProxy */ = {
+		8474207A2C945A950024CFA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 364F3E321E2E6E4300FE94B7 /* Project object */;
+			containerPortal = 847420572C945A930024CFA4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 364F3E391E2E6E4300FE94B7;
-			remoteInfo = DemoIntegrationApp;
+			remoteGlobalIDString = 8474205E2C945A930024CFA4;
+			remoteInfo = VizbeeDemo;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		362EF5AC1E771469003E9E2C /* Theinhardt-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Theinhardt-Regular.otf"; sourceTree = "<group>"; };
-		362EF5AD1E771469003E9E2C /* ChronicleDisp-SemiboldItal.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ChronicleDisp-SemiboldItal.otf"; sourceTree = "<group>"; };
-		362EF5AE1E771469003E9E2C /* Officina Sans ITC Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Officina Sans ITC Book.ttf"; sourceTree = "<group>"; };
-		362EF5AF1E771469003E9E2C /* Officina Sans ITC Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Officina Sans ITC Bold.ttf"; sourceTree = "<group>"; };
-		364F3E3A1E2E6E4300FE94B7 /* VizbeeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizbeeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		364F3E431E2E6E4300FE94B7 /* VideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
-		364F3E441E2E6E4300FE94B7 /* VideoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
-		364F3E491E2E6E4300FE94B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		364F3E4C1E2E6E4300FE94B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		364F3E4E1E2E6E4300FE94B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		364F3E531E2E6E4400FE94B7 /* VizbeeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VizbeeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		364F3E571E2E6E4400FE94B7 /* VizbeeDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VizbeeDemoTests.m; sourceTree = "<group>"; };
-		364F3E591E2E6E4400FE94B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		364F3E5E1E2E6E4400FE94B7 /* VizbeeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VizbeeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		364F3E621E2E6E4400FE94B7 /* VizbeeDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VizbeeDemoUITests.m; sourceTree = "<group>"; };
-		364F3E641E2E6E4400FE94B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		364F3E701E2E7C8600FE94B7 /* VideoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoListViewController.xib; sourceTree = "<group>"; };
-		364F3E721E2E7F0A00FE94B7 /* VideoCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCatalog.h; sourceTree = "<group>"; };
-		364F3E731E2E7F0A00FE94B7 /* VideoCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCatalog.m; sourceTree = "<group>"; };
-		364F3E751E2E802300FE94B7 /* VideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoObject.h; sourceTree = "<group>"; };
-		364F3E761E2E802300FE94B7 /* VideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoObject.m; sourceTree = "<group>"; };
-		364F3E801E2EC6C800FE94B7 /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
-		364F3E811E2EC6C800FE94B7 /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
-		364F3E831E2EF81900FE94B7 /* VizbeeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VizbeeDemo.entitlements; sourceTree = "<group>"; };
-		587C663D2C380CFD00FA69AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		58ED078F2C367AFF006EA00D /* VizbeeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VizbeeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		58ED07902C367B00006EA00D /* VizbeeAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeAnalyticsHandler.swift; sourceTree = "<group>"; };
-		58ED07912C367B00006EA00D /* VizbeeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeWrapper.swift; sourceTree = "<group>"; };
-		58ED07922C367B00006EA00D /* VizbeeAppAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeAppAdapter.swift; sourceTree = "<group>"; };
-		58ED08522C3693E3006EA00D /* DemoAppVizbeeStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppVizbeeStyle.swift; sourceTree = "<group>"; };
-		58ED08542C3699B1006EA00D /* MobileToTVMessager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileToTVMessager.swift; sourceTree = "<group>"; };
-		96387035225FE98500820167 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = "../../../Desktop/untitled folder/CoreAudioKit.framework"; sourceTree = "<group>"; };
-		96387036225FE98500820167 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = "../../../Desktop/untitled folder/HealthKit.framework"; sourceTree = "<group>"; };
-		96387037225FE98600820167 /* FileProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileProvider.framework; path = "../../../Desktop/untitled folder/FileProvider.framework"; sourceTree = "<group>"; };
-		96387038225FE98600820167 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = "../../../Desktop/untitled folder/ARKit.framework"; sourceTree = "<group>"; };
-		96387039225FE98600820167 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = "../../../Desktop/untitled folder/AssetsLibrary.framework"; sourceTree = "<group>"; };
-		9638703A225FE98600820167 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = "../../../Desktop/untitled folder/UserNotifications.framework"; sourceTree = "<group>"; };
-		9638703B225FE98600820167 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = "../../../Desktop/untitled folder/MapKit.framework"; sourceTree = "<group>"; };
-		9638703C225FE98600820167 /* FileProviderUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileProviderUI.framework; path = "../../../Desktop/untitled folder/FileProviderUI.framework"; sourceTree = "<group>"; };
-		9638703D225FE98600820167 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = "../../../Desktop/untitled folder/CoreSpotlight.framework"; sourceTree = "<group>"; };
-		9638703E225FE98600820167 /* CarPlay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CarPlay.framework; path = "../../../Desktop/untitled folder/CarPlay.framework"; sourceTree = "<group>"; };
-		9638703F225FE98600820167 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = "../../../Desktop/untitled folder/PassKit.framework"; sourceTree = "<group>"; };
-		96387040225FE98600820167 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = "../../../Desktop/untitled folder/StoreKit.framework"; sourceTree = "<group>"; };
-		96387041225FE98600820167 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = "../../../Desktop/untitled folder/Metal.framework"; sourceTree = "<group>"; };
-		96387042225FE98600820167 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = "../../../Desktop/untitled folder/MetalKit.framework"; sourceTree = "<group>"; };
-		96387043225FE98600820167 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = "../../../Desktop/untitled folder/WatchKit.framework"; sourceTree = "<group>"; };
-		96387044225FE98600820167 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = "../../../Desktop/untitled folder/Social.framework"; sourceTree = "<group>"; };
-		96387045225FE98600820167 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = "../../../Desktop/untitled folder/PDFKit.framework"; sourceTree = "<group>"; };
-		96387046225FE98600820167 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = "../../../Desktop/untitled folder/CoreMIDI.framework"; sourceTree = "<group>"; };
-		96387047225FE98600820167 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = "../../../Desktop/untitled folder/CoreText.framework"; sourceTree = "<group>"; };
-		96387048225FE98600820167 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = "../../../Desktop/untitled folder/EventKitUI.framework"; sourceTree = "<group>"; };
-		96387049225FE98600820167 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = "../../../Desktop/untitled folder/AuthenticationServices.framework"; sourceTree = "<group>"; };
-		9638704A225FE98600820167 /* GSS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSS.framework; path = "../../../Desktop/untitled folder/GSS.framework"; sourceTree = "<group>"; };
-		9638704B225FE98600820167 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = "../../../Desktop/untitled folder/Network.framework"; sourceTree = "<group>"; };
-		9638704C225FE98600820167 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = "../../../Desktop/untitled folder/GLKit.framework"; sourceTree = "<group>"; };
-		9638704D225FE98600820167 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = "../../../Desktop/untitled folder/CoreVideo.framework"; sourceTree = "<group>"; };
-		9638704E225FE98600820167 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = "../../../Desktop/untitled folder/CloudKit.framework"; sourceTree = "<group>"; };
-		9638704F225FE98600820167 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = "../../../Desktop/untitled folder/Security.framework"; sourceTree = "<group>"; };
-		96387050225FE98600820167 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = "../../../Desktop/untitled folder/AdSupport.framework"; sourceTree = "<group>"; };
-		96387051225FE98600820167 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = "../../../Desktop/untitled folder/MediaPlayer.framework"; sourceTree = "<group>"; };
-		96387052225FE98600820167 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = "../../../Desktop/untitled folder/CoreLocation.framework"; sourceTree = "<group>"; };
-		96387053225FE98600820167 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = "../../../Desktop/untitled folder/GameKit.framework"; sourceTree = "<group>"; };
-		96387054225FE98600820167 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = "../../../Desktop/untitled folder/OpenAL.framework"; sourceTree = "<group>"; };
-		96387055225FE98600820167 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = "../../../Desktop/untitled folder/CoreAudio.framework"; sourceTree = "<group>"; };
-		96387056225FE98600820167 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = "../../../Desktop/untitled folder/AudioUnit.framework"; sourceTree = "<group>"; };
-		96387057225FE98600820167 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = "../../../Desktop/untitled folder/IOSurface.framework"; sourceTree = "<group>"; };
-		96387058225FE98600820167 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.map; path = "../../../Desktop/untitled folder/module.map"; sourceTree = "<group>"; };
-		96387059225FE98600820167 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = "../../../Desktop/untitled folder/Intents.framework"; sourceTree = "<group>"; };
-		9638705A225FE98600820167 /* IdentityLookup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IdentityLookup.framework; path = "../../../Desktop/untitled folder/IdentityLookup.framework"; sourceTree = "<group>"; };
-		9638705B225FE98600820167 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = "../../../Desktop/untitled folder/CoreGraphics.framework"; sourceTree = "<group>"; };
-		9638705C225FE98600820167 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = "../../../Desktop/untitled folder/QuickLook.framework"; sourceTree = "<group>"; };
-		9638705D225FE98600820167 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = "../../../Desktop/untitled folder/AVKit.framework"; sourceTree = "<group>"; };
-		9638705E225FE98600820167 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = "../../../Desktop/untitled folder/SceneKit.framework"; sourceTree = "<group>"; };
-		9638705F225FE98600820167 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = "../../../Desktop/untitled folder/Vision.framework"; sourceTree = "<group>"; };
-		96387060225FE98600820167 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = "../../../Desktop/untitled folder/Accounts.framework"; sourceTree = "<group>"; };
-		96387061225FE98600820167 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = "../../../Desktop/untitled folder/CFNetwork.framework"; sourceTree = "<group>"; };
-		96387062225FE98600820167 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = "../../../Desktop/untitled folder/JavaScriptCore.framework"; sourceTree = "<group>"; };
-		96387063225FE98700820167 /* VideoSubscriberAccount.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoSubscriberAccount.framework; path = "../../../Desktop/untitled folder/VideoSubscriberAccount.framework"; sourceTree = "<group>"; };
-		96387064225FE98700820167 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = "../../../Desktop/untitled folder/PushKit.framework"; sourceTree = "<group>"; };
-		96387065225FE98700820167 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = "../../../Desktop/untitled folder/AudioToolbox.framework"; sourceTree = "<group>"; };
-		96387066225FE98700820167 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = "../../../Desktop/untitled folder/MediaToolbox.framework"; sourceTree = "<group>"; };
-		96387067225FE98700820167 /* ClassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClassKit.framework; path = "../../../Desktop/untitled folder/ClassKit.framework"; sourceTree = "<group>"; };
-		96387068225FE98700820167 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = "../../../Desktop/untitled folder/AddressBook.framework"; sourceTree = "<group>"; };
-		96387069225FE98700820167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = "../../../Desktop/untitled folder/AVFoundation.framework"; sourceTree = "<group>"; };
-		9638706A225FE98700820167 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = "../../../Desktop/untitled folder/iAd.framework"; sourceTree = "<group>"; };
-		9638706B225FE98700820167 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = "../../../Desktop/untitled folder/CoreML.framework"; sourceTree = "<group>"; };
-		9638706C225FE98700820167 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = "../../../Desktop/untitled folder/CoreServices.framework"; sourceTree = "<group>"; };
-		9638706D225FE98700820167 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../../Desktop/untitled folder/Twitter.framework"; sourceTree = "<group>"; };
-		9638706E225FE98700820167 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = "../../../Desktop/untitled folder/Photos.framework"; sourceTree = "<group>"; };
-		9638706F225FE98700820167 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = "../../../Desktop/untitled folder/CoreImage.framework"; sourceTree = "<group>"; };
-		96387070225FE98700820167 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = "../../../Desktop/untitled folder/Foundation.framework"; sourceTree = "<group>"; };
-		96387071225FE98700820167 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = "../../../Desktop/untitled folder/SystemConfiguration.framework"; sourceTree = "<group>"; };
-		96387072225FE98700820167 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = "../../../Desktop/untitled folder/ReplayKit.framework"; sourceTree = "<group>"; };
-		96387073225FE98700820167 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = "../../../Desktop/untitled folder/QuartzCore.framework"; sourceTree = "<group>"; };
-		96387074225FE98700820167 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = "../../../Desktop/untitled folder/NotificationCenter.framework"; sourceTree = "<group>"; };
-		96387075225FE98700820167 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = "../../../Desktop/untitled folder/ImageIO.framework"; sourceTree = "<group>"; };
-		96387076225FE98700820167 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = "../../../Desktop/untitled folder/Contacts.framework"; sourceTree = "<group>"; };
-		96387077225FE98700820167 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = "../../../Desktop/untitled folder/NetworkExtension.framework"; sourceTree = "<group>"; };
-		96387078225FE98700820167 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = "../../../Desktop/untitled folder/EventKit.framework"; sourceTree = "<group>"; };
-		96387079225FE98700820167 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = "../../../Desktop/untitled folder/CoreTelephony.framework"; sourceTree = "<group>"; };
-		9638707A225FE98700820167 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = "../../../Desktop/untitled folder/CoreMedia.framework"; sourceTree = "<group>"; };
-		9638707B225FE98700820167 /* IdentityLookupUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IdentityLookupUI.framework; path = "../../../Desktop/untitled folder/IdentityLookupUI.framework"; sourceTree = "<group>"; };
-		9638707C225FE98700820167 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = "../../../Desktop/untitled folder/ExternalAccessory.framework"; sourceTree = "<group>"; };
-		9638707D225FE98700820167 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = "../../../Desktop/untitled folder/HomeKit.framework"; sourceTree = "<group>"; };
-		9638707E225FE98700820167 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = "../../../Desktop/untitled folder/WatchConnectivity.framework"; sourceTree = "<group>"; };
-		9638707F225FE98700820167 /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = "../../../Desktop/untitled folder/NewsstandKit.framework"; sourceTree = "<group>"; };
-		96387080225FE98700820167 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = "../../../Desktop/untitled folder/Messages.framework"; sourceTree = "<group>"; };
-		96387081225FE98700820167 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = "../../../Desktop/untitled folder/SafariServices.framework"; sourceTree = "<group>"; };
-		96387082225FE98700820167 /* ModelIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ModelIO.framework; path = "../../../Desktop/untitled folder/ModelIO.framework"; sourceTree = "<group>"; };
-		96387083225FE98700820167 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = "../../../Desktop/untitled folder/MultipeerConnectivity.framework"; sourceTree = "<group>"; };
-		96387084225FE98700820167 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = "../../../Desktop/untitled folder/IntentsUI.framework"; sourceTree = "<group>"; };
-		96387085225FE98700820167 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = "../../../Desktop/untitled folder/SpriteKit.framework"; sourceTree = "<group>"; };
-		96387086225FE98700820167 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = "../../../Desktop/untitled folder/LocalAuthentication.framework"; sourceTree = "<group>"; };
-		96387087225FE98800820167 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = "../../../Desktop/untitled folder/IOKit.framework"; sourceTree = "<group>"; };
-		96387088225FE98800820167 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = "../../../Desktop/untitled folder/PhotosUI.framework"; sourceTree = "<group>"; };
-		96387089225FE98800820167 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = "../../../Desktop/untitled folder/CallKit.framework"; sourceTree = "<group>"; };
-		9638708A225FE98800820167 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = "../../../Desktop/untitled folder/UserNotificationsUI.framework"; sourceTree = "<group>"; };
-		9638708B225FE98800820167 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = "../../../Desktop/untitled folder/MessageUI.framework"; sourceTree = "<group>"; };
-		9638708C225FE98800820167 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = "../../../Desktop/untitled folder/MobileCoreServices.framework"; sourceTree = "<group>"; };
-		9638708D225FE98800820167 /* DeviceCheck.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceCheck.framework; path = "../../../Desktop/untitled folder/DeviceCheck.framework"; sourceTree = "<group>"; };
-		9638708E225FE98800820167 /* NaturalLanguage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguage.framework; path = "../../../Desktop/untitled folder/NaturalLanguage.framework"; sourceTree = "<group>"; };
-		9638708F225FE98800820167 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = "../../../Desktop/untitled folder/HealthKitUI.framework"; sourceTree = "<group>"; };
-		96387090225FE98800820167 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = "../../../Desktop/untitled folder/WebKit.framework"; sourceTree = "<group>"; };
-		96387091225FE98800820167 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = "../../../Desktop/untitled folder/Accelerate.framework"; sourceTree = "<group>"; };
-		96387092225FE98800820167 /* BusinessChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BusinessChat.framework; path = "../../../Desktop/untitled folder/BusinessChat.framework"; sourceTree = "<group>"; };
-		96387093225FE98800820167 /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = "../../../Desktop/untitled folder/GameplayKit.framework"; sourceTree = "<group>"; };
-		96387094225FE98800820167 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = "../../../Desktop/untitled folder/VideoToolbox.framework"; sourceTree = "<group>"; };
-		96387095225FE98800820167 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = "../../../Desktop/untitled folder/UIKit.framework"; sourceTree = "<group>"; };
-		96387096225FE98800820167 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = "../../../Desktop/untitled folder/CoreNFC.framework"; sourceTree = "<group>"; };
-		96387097225FE98800820167 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = "../../../Desktop/untitled folder/MetalPerformanceShaders.framework"; sourceTree = "<group>"; };
-		96387098225FE98800820167 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = "../../../Desktop/untitled folder/CoreBluetooth.framework"; sourceTree = "<group>"; };
-		96387099225FE98800820167 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = "../../../Desktop/untitled folder/AddressBookUI.framework"; sourceTree = "<group>"; };
-		9638709A225FE98800820167 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = "../../../Desktop/untitled folder/CoreData.framework"; sourceTree = "<group>"; };
-		9638709B225FE98800820167 /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = "../../../Desktop/untitled folder/MediaAccessibility.framework"; sourceTree = "<group>"; };
-		9638709C225FE98800820167 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = "../../../Desktop/untitled folder/GameController.framework"; sourceTree = "<group>"; };
-		9638709D225FE98800820167 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = "../../../Desktop/untitled folder/OpenGLES.framework"; sourceTree = "<group>"; };
-		9638709E225FE98800820167 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = "../../../Desktop/untitled folder/Speech.framework"; sourceTree = "<group>"; };
-		9638709F225FE98800820167 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = "../../../Desktop/untitled folder/ContactsUI.framework"; sourceTree = "<group>"; };
-		963870A0225FE98800820167 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = "../../../Desktop/untitled folder/CoreFoundation.framework"; sourceTree = "<group>"; };
-		963870A1225FE98800820167 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = "../../../Desktop/untitled folder/CoreMotion.framework"; sourceTree = "<group>"; };
-		9638710F225FEA7700820167 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
-		96387111225FEA7D00820167 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		96387113225FEA8500820167 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		96387115225FEA8900820167 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		96387117225FEA8F00820167 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		96387119225FEA9600820167 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		9638711B225FEA9B00820167 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9638711D225FEAA200820167 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		9638711F225FEAA700820167 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		96387121225FEAAC00820167 /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = System/Library/Frameworks/MediaAccessibility.framework; sourceTree = SDKROOT; };
-		96387123225FEABF00820167 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		96387125225FEACC00820167 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
-		96387127225FEAD200820167 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		96387129225FEAD800820167 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9638712B225FEADC00820167 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9638712D225FEAE000820167 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		96489482225FD05B00BE35A9 /* Roboto_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Medium.ttf; sourceTree = "<group>"; };
-		96489483225FD05B00BE35A9 /* Roboto_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Regular.ttf; sourceTree = "<group>"; };
-		964CA6F422984A1400D07914 /* VideoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDetailsViewController.h; sourceTree = "<group>"; };
-		964CA6F522984A1400D07914 /* VideoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailsViewController.m; sourceTree = "<group>"; };
-		964CA6F9229852F700D07914 /* VideoDetailsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VideoDetailsViewController.storyboard; sourceTree = "<group>"; };
-		9694EA12225E6CA1001B8885 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		9694EA13225E6CA1001B8885 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		9694EA17225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
+		8474205F2C945A930024CFA4 /* VizbeeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizbeeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		847420662C945A950024CFA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		847420692C945A950024CFA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8474206F2C945A950024CFA4 /* VizbeeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VizbeeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		847420732C945A950024CFA4 /* VizbeeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizbeeDemoTests.swift; sourceTree = "<group>"; };
+		847420792C945A950024CFA4 /* VizbeeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VizbeeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8474207D2C945A950024CFA4 /* VizbeeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizbeeDemoUITests.swift; sourceTree = "<group>"; };
+		8474207F2C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizbeeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8474208C2C945B5A0024CFA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8474208E2C945BA30024CFA4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		847420922C945C400024CFA4 /* VideoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRow.swift; sourceTree = "<group>"; };
+		847420942C945E550024CFA4 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		8474209A2C945EB50024CFA4 /* CastButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastButton.swift; sourceTree = "<group>"; };
+		8474209E2C945FDC0024CFA4 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
+		847420A22C9460240024CFA4 /* CastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingViewModel.swift; sourceTree = "<group>"; };
+		847420B32C9463290024CFA4 /* VizbeeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizbeeAdapter.swift; sourceTree = "<group>"; };
+		847420B72C9470C70024CFA4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		847420B92C9470E80024CFA4 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VizbeeWrapper.swift; path = VizbeeDemo/VizbeeIntegration/VizbeeWrapper.swift; sourceTree = SOURCE_ROOT; };
+		847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileToTVMessager.swift; sourceTree = "<group>"; };
+		847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppVizbeeStyle.swift; sourceTree = "<group>"; };
+		847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeAnalyticsHandler.swift; sourceTree = "<group>"; };
+		847420C42C947C980024CFA4 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		847420C82C9480EB0024CFA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		847420C92C9483CF0024CFA4 /* VizbeeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VizbeeDemo.entitlements; sourceTree = "<group>"; };
+		847EF6552C99821C009877A9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		847EF6582C998B2F009877A9 /* CustomHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHostingController.swift; sourceTree = "<group>"; };
+		847EF65B2C99984E009877A9 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
+		847EF65D2C999D40009877A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		847EF65F2C999EA0009877A9 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		847EF6612C99A46E009877A9 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		847EF6632C99E7DF009877A9 /* CustomPlayerControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerControls.swift; sourceTree = "<group>"; };
+		847EF6652C9AD023009877A9 /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
+		84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Regular.ttf; sourceTree = "<group>"; };
+		84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Medium.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		364F3E371E2E6E4300FE94B7 /* Frameworks */ = {
+		8474205C2C945A930024CFA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9638712E225FEAE000820167 /* Accelerate.framework in Frameworks */,
-				9638712C225FEADC00820167 /* UIKit.framework in Frameworks */,
-				9638712A225FEAD800820167 /* SystemConfiguration.framework in Frameworks */,
-				96387128225FEAD200820167 /* QuartzCore.framework in Frameworks */,
-				96387126225FEACC00820167 /* MediaToolbox.framework in Frameworks */,
-				96387124225FEABF00820167 /* MediaPlayer.framework in Frameworks */,
-				96387122225FEAAC00820167 /* MediaAccessibility.framework in Frameworks */,
-				58ED078B2C366211006EA00D /* VizbeeHomeOSKit in Frameworks */,
-				96387120225FEAA700820167 /* Foundation.framework in Frameworks */,
-				9638711E225FEAA200820167 /* CoreText.framework in Frameworks */,
-				9638711C225FEA9B00820167 /* CoreGraphics.framework in Frameworks */,
-				58ED078E2C366286006EA00D /* GoogleCast in Frameworks */,
-				58ED07882C3661FB006EA00D /* VizbeeKit in Frameworks */,
-				9638711A225FEA9600820167 /* CoreBluetooth.framework in Frameworks */,
-				96387118225FEA8F00820167 /* AVFoundation.framework in Frameworks */,
-				96387116225FEA8900820167 /* AudioToolbox.framework in Frameworks */,
-				96387114225FEA8500820167 /* libc++.tbd in Frameworks */,
-				96387112225FEA7D00820167 /* libz.tbd in Frameworks */,
-				96387110225FEA7700820167 /* libicucore.tbd in Frameworks */,
+				847420B02C9461250024CFA4 /* GoogleCast in Frameworks */,
+				847420AA2C9461130024CFA4 /* VizbeeKit in Frameworks */,
+				847420AD2C94611C0024CFA4 /* VizbeeHomeOSKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E501E2E6E4400FE94B7 /* Frameworks */ = {
+		8474206C2C945A950024CFA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E5B1E2E6E4400FE94B7 /* Frameworks */ = {
+		847420762C945A950024CFA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,283 +127,162 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		364F3E311E2E6E4300FE94B7 = {
+		847420562C945A930024CFA4 = {
 			isa = PBXGroup;
 			children = (
-				364F3E3C1E2E6E4300FE94B7 /* VizbeeDemo */,
-				364F3E561E2E6E4400FE94B7 /* VizbeeDemoTests */,
-				364F3E611E2E6E4400FE94B7 /* VizbeeDemoUITests */,
-				364F3E3B1E2E6E4300FE94B7 /* Products */,
-				96387034225FE98500820167 /* Frameworks */,
+				847420612C945A930024CFA4 /* VizbeeDemo */,
+				847420722C945A950024CFA4 /* VizbeeDemoTests */,
+				8474207C2C945A950024CFA4 /* VizbeeDemoUITests */,
+				847420602C945A930024CFA4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		364F3E3B1E2E6E4300FE94B7 /* Products */ = {
+		847420602C945A930024CFA4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E3A1E2E6E4300FE94B7 /* VizbeeDemo.app */,
-				364F3E531E2E6E4400FE94B7 /* VizbeeDemoTests.xctest */,
-				364F3E5E1E2E6E4400FE94B7 /* VizbeeDemoUITests.xctest */,
+				8474205F2C945A930024CFA4 /* VizbeeDemo.app */,
+				8474206F2C945A950024CFA4 /* VizbeeDemoTests.xctest */,
+				847420792C945A950024CFA4 /* VizbeeDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		364F3E3C1E2E6E4300FE94B7 /* VizbeeDemo */ = {
+		847420612C945A930024CFA4 /* VizbeeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E7B1E2E99EA00FE94B7 /* DemoApp */,
-				364F3E7C1E2EC10800FE94B7 /* VizbeeIntegration */,
-				364F3E3D1E2E6E4300FE94B7 /* Supporting Files */,
+				84B8CC8C2C9B27E300ED9F80 /* Fonts */,
+				847420C92C9483CF0024CFA4 /* VizbeeDemo.entitlements */,
+				847420C82C9480EB0024CFA4 /* Info.plist */,
+				847420BB2C9472400024CFA4 /* VizbeeIntegration */,
+				8474209D2C945FC10024CFA4 /* Models */,
+				8474209C2C945F410024CFA4 /* ViewModels */,
+				847420912C945BCE0024CFA4 /* Views */,
+				847EF6572C998B1A009877A9 /* ViewControllers */,
+				847EF65A2C99983B009877A9 /* Constants */,
+				84B8CC8B2C9B257100ED9F80 /* Utils */,
+				8474208C2C945B5A0024CFA4 /* AppDelegate.swift */,
+				847420662C945A950024CFA4 /* Assets.xcassets */,
+				847420682C945A950024CFA4 /* Preview Content */,
 			);
 			path = VizbeeDemo;
 			sourceTree = "<group>";
 		};
-		364F3E3D1E2E6E4300FE94B7 /* Supporting Files */ = {
+		847420682C945A950024CFA4 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				58ED078F2C367AFF006EA00D /* VizbeeDemo-Bridging-Header.h */,
-				96489482225FD05B00BE35A9 /* Roboto_Medium.ttf */,
-				96489483225FD05B00BE35A9 /* Roboto_Regular.ttf */,
-				362EF5AC1E771469003E9E2C /* Theinhardt-Regular.otf */,
-				362EF5AD1E771469003E9E2C /* ChronicleDisp-SemiboldItal.otf */,
-				362EF5AE1E771469003E9E2C /* Officina Sans ITC Book.ttf */,
-				362EF5AF1E771469003E9E2C /* Officina Sans ITC Bold.ttf */,
+				847420692C945A950024CFA4 /* Preview Assets.xcassets */,
 			);
-			name = "Supporting Files";
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		364F3E561E2E6E4400FE94B7 /* VizbeeDemoTests */ = {
+		847420722C945A950024CFA4 /* VizbeeDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E571E2E6E4400FE94B7 /* VizbeeDemoTests.m */,
-				364F3E591E2E6E4400FE94B7 /* Info.plist */,
+				847420732C945A950024CFA4 /* VizbeeDemoTests.swift */,
 			);
-			name = VizbeeDemoTests;
-			path = VizbeeDemoAppTests;
+			path = VizbeeDemoTests;
 			sourceTree = "<group>";
 		};
-		364F3E611E2E6E4400FE94B7 /* VizbeeDemoUITests */ = {
+		8474207C2C945A950024CFA4 /* VizbeeDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E621E2E6E4400FE94B7 /* VizbeeDemoUITests.m */,
-				364F3E641E2E6E4400FE94B7 /* Info.plist */,
+				8474207D2C945A950024CFA4 /* VizbeeDemoUITests.swift */,
+				8474207F2C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift */,
 			);
 			path = VizbeeDemoUITests;
 			sourceTree = "<group>";
 		};
-		364F3E7B1E2E99EA00FE94B7 /* DemoApp */ = {
+		847420912C945BCE0024CFA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				587C663D2C380CFD00FA69AB /* AppDelegate.swift */,
-				58ED08572C37D379006EA00D /* ViewControllers */,
-				58ED08582C37D391006EA00D /* VideoPlayer */,
-				58ED07962C3685AB006EA00D /* Content */,
-				964CA6F722984A4200D07914 /* Storboards */,
-				364F3E491E2E6E4300FE94B7 /* Assets.xcassets */,
-				364F3E4E1E2E6E4300FE94B7 /* Info.plist */,
-				364F3E831E2EF81900FE94B7 /* VizbeeDemo.entitlements */,
+				8474208E2C945BA30024CFA4 /* HomeView.swift */,
+				847420922C945C400024CFA4 /* VideoRow.swift */,
+				847420942C945E550024CFA4 /* PlayerView.swift */,
+				8474209A2C945EB50024CFA4 /* CastButton.swift */,
+				847420B72C9470C70024CFA4 /* SettingsView.swift */,
+				847EF6552C99821C009877A9 /* DetailView.swift */,
+				847EF6612C99A46E009877A9 /* VideoPlayer.swift */,
+				847EF6632C99E7DF009877A9 /* CustomPlayerControls.swift */,
+				847EF6652C9AD023009877A9 /* PlayerPresenter.swift */,
 			);
-			name = DemoApp;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		364F3E7C1E2EC10800FE94B7 /* VizbeeIntegration */ = {
+		8474209C2C945F410024CFA4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				58ED07912C367B00006EA00D /* VizbeeWrapper.swift */,
-				58ED07922C367B00006EA00D /* VizbeeAppAdapter.swift */,
-				58ED08542C3699B1006EA00D /* MobileToTVMessager.swift */,
-				58ED07902C367B00006EA00D /* VizbeeAnalyticsHandler.swift */,
-				58ED08522C3693E3006EA00D /* DemoAppVizbeeStyle.swift */,
+				847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */,
+				847420A22C9460240024CFA4 /* CastingViewModel.swift */,
+				847420B92C9470E80024CFA4 /* SettingsViewModel.swift */,
+				847EF65F2C999EA0009877A9 /* DetailViewModel.swift */,
 			);
-			name = VizbeeIntegration;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		58ED07962C3685AB006EA00D /* Content */ = {
+		8474209D2C945FC10024CFA4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E751E2E802300FE94B7 /* VideoObject.h */,
-				364F3E761E2E802300FE94B7 /* VideoObject.m */,
-				364F3E721E2E7F0A00FE94B7 /* VideoCatalog.h */,
-				364F3E731E2E7F0A00FE94B7 /* VideoCatalog.m */,
+				8474209E2C945FDC0024CFA4 /* Video.swift */,
 			);
-			name = Content;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		58ED08572C37D379006EA00D /* ViewControllers */ = {
+		847420BB2C9472400024CFA4 /* VizbeeIntegration */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E431E2E6E4300FE94B7 /* VideoListViewController.h */,
-				364F3E441E2E6E4300FE94B7 /* VideoListViewController.m */,
-				964CA6F422984A1400D07914 /* VideoDetailsViewController.h */,
-				964CA6F522984A1400D07914 /* VideoDetailsViewController.m */,
-				9694EA12225E6CA1001B8885 /* SettingsViewController.h */,
-				9694EA13225E6CA1001B8885 /* SettingsViewController.m */,
+				847420B32C9463290024CFA4 /* VizbeeAdapter.swift */,
+				847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */,
+				847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */,
+				847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */,
+				847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */,
 			);
-			name = ViewControllers;
+			path = VizbeeIntegration;
 			sourceTree = "<group>";
 		};
-		58ED08582C37D391006EA00D /* VideoPlayer */ = {
+		847EF6572C998B1A009877A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E801E2EC6C800FE94B7 /* VideoPlayer.h */,
-				364F3E811E2EC6C800FE94B7 /* VideoPlayer.m */,
+				847EF6582C998B2F009877A9 /* CustomHostingController.swift */,
 			);
-			name = VideoPlayer;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		96387034225FE98500820167 /* Frameworks */ = {
+		847EF65A2C99983B009877A9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				9638712D225FEAE000820167 /* Accelerate.framework */,
-				9638712B225FEADC00820167 /* UIKit.framework */,
-				96387129225FEAD800820167 /* SystemConfiguration.framework */,
-				96387127225FEAD200820167 /* QuartzCore.framework */,
-				96387125225FEACC00820167 /* MediaToolbox.framework */,
-				96387123225FEABF00820167 /* MediaPlayer.framework */,
-				96387121225FEAAC00820167 /* MediaAccessibility.framework */,
-				9638711F225FEAA700820167 /* Foundation.framework */,
-				9638711D225FEAA200820167 /* CoreText.framework */,
-				9638711B225FEA9B00820167 /* CoreGraphics.framework */,
-				96387119225FEA9600820167 /* CoreBluetooth.framework */,
-				96387117225FEA8F00820167 /* AVFoundation.framework */,
-				96387115225FEA8900820167 /* AudioToolbox.framework */,
-				96387113225FEA8500820167 /* libc++.tbd */,
-				96387111225FEA7D00820167 /* libz.tbd */,
-				9638710F225FEA7700820167 /* libicucore.tbd */,
-				96387091225FE98800820167 /* Accelerate.framework */,
-				96387060225FE98600820167 /* Accounts.framework */,
-				96387068225FE98700820167 /* AddressBook.framework */,
-				96387099225FE98800820167 /* AddressBookUI.framework */,
-				96387050225FE98600820167 /* AdSupport.framework */,
-				96387038225FE98600820167 /* ARKit.framework */,
-				96387039225FE98600820167 /* AssetsLibrary.framework */,
-				96387065225FE98700820167 /* AudioToolbox.framework */,
-				96387056225FE98600820167 /* AudioUnit.framework */,
-				96387049225FE98600820167 /* AuthenticationServices.framework */,
-				96387069225FE98700820167 /* AVFoundation.framework */,
-				9638705D225FE98600820167 /* AVKit.framework */,
-				96387092225FE98800820167 /* BusinessChat.framework */,
-				96387089225FE98800820167 /* CallKit.framework */,
-				9638703E225FE98600820167 /* CarPlay.framework */,
-				96387061225FE98600820167 /* CFNetwork.framework */,
-				96387067225FE98700820167 /* ClassKit.framework */,
-				9638704E225FE98600820167 /* CloudKit.framework */,
-				96387076225FE98700820167 /* Contacts.framework */,
-				9638709F225FE98800820167 /* ContactsUI.framework */,
-				96387055225FE98600820167 /* CoreAudio.framework */,
-				96387035225FE98500820167 /* CoreAudioKit.framework */,
-				96387098225FE98800820167 /* CoreBluetooth.framework */,
-				9638709A225FE98800820167 /* CoreData.framework */,
-				963870A0225FE98800820167 /* CoreFoundation.framework */,
-				9638705B225FE98600820167 /* CoreGraphics.framework */,
-				9638706F225FE98700820167 /* CoreImage.framework */,
-				96387052225FE98600820167 /* CoreLocation.framework */,
-				9638707A225FE98700820167 /* CoreMedia.framework */,
-				96387046225FE98600820167 /* CoreMIDI.framework */,
-				9638706B225FE98700820167 /* CoreML.framework */,
-				963870A1225FE98800820167 /* CoreMotion.framework */,
-				96387096225FE98800820167 /* CoreNFC.framework */,
-				9638706C225FE98700820167 /* CoreServices.framework */,
-				9638703D225FE98600820167 /* CoreSpotlight.framework */,
-				96387079225FE98700820167 /* CoreTelephony.framework */,
-				96387047225FE98600820167 /* CoreText.framework */,
-				9638704D225FE98600820167 /* CoreVideo.framework */,
-				9638708D225FE98800820167 /* DeviceCheck.framework */,
-				96387078225FE98700820167 /* EventKit.framework */,
-				96387048225FE98600820167 /* EventKitUI.framework */,
-				9638707C225FE98700820167 /* ExternalAccessory.framework */,
-				96387037225FE98600820167 /* FileProvider.framework */,
-				9638703C225FE98600820167 /* FileProviderUI.framework */,
-				96387070225FE98700820167 /* Foundation.framework */,
-				9638709C225FE98800820167 /* GameController.framework */,
-				96387053225FE98600820167 /* GameKit.framework */,
-				96387093225FE98800820167 /* GameplayKit.framework */,
-				9638704C225FE98600820167 /* GLKit.framework */,
-				9638704A225FE98600820167 /* GSS.framework */,
-				96387036225FE98500820167 /* HealthKit.framework */,
-				9638708F225FE98800820167 /* HealthKitUI.framework */,
-				9638707D225FE98700820167 /* HomeKit.framework */,
-				9638706A225FE98700820167 /* iAd.framework */,
-				9638705A225FE98600820167 /* IdentityLookup.framework */,
-				9638707B225FE98700820167 /* IdentityLookupUI.framework */,
-				96387075225FE98700820167 /* ImageIO.framework */,
-				96387059225FE98600820167 /* Intents.framework */,
-				96387084225FE98700820167 /* IntentsUI.framework */,
-				96387087225FE98800820167 /* IOKit.framework */,
-				96387057225FE98600820167 /* IOSurface.framework */,
-				96387062225FE98600820167 /* JavaScriptCore.framework */,
-				96387086225FE98700820167 /* LocalAuthentication.framework */,
-				9638703B225FE98600820167 /* MapKit.framework */,
-				9638709B225FE98800820167 /* MediaAccessibility.framework */,
-				96387051225FE98600820167 /* MediaPlayer.framework */,
-				96387066225FE98700820167 /* MediaToolbox.framework */,
-				96387080225FE98700820167 /* Messages.framework */,
-				9638708B225FE98800820167 /* MessageUI.framework */,
-				96387041225FE98600820167 /* Metal.framework */,
-				96387042225FE98600820167 /* MetalKit.framework */,
-				96387097225FE98800820167 /* MetalPerformanceShaders.framework */,
-				9638708C225FE98800820167 /* MobileCoreServices.framework */,
-				96387082225FE98700820167 /* ModelIO.framework */,
-				96387058225FE98600820167 /* module.map */,
-				96387083225FE98700820167 /* MultipeerConnectivity.framework */,
-				9638708E225FE98800820167 /* NaturalLanguage.framework */,
-				9638704B225FE98600820167 /* Network.framework */,
-				96387077225FE98700820167 /* NetworkExtension.framework */,
-				9638707F225FE98700820167 /* NewsstandKit.framework */,
-				96387074225FE98700820167 /* NotificationCenter.framework */,
-				96387054225FE98600820167 /* OpenAL.framework */,
-				9638709D225FE98800820167 /* OpenGLES.framework */,
-				9638703F225FE98600820167 /* PassKit.framework */,
-				96387045225FE98600820167 /* PDFKit.framework */,
-				9638706E225FE98700820167 /* Photos.framework */,
-				96387088225FE98800820167 /* PhotosUI.framework */,
-				96387064225FE98700820167 /* PushKit.framework */,
-				96387073225FE98700820167 /* QuartzCore.framework */,
-				9638705C225FE98600820167 /* QuickLook.framework */,
-				96387072225FE98700820167 /* ReplayKit.framework */,
-				96387081225FE98700820167 /* SafariServices.framework */,
-				9638705E225FE98600820167 /* SceneKit.framework */,
-				9638704F225FE98600820167 /* Security.framework */,
-				96387044225FE98600820167 /* Social.framework */,
-				9638709E225FE98800820167 /* Speech.framework */,
-				96387085225FE98700820167 /* SpriteKit.framework */,
-				96387040225FE98600820167 /* StoreKit.framework */,
-				96387071225FE98700820167 /* SystemConfiguration.framework */,
-				9638706D225FE98700820167 /* Twitter.framework */,
-				96387095225FE98800820167 /* UIKit.framework */,
-				9638703A225FE98600820167 /* UserNotifications.framework */,
-				9638708A225FE98800820167 /* UserNotificationsUI.framework */,
-				96387063225FE98700820167 /* VideoSubscriberAccount.framework */,
-				96387094225FE98800820167 /* VideoToolbox.framework */,
-				9638705F225FE98600820167 /* Vision.framework */,
-				9638707E225FE98700820167 /* WatchConnectivity.framework */,
-				96387043225FE98600820167 /* WatchKit.framework */,
-				96387090225FE98800820167 /* WebKit.framework */,
+				847EF65B2C99984E009877A9 /* VideoData.swift */,
+				847EF65D2C999D40009877A9 /* Constants.swift */,
 			);
-			name = Frameworks;
+			path = Constants;
 			sourceTree = "<group>";
 		};
-		964CA6F722984A4200D07914 /* Storboards */ = {
+		84B8CC8B2C9B257100ED9F80 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				364F3E4B1E2E6E4300FE94B7 /* LaunchScreen.storyboard */,
-				364F3E701E2E7C8600FE94B7 /* VideoListViewController.xib */,
-				964CA6F9229852F700D07914 /* VideoDetailsViewController.storyboard */,
-				9694EA17225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard */,
+				847420C42C947C980024CFA4 /* ImageLoader.swift */,
 			);
-			name = Storboards;
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		84B8CC8C2C9B27E300ED9F80 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */,
+				84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		364F3E391E2E6E4300FE94B7 /* VizbeeDemo */ = {
+		8474205E2C945A930024CFA4 /* VizbeeDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 364F3E671E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemo" */;
+			buildConfigurationList = 847420832C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemo" */;
 			buildPhases = (
-				364F3E361E2E6E4300FE94B7 /* Sources */,
-				364F3E371E2E6E4300FE94B7 /* Frameworks */,
-				364F3E381E2E6E4300FE94B7 /* Resources */,
+				8474205B2C945A930024CFA4 /* Sources */,
+				8474205C2C945A930024CFA4 /* Frameworks */,
+				8474205D2C945A930024CFA4 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -565,138 +290,118 @@
 			);
 			name = VizbeeDemo;
 			packageProductDependencies = (
-				58ED07872C3661FB006EA00D /* VizbeeKit */,
-				58ED078A2C366211006EA00D /* VizbeeHomeOSKit */,
-				58ED078D2C366286006EA00D /* GoogleCast */,
+				847420A92C9461130024CFA4 /* VizbeeKit */,
+				847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */,
+				847420AF2C9461250024CFA4 /* GoogleCast */,
 			);
-			productName = DemoIntegrationApp;
-			productReference = 364F3E3A1E2E6E4300FE94B7 /* VizbeeDemo.app */;
+			productName = VizbeeDemo;
+			productReference = 8474205F2C945A930024CFA4 /* VizbeeDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		364F3E521E2E6E4400FE94B7 /* VizbeeDemoTests */ = {
+		8474206E2C945A950024CFA4 /* VizbeeDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 364F3E6A1E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemoTests" */;
+			buildConfigurationList = 847420862C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemoTests" */;
 			buildPhases = (
-				364F3E4F1E2E6E4400FE94B7 /* Sources */,
-				364F3E501E2E6E4400FE94B7 /* Frameworks */,
-				364F3E511E2E6E4400FE94B7 /* Resources */,
+				8474206B2C945A950024CFA4 /* Sources */,
+				8474206C2C945A950024CFA4 /* Frameworks */,
+				8474206D2C945A950024CFA4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				364F3E551E2E6E4400FE94B7 /* PBXTargetDependency */,
+				847420712C945A950024CFA4 /* PBXTargetDependency */,
 			);
 			name = VizbeeDemoTests;
-			productName = DemoIntegrationAppTests;
-			productReference = 364F3E531E2E6E4400FE94B7 /* VizbeeDemoTests.xctest */;
+			productName = VizbeeDemoTests;
+			productReference = 8474206F2C945A950024CFA4 /* VizbeeDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		364F3E5D1E2E6E4400FE94B7 /* VizbeeDemoUITests */ = {
+		847420782C945A950024CFA4 /* VizbeeDemoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 364F3E6D1E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemoUITests" */;
+			buildConfigurationList = 847420892C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemoUITests" */;
 			buildPhases = (
-				364F3E5A1E2E6E4400FE94B7 /* Sources */,
-				364F3E5B1E2E6E4400FE94B7 /* Frameworks */,
-				364F3E5C1E2E6E4400FE94B7 /* Resources */,
+				847420752C945A950024CFA4 /* Sources */,
+				847420762C945A950024CFA4 /* Frameworks */,
+				847420772C945A950024CFA4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				364F3E601E2E6E4400FE94B7 /* PBXTargetDependency */,
+				8474207B2C945A950024CFA4 /* PBXTargetDependency */,
 			);
 			name = VizbeeDemoUITests;
-			productName = DemoIntegrationAppUITests;
-			productReference = 364F3E5E1E2E6E4400FE94B7 /* VizbeeDemoUITests.xctest */;
+			productName = VizbeeDemoUITests;
+			productReference = 847420792C945A950024CFA4 /* VizbeeDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		364F3E321E2E6E4300FE94B7 /* Project object */ = {
+		847420572C945A930024CFA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1520;
-				ORGANIZATIONNAME = "Prashanth Pappu";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					364F3E391E2E6E4300FE94B7 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = AYPSU46Q2X;
-						LastSwiftMigration = 1520;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.AccessWiFi = {
-								enabled = 1;
-							};
-							com.apple.SafariKeychain = {
-								enabled = 1;
-							};
-						};
+					8474205E2C945A930024CFA4 = {
+						CreatedOnToolsVersion = 15.3;
 					};
-					364F3E521E2E6E4400FE94B7 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 364F3E391E2E6E4300FE94B7;
+					8474206E2C945A950024CFA4 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 8474205E2C945A930024CFA4;
 					};
-					364F3E5D1E2E6E4400FE94B7 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 364F3E391E2E6E4300FE94B7;
+					847420782C945A950024CFA4 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 8474205E2C945A930024CFA4;
 					};
 				};
 			};
-			buildConfigurationList = 364F3E351E2E6E4300FE94B7 /* Build configuration list for PBXProject "VizbeeDemo" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 8474205A2C945A930024CFA4 /* Build configuration list for PBXProject "VizbeeDemo" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 364F3E311E2E6E4300FE94B7;
+			mainGroup = 847420562C945A930024CFA4;
 			packageReferences = (
-				58ED07862C3661FB006EA00D /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */,
-				58ED07892C366211006EA00D /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */,
-				58ED078C2C366286006EA00D /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */,
+				847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */,
+				847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */,
+				847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */,
 			);
-			productRefGroup = 364F3E3B1E2E6E4300FE94B7 /* Products */;
+			productRefGroup = 847420602C945A930024CFA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				364F3E391E2E6E4300FE94B7 /* VizbeeDemo */,
-				364F3E521E2E6E4400FE94B7 /* VizbeeDemoTests */,
-				364F3E5D1E2E6E4400FE94B7 /* VizbeeDemoUITests */,
+				8474205E2C945A930024CFA4 /* VizbeeDemo */,
+				8474206E2C945A950024CFA4 /* VizbeeDemoTests */,
+				847420782C945A950024CFA4 /* VizbeeDemoUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		364F3E381E2E6E4300FE94B7 /* Resources */ = {
+		8474205D2C945A930024CFA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96489485225FD05B00BE35A9 /* Roboto_Regular.ttf in Resources */,
-				362EF5B11E77163F003E9E2C /* ChronicleDisp-SemiboldItal.otf in Resources */,
-				964CA6FA229852F700D07914 /* VideoDetailsViewController.storyboard in Resources */,
-				362EF5B31E771644003E9E2C /* Officina Sans ITC Bold.ttf in Resources */,
-				96489484225FD05B00BE35A9 /* Roboto_Medium.ttf in Resources */,
-				362EF5B21E771642003E9E2C /* Officina Sans ITC Book.ttf in Resources */,
-				9694EA18225E73D7001B8885 /* SettingsViewControllerStoryboard.storyboard in Resources */,
-				364F3E4D1E2E6E4300FE94B7 /* LaunchScreen.storyboard in Resources */,
-				364F3E711E2E7C8600FE94B7 /* VideoListViewController.xib in Resources */,
-				364F3E4A1E2E6E4300FE94B7 /* Assets.xcassets in Resources */,
-				362EF5B01E77163B003E9E2C /* Theinhardt-Regular.otf in Resources */,
+				8474206A2C945A950024CFA4 /* Preview Assets.xcassets in Resources */,
+				84B8CC8F2C9B27FB00ED9F80 /* Roboto_Regular.ttf in Resources */,
+				84B8CC902C9B27FB00ED9F80 /* Roboto_Medium.ttf in Resources */,
+				847420672C945A950024CFA4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E511E2E6E4400FE94B7 /* Resources */ = {
+		8474206D2C945A950024CFA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E5C1E2E6E4400FE94B7 /* Resources */ = {
+		847420772C945A950024CFA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -706,78 +411,81 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		364F3E361E2E6E4300FE94B7 /* Sources */ = {
+		8474205B2C945A930024CFA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364F3E451E2E6E4300FE94B7 /* VideoListViewController.m in Sources */,
-				364F3E771E2E802300FE94B7 /* VideoObject.m in Sources */,
-				364F3E821E2EC6C800FE94B7 /* VideoPlayer.m in Sources */,
-				58ED07932C367B00006EA00D /* VizbeeAnalyticsHandler.swift in Sources */,
-				587C663E2C380CFD00FA69AB /* AppDelegate.swift in Sources */,
-				58ED07952C367B00006EA00D /* VizbeeAppAdapter.swift in Sources */,
-				58ED08532C3693E3006EA00D /* DemoAppVizbeeStyle.swift in Sources */,
-				964CA6F622984A1400D07914 /* VideoDetailsViewController.m in Sources */,
-				9694EA15225E6CA1001B8885 /* SettingsViewController.m in Sources */,
-				58ED08552C3699B1006EA00D /* MobileToTVMessager.swift in Sources */,
-				364F3E741E2E7F0A00FE94B7 /* VideoCatalog.m in Sources */,
-				58ED07942C367B00006EA00D /* VizbeeWrapper.swift in Sources */,
+				847420BD2C9472610024CFA4 /* VizbeeWrapper.swift in Sources */,
+				8474208D2C945B5A0024CFA4 /* AppDelegate.swift in Sources */,
+				847420C52C947C980024CFA4 /* ImageLoader.swift in Sources */,
+				8474208F2C945BA30024CFA4 /* HomeView.swift in Sources */,
+				847420A12C945FFA0024CFA4 /* VideoPlayerViewModel.swift in Sources */,
+				847420C32C9473730024CFA4 /* VizbeeAnalyticsHandler.swift in Sources */,
+				847420932C945C400024CFA4 /* VideoRow.swift in Sources */,
+				847420C22C9473730024CFA4 /* DemoAppVizbeeStyle.swift in Sources */,
+				847420C12C9473730024CFA4 /* MobileToTVMessager.swift in Sources */,
+				847420952C945E550024CFA4 /* PlayerView.swift in Sources */,
+				847EF65C2C99984E009877A9 /* VideoData.swift in Sources */,
+				8474209B2C945EB50024CFA4 /* CastButton.swift in Sources */,
+				847EF6592C998B2F009877A9 /* CustomHostingController.swift in Sources */,
+				847EF6662C9AD023009877A9 /* PlayerPresenter.swift in Sources */,
+				847420BA2C9470E80024CFA4 /* SettingsViewModel.swift in Sources */,
+				847EF6562C99821C009877A9 /* DetailView.swift in Sources */,
+				847EF65E2C999D40009877A9 /* Constants.swift in Sources */,
+				847EF6602C999EA0009877A9 /* DetailViewModel.swift in Sources */,
+				847420B42C9463290024CFA4 /* VizbeeAdapter.swift in Sources */,
+				847420B82C9470C70024CFA4 /* SettingsView.swift in Sources */,
+				847420A32C9460240024CFA4 /* CastingViewModel.swift in Sources */,
+				847EF6622C99A46E009877A9 /* VideoPlayer.swift in Sources */,
+				847EF6642C99E7DF009877A9 /* CustomPlayerControls.swift in Sources */,
+				8474209F2C945FDC0024CFA4 /* Video.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E4F1E2E6E4400FE94B7 /* Sources */ = {
+		8474206B2C945A950024CFA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364F3E581E2E6E4400FE94B7 /* VizbeeDemoTests.m in Sources */,
+				847420742C945A950024CFA4 /* VizbeeDemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		364F3E5A1E2E6E4400FE94B7 /* Sources */ = {
+		847420752C945A950024CFA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364F3E631E2E6E4400FE94B7 /* VizbeeDemoUITests.m in Sources */,
+				847420802C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift in Sources */,
+				8474207E2C945A950024CFA4 /* VizbeeDemoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		364F3E551E2E6E4400FE94B7 /* PBXTargetDependency */ = {
+		847420712C945A950024CFA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 364F3E391E2E6E4300FE94B7 /* VizbeeDemo */;
-			targetProxy = 364F3E541E2E6E4400FE94B7 /* PBXContainerItemProxy */;
+			target = 8474205E2C945A930024CFA4 /* VizbeeDemo */;
+			targetProxy = 847420702C945A950024CFA4 /* PBXContainerItemProxy */;
 		};
-		364F3E601E2E6E4400FE94B7 /* PBXTargetDependency */ = {
+		8474207B2C945A950024CFA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 364F3E391E2E6E4300FE94B7 /* VizbeeDemo */;
-			targetProxy = 364F3E5F1E2E6E4400FE94B7 /* PBXContainerItemProxy */;
+			target = 8474205E2C945A930024CFA4 /* VizbeeDemo */;
+			targetProxy = 8474207A2C945A950024CFA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		364F3E4B1E2E6E4300FE94B7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				364F3E4C1E2E6E4300FE94B7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		364F3E651E2E6E4400FE94B7 /* Debug */ = {
+		847420812C945A950024CFA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -797,16 +505,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -820,24 +527,28 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		364F3E661E2E6E4400FE94B7 /* Release */ = {
+		847420822C945A950024CFA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -857,16 +568,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -874,177 +584,191 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		364F3E681E2E6E4400FE94B7 /* Debug */ = {
+		847420842C945A950024CFA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VizbeeDemo/VizbeeDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VizbeeDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = AYPSU46Q2X;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VizbeeDemo",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/VizbeeDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VizbeeDemo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app enables you to cast videos and automatically install and login to Roku, FireTV, SamsungTV, LGTV, Chromecast and other streaming devices on your home network.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "VizbeeDemo/VizbeeDemo-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		364F3E691E2E6E4400FE94B7 /* Release */ = {
+		847420852C945A950024CFA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VizbeeDemo/VizbeeDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VizbeeDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = AYPSU46Q2X;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/VizbeeDemo",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/VizbeeDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VizbeeDemo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app enables you to cast videos and automatically install and login to Roku, FireTV, SamsungTV, LGTV, Chromecast and other streaming devices on your home network.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "VizbeeDemo/VizbeeDemo-Bridging-Header.h";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		364F3E6B1E2E6E4400FE94B7 /* Debug */ = {
+		847420872C945A950024CFA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DemoIntegrationAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.DemoIntegrationAppTests;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AYPSU46Q2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo.VizbeeDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VizbeeDemo.app/VizbeeDemo";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VizbeeDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VizbeeDemo";
 			};
 			name = Debug;
 		};
-		364F3E6C1E2E6E4400FE94B7 /* Release */ = {
+		847420882C945A950024CFA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DemoIntegrationAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.DemoIntegrationAppTests;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AYPSU46Q2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo.VizbeeDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VizbeeDemo.app/VizbeeDemo";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VizbeeDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VizbeeDemo";
 			};
 			name = Release;
 		};
-		364F3E6E1E2E6E4400FE94B7 /* Debug */ = {
+		8474208A2C945A950024CFA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = DemoIntegrationAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.DemoIntegrationAppUITests;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AYPSU46Q2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo.VizbeeDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = DemoIntegrationApp;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VizbeeDemo;
 			};
 			name = Debug;
 		};
-		364F3E6F1E2E6E4400FE94B7 /* Release */ = {
+		8474208B2C945A950024CFA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = DemoIntegrationAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.DemoIntegrationAppUITests;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AYPSU46Q2X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.vizbee.VizbeeDemo.VizbeeDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = DemoIntegrationApp;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VizbeeDemo;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		364F3E351E2E6E4300FE94B7 /* Build configuration list for PBXProject "VizbeeDemo" */ = {
+		8474205A2C945A930024CFA4 /* Build configuration list for PBXProject "VizbeeDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				364F3E651E2E6E4400FE94B7 /* Debug */,
-				364F3E661E2E6E4400FE94B7 /* Release */,
+				847420812C945A950024CFA4 /* Debug */,
+				847420822C945A950024CFA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		364F3E671E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemo" */ = {
+		847420832C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				364F3E681E2E6E4400FE94B7 /* Debug */,
-				364F3E691E2E6E4400FE94B7 /* Release */,
+				847420842C945A950024CFA4 /* Debug */,
+				847420852C945A950024CFA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		364F3E6A1E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemoTests" */ = {
+		847420862C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				364F3E6B1E2E6E4400FE94B7 /* Debug */,
-				364F3E6C1E2E6E4400FE94B7 /* Release */,
+				847420872C945A950024CFA4 /* Debug */,
+				847420882C945A950024CFA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		364F3E6D1E2E6E4400FE94B7 /* Build configuration list for PBXNativeTarget "VizbeeDemoUITests" */ = {
+		847420892C945A950024CFA4 /* Build configuration list for PBXNativeTarget "VizbeeDemoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				364F3E6E1E2E6E4400FE94B7 /* Debug */,
-				364F3E6F1E2E6E4400FE94B7 /* Release */,
+				8474208A2C945A950024CFA4 /* Debug */,
+				8474208B2C945A950024CFA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1052,15 +776,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		58ED07862C3661FB006EA00D /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */ = {
+		847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ClaspTV/vizbee-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.6.1;
+				minimumVersion = 6.6.5;
 			};
 		};
-		58ED07892C366211006EA00D /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */ = {
+		847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ClaspTV/vizbee-homeos-sdk.git";
 			requirement = {
@@ -1068,7 +792,7 @@
 				minimumVersion = 1.0.2;
 			};
 		};
-		58ED078C2C366286006EA00D /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */ = {
+		847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ClaspTV/google-cast-sdk-m1.git";
 			requirement = {
@@ -1079,22 +803,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		58ED07872C3661FB006EA00D /* VizbeeKit */ = {
+		847420A92C9461130024CFA4 /* VizbeeKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 58ED07862C3661FB006EA00D /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */;
+			package = 847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */;
 			productName = VizbeeKit;
 		};
-		58ED078A2C366211006EA00D /* VizbeeHomeOSKit */ = {
+		847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 58ED07892C366211006EA00D /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */;
+			package = 847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */;
 			productName = VizbeeHomeOSKit;
 		};
-		58ED078D2C366286006EA00D /* GoogleCast */ = {
+		847420AF2C9461250024CFA4 /* GoogleCast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 58ED078C2C366286006EA00D /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */;
+			package = 847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */;
 			productName = GoogleCast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 364F3E321E2E6E4300FE94B7 /* Project object */;
+	rootObject = 847420572C945A930024CFA4 /* Project object */;
 }

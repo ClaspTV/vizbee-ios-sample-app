@@ -61,7 +61,7 @@ For how to install Vizbeekit using CocoaPods refer to [VizbeeKit Setup Docs](htt
 ### Note on Vizbee SDK Integration
 This demo app already includes the Vizbee SDK integration. For developers looking to integrate the Vizbee SDK into their own projects, please note:
 
-- There are template files located at [/template/iOSSDKCodeSetupInstructions.md](./template/iOSSDKCodeSetupInstructions.md) in this repository.
+- There are template files located at [/templates/iOSSDKCodeSetupInstructions.md](./templates/iOSSDKCodeSetupInstructions.md) in this repository.
 - This files contains instructions and templates for integrating the VizbeeKit SDK into other iOS applications.
 - It is not directly related to running this demo app but serves as a reference for other integration projects.
 

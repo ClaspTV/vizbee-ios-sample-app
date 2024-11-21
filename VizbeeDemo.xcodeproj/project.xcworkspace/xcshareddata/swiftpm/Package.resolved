@@ -1,5 +1,5 @@
 {
-  "originHash" : "1b3ce8f80d0141b5dba4db1c7b1d75c0d49dc203193fd06234e6209cc77b6a5b",
+  "originHash" : "5fa3935fe8ae56555a3386e252927a48ab173da3d7984d3bd673d28b4d7dc50d",
   "pins" : [
     {
       "identity" : "google-cast-sdk-m1",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ClaspTV/vizbee-homeos-sdk.git",
       "state" : {
-        "revision" : "156c905e1398d8052e81bf8d0f199928e8355fbf",
-        "version" : "1.0.2"
+        "revision" : "ba865b33fcf8d0bc65bec8db01ae18ef2ecf9795",
+        "version" : "1.0.3"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ClaspTV/vizbee-ios-sdk.git",
       "state" : {
-        "revision" : "f8424e64f02bad81160ca55578bae697665c196d",
-        "version" : "6.6.5"
+        "revision" : "741c9123dd6fbd5c3e42deb3486f05f2739dbaf9",
+        "version" : "6.7.1"
       }
     }
   ],

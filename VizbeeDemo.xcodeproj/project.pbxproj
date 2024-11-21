@@ -781,7 +781,7 @@
 			repositoryURL = "https://github.com/ClaspTV/vizbee-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.6.5;
+				minimumVersion = 6.7.1;
 			};
 		};
 		847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */ = {
@@ -789,7 +789,7 @@
 			repositoryURL = "https://github.com/ClaspTV/vizbee-homeos-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.3;
 			};
 		};
 		847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */ = {

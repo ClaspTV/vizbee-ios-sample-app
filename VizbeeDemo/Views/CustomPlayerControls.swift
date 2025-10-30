@@ -42,17 +42,27 @@ struct CustomPlayerControls: View {
 
                     Color.black.opacity(0.5)
                         .edgesIgnoringSafeArea(.all)
+                        .allowsHitTesting(false)
                     
                     // Controls
                     VStack {
-                        // Top right cast button
+                        // Top right AirPlay button + Vizbee cast button 
                         HStack {
                             Spacer()
+                            
+                            // AirPlay Button
+                            AirPlayButton(tintColor: .white)
+                                .frame(width: 30, height: 30)
+                                .padding(.top, 20)
+                                .padding(.trailing, 8)
+                            
+                            // Cast Button
                             CastButton(tintColor: .white)
                                 .frame(width: 30, height: 30)
                                 .padding(.top, 20)
                                 .padding(.trailing, 20)
                         }
+                        .zIndex(1)  // Ensure buttons are on top
                         
                         Spacer()
                         
@@ -69,13 +79,14 @@ struct CustomPlayerControls: View {
                                 Text(timeString(from: duration))
                                     .font(.caption)
                                     .foregroundColor(.white)
-                                FullScreenButton(isFullScreen: $isFullScreen)
+                                FullScreenButton(isFullScreen: $isFullScreen, player: player)
                             }
                         }
                         .padding(.horizontal, 20)
                         .padding(.bottom, isLandscape || isFullScreen ? 40 : 20)
                     }
                     .transition(.opacity)
+                    .allowsHitTesting(true)
                 }
             }
         }
@@ -236,9 +247,19 @@ struct PlayPauseButton: View {
 
 struct FullScreenButton: View {
     @Binding var isFullScreen: Bool
+    let player: AVPlayer  // Add this parameter
     
     var body: some View {
         Button(action: {
+            // Debug print
+            print("=== AirPlay State Check (Player) ===")
+            print("isExternalPlaybackActive: \(player.isExternalPlaybackActive)")
+            
+            let audioSession = AVAudioSession.sharedInstance()
+            let currentRoute = audioSession.currentRoute
+            print("Audio outputs: \(currentRoute.outputs.map { "\($0.portName) (\($0.portType.rawValue))" })")
+            print("====================================")
+            
             isFullScreen.toggle()
         }) {
             Image(systemName: isFullScreen ? Constants.Images.fullscreenExpand : Constants.Images.fullscreenCollapse)

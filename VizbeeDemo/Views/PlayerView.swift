@@ -112,9 +112,16 @@ struct PlayerView: View {
 
                 // Content
                 VStack {
-                    // Top bar with CastButton
+                    // Top bar with buttons
                     HStack {
                         Spacer()
+                        
+                        // AirPlay Button
+                        AirPlayButton(tintColor: .white)
+                            .frame(width: 30, height: 30)
+                            .padding(8)
+                        
+                        // Cast Button
                         CastButton(tintColor: UIColor.white)
                             .frame(width: 30, height: 30)
                             .padding(8)

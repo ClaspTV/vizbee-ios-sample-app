@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E8A19282EB32C2A002A50C4 /* AirPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A19272EB32C2A002A50C4 /* AirPlayButton.swift */; };
 		847420672C945A950024CFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420662C945A950024CFA4 /* Assets.xcassets */; };
 		8474206A2C945A950024CFA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420692C945A950024CFA4 /* Preview Assets.xcassets */; };
 		847420742C945A950024CFA4 /* VizbeeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420732C945A950024CFA4 /* VizbeeDemoTests.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E8A19272EB32C2A002A50C4 /* AirPlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayButton.swift; sourceTree = "<group>"; };
 		8474205F2C945A930024CFA4 /* VizbeeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizbeeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847420662C945A950024CFA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847420692C945A950024CFA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -98,6 +100,10 @@
 		84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Regular.ttf; sourceTree = "<group>"; };
 		84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roboto_Medium.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4E8A19292EB3412C002A50C4 /* AirPlayIntegration */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AirPlayIntegration; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8474205C2C945A930024CFA4 /* Frameworks */ = {
@@ -150,6 +156,7 @@
 		847420612C945A930024CFA4 /* VizbeeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4E8A19292EB3412C002A50C4 /* AirPlayIntegration */,
 				84B8CC8C2C9B27E300ED9F80 /* Fonts */,
 				847420C92C9483CF0024CFA4 /* VizbeeDemo.entitlements */,
 				847420C82C9480EB0024CFA4 /* Info.plist */,
@@ -195,6 +202,7 @@
 		847420912C945BCE0024CFA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E8A19272EB32C2A002A50C4 /* AirPlayButton.swift */,
 				8474208E2C945BA30024CFA4 /* HomeView.swift */,
 				847420922C945C400024CFA4 /* VideoRow.swift */,
 				847420942C945E550024CFA4 /* PlayerView.swift */,
@@ -287,6 +295,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4E8A19292EB3412C002A50C4 /* AirPlayIntegration */,
 			);
 			name = VizbeeDemo;
 			packageProductDependencies = (
@@ -421,6 +432,7 @@
 				8474208F2C945BA30024CFA4 /* HomeView.swift in Sources */,
 				847420A12C945FFA0024CFA4 /* VideoPlayerViewModel.swift in Sources */,
 				847420C32C9473730024CFA4 /* VizbeeAnalyticsHandler.swift in Sources */,
+				4E8A19282EB32C2A002A50C4 /* AirPlayButton.swift in Sources */,
 				847420932C945C400024CFA4 /* VideoRow.swift in Sources */,
 				847420C22C9473730024CFA4 /* DemoAppVizbeeStyle.swift in Sources */,
 				847420C12C9473730024CFA4 /* MobileToTVMessager.swift in Sources */,

@@ -35,6 +35,10 @@ class VideoPlayerViewModel: ObservableObject {
              player = AVPlayer(playerItem: playerItem)
          }
          
+         // Enable AirPlay
+         player?.allowsExternalPlayback = true
+         player?.usesExternalPlaybackWhileExternalScreenIsActive = true
+         
          player?.seek(to: CMTime(seconds: initialPosition, preferredTimescale: 1000))
          player?.play()
      }

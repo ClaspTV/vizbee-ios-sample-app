@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // listen for message
         listenForMessages()
         
+        // Initialize AirPlay monitoring
+        _ = AirPlayManager.shared
+        
         return true
     }
     

@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFAudio
 import VizbeeKit
 
 struct HomeView: View {
@@ -38,7 +39,19 @@ struct HomeView: View {
                         .renderingMode(.template)
                         .foregroundColor(colorScheme == .dark ? .white : .black)
                 },
-                trailing: CastButton()
+                trailing: HStack(spacing: 12) {
+                           Button(action: {
+                               printAirPlayState()
+                           }) {
+                               Image(systemName: "ladybug")
+                                   .foregroundColor(colorScheme == .dark ? .white : .black)
+                           }
+                    
+                        AirPlayButton(tintColor: colorScheme == .dark ? .white : .black)
+                            .frame(width: 24, height: 24)
+                        
+                        CastButton()
+                    }
             )
             .background(
                 NavigationLink(destination: SettingsView(), isActive: $isSettingsActive) {
@@ -49,6 +62,17 @@ struct HomeView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(castingViewModel)
     }
+}
+
+private func printAirPlayState() {
+    print("=== AirPlay State Check (HomeView) ===")
+    print("No active player in HomeView")
+    
+    // Check audio route
+    let audioSession = AVAudioSession.sharedInstance()
+    let currentRoute = audioSession.currentRoute
+    print("Audio outputs: \(currentRoute.outputs.map { "\($0.portName) (\($0.portType.rawValue))" })")
+    print("======================================")
 }
 
 // MARK: - Preview

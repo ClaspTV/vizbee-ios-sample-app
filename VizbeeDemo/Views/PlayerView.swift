@@ -27,6 +27,12 @@ struct PlayerView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
+                
+                HStack(spacing: 12) {
+                        AirPlayButton(tintColor: .white)
+                            .frame(width: 24, height: 24)
+                    }
+                
                 videoPlayerWithControls(geometry: geometry)
 
                 if !isLandscape && !isFullScreen {

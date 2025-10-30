@@ -23,12 +23,14 @@ class PlayerPresenter: ObservableObject {
                 
                 let playerView = hostingController.rootView
                 playerView.viewModel.updateVideo(video, atPosition: position)
+                print("AirPlay: playerView exists, just updating the video")
             }
         } else {
             
             let playerView = PlayerView(video: video, allVideos: VideoData.videos, initialPosition: position)
             let hostingController = UIHostingController(rootView: playerView)
             viewController.present(hostingController, animated: true, completion: nil)
+            print("AirPlay: playerView created newly")
         }
     }
 }

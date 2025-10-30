@@ -36,7 +36,7 @@ class VideoPlayerViewModel: ObservableObject {
          }
          
          // Enable AirPlay
-         player?.allowsExternalPlayback = true
+         player?.allowsExternalPlayback = false
          player?.usesExternalPlaybackWhileExternalScreenIsActive = true
          
          player?.seek(to: CMTime(seconds: initialPosition, preferredTimescale: 1000))
@@ -88,6 +88,19 @@ class VideoPlayerViewModel: ObservableObject {
                 self?.handleCastDisconnected()
             }
             .store(in: &cancellables)
+        
+        // NEW: AirPlay notifications
+//           NotificationCenter.default.publisher(for: AirPlayManager.airPlayConnectedNotification)
+//               .sink { [weak self] _ in
+//                   self?.handleAirPlayConnected()
+//               }
+//               .store(in: &cancellables)
+//           
+//           NotificationCenter.default.publisher(for: AirPlayManager.airPlayDisconnectedNotification)
+//               .sink { [weak self] _ in
+//                   self?.handleAirPlayDisconnected()
+//               }
+//               .store(in: &cancellables)
     }
     
     private func handleCastConnected() {
@@ -103,6 +116,16 @@ class VideoPlayerViewModel: ObservableObject {
     private func handleCastDisconnected() {
         isCasting = false
         castingMessage = ""
+    }
+    
+    private func handleAirPlayConnected() {
+        print("VideoPlayerViewModel: AirPlay connected - pausing local player")
+        player?.pause()
+    }
+
+    private func handleAirPlayDisconnected() {
+        print("VideoPlayerViewModel: AirPlay disconnected - can resume local player if needed")
+        player?.play()
     }
     
     func cleanup() {

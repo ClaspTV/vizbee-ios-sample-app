@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		585D62A02FA8A00D001182BE /* VizbeeHomeSSOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */; };
 		847420672C945A950024CFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420662C945A950024CFA4 /* Assets.xcassets */; };
 		8474206A2C945A950024CFA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420692C945A950024CFA4 /* Preview Assets.xcassets */; };
 		847420742C945A950024CFA4 /* VizbeeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420732C945A950024CFA4 /* VizbeeDemoTests.swift */; };
@@ -107,6 +108,7 @@
 				847420B02C9461250024CFA4 /* GoogleCast in Frameworks */,
 				847420AA2C9461130024CFA4 /* VizbeeKit in Frameworks */,
 				847420AD2C94611C0024CFA4 /* VizbeeHomeOSKit in Frameworks */,
+				585D62A02FA8A00D001182BE /* VizbeeHomeSSOKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +295,7 @@
 				847420A92C9461130024CFA4 /* VizbeeKit */,
 				847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */,
 				847420AF2C9461250024CFA4 /* GoogleCast */,
+				585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */,
 			);
 			productName = VizbeeDemo;
 			productReference = 8474205F2C945A930024CFA4 /* VizbeeDemo.app */;
@@ -370,6 +373,7 @@
 				847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */,
 				847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */,
 				847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */,
+				585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */,
 			);
 			productRefGroup = 847420602C945A930024CFA4 /* Products */;
 			projectDirPath = "";
@@ -776,6 +780,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ClaspTV/vizbee-homesso-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ClaspTV/vizbee-ios-sdk.git";
@@ -803,6 +815,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */;
+			productName = VizbeeHomeSSOKit;
+		};
 		847420A92C9461130024CFA4 /* VizbeeKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */;

@@ -1,5 +1,5 @@
 {
-  "originHash" : "5fa3935fe8ae56555a3386e252927a48ab173da3d7984d3bd673d28b4d7dc50d",
+  "originHash" : "e5c0d28d08e507d37e26022235e71eba34ca87153dd827c92222598bc5dd1f09",
   "pins" : [
     {
       "identity" : "google-cast-sdk-m1",
@@ -20,12 +20,21 @@
       }
     },
     {
+      "identity" : "vizbee-homesso-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ClaspTV/vizbee-homesso-sdk",
+      "state" : {
+        "revision" : "cd0db91fd17bb1a582d773fdd47b7c70f8159ec6",
+        "version" : "1.0.3"
+      }
+    },
+    {
       "identity" : "vizbee-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ClaspTV/vizbee-ios-sdk.git",
       "state" : {
-        "revision" : "741c9123dd6fbd5c3e42deb3486f05f2739dbaf9",
-        "version" : "6.7.1"
+        "revision" : "7692b3e11c99d784ce3836f818de04852554dfa7",
+        "version" : "6.9.0"
       }
     }
   ],

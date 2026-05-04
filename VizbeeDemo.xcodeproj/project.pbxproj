@@ -793,7 +793,7 @@
 			repositoryURL = "https://github.com/ClaspTV/vizbee-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.7.1;
+				minimumVersion = 6.9.0;
 			};
 		};
 		847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */ = {

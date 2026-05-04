@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ClaspTV/vizbee-ios-sdk.git",
       "state" : {
-        "revision" : "741c9123dd6fbd5c3e42deb3486f05f2739dbaf9",
-        "version" : "6.7.1"
+        "revision" : "7692b3e11c99d784ce3836f818de04852554dfa7",
+        "version" : "6.9.0"
       }
     }
   ],

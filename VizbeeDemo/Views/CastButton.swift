@@ -20,6 +20,13 @@ struct CastButton: UIViewRepresentable {
         if let tintColor = tintColor {
             castButton.tintColor = tintColor
         }
+        
+        // Set intrinsic content size
+        castButton.setContentHuggingPriority(.required, for: .horizontal)
+        castButton.setContentHuggingPriority(.required, for: .vertical)
+        castButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        castButton.setContentCompressionResistancePriority(.required, for: .vertical)
+             
         return castButton
     }
     

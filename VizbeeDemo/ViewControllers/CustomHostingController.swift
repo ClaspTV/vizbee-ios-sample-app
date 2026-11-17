@@ -6,26 +6,33 @@
 //
 
 import SwiftUI
-import VizbeeKit
+import GoogleCast
 
-class CustomHostingController<Content: View>: UIHostingController<Content>{
-    private var castBarController: VZBCastBarViewController?
+class CustomHostingController<Content: View>: UIHostingController<Content>, GCKUIMiniMediaControlsViewControllerDelegate {
+    private var miniMediaControlsViewController: GCKUIMiniMediaControlsViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if castBarController == nil {
-            castBarController = Vizbee.createCastBarController()
-            if let castBarView = castBarController?.view {
-                view.addSubview(castBarView)
-                castBarView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    castBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    castBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    castBarView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                    castBarView.heightAnchor.constraint(equalToConstant: 64)
-                ])
-            }
+        if miniMediaControlsViewController == nil {
+            let controller = GCKCastContext.sharedInstance().createMiniMediaControlsViewController()
+            controller.delegate = self
+            addChild(controller)
+            view.addSubview(controller.view)
+            controller.didMove(toParent: self)
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                controller.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                controller.view.heightAnchor.constraint(equalToConstant: 64)
+            ])
+            controller.view.isHidden = !controller.active
+            miniMediaControlsViewController = controller
         }
+    }
+    
+    func miniMediaControlsViewController(_ miniMediaControlsViewController: GCKUIMiniMediaControlsViewController, shouldAppear: Bool) {
+        miniMediaControlsViewController.view.isHidden = !shouldAppear
     }
 }

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import VizbeeKit
 import Combine
 
 struct CustomPlayerControls: View {

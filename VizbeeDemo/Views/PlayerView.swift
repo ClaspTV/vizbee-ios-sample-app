@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import VizbeeKit
 
 struct PlayerView: View {
     @ObservedObject var viewModel: VideoPlayerViewModel

@@ -1,7 +1,6 @@
 import SwiftUI
 import AVKit
 import Combine
-import VizbeeKit
 
 class VideoPlayerViewModel: ObservableObject {
     @Published var currentVideo: Video
@@ -48,38 +47,23 @@ class VideoPlayerViewModel: ObservableObject {
      
      private func initiateSmartPlay(_ video: Video, _ startPosition: Double? = nil) {
          let position = startPosition ?? initialPosition
-         let request = VZBRequest(appVideo: video, guid: video.id, startPosition: UInt(position))
-         
-         request.didPlay(onTV: { [weak self] screen in
-             // Handle TV play if needed
-             DispatchQueue.main.async {
-                 self?.currentVideo = video
-                 self?.initialPosition = 0.0
-                 self?.shouldReloadImages = true
-             }
-         })
-         
-         request.doPlay(onPhone: { [weak self] status in
-             DispatchQueue.main.async {
-                 self?.currentVideo = video
-                 self?.initialPosition = 0.0
-                 self?.shouldReloadImages = true
-                 self?.setupPlayer()
-             }
-         })
-         if let vc = UIApplication.shared.windows.first?.rootViewController {
-             Vizbee.smartPlay(request, presenting: vc)
+         let playedOnTV = GoogleCastManager.shared.play(video, at: position)
+         currentVideo = video
+         initialPosition = 0.0
+         shouldReloadImages = true
+         if !playedOnTV {
+             setupPlayer()
          }
      }
     
     private func observeCastNotifications() {
-        NotificationCenter.default.publisher(for: Notification.Name(VizbeeWrapper.kVZBCastConnected))
+        NotificationCenter.default.publisher(for: Notification.Name(GoogleCastManager.kCastConnected))
             .sink { [weak self] _ in
                 self?.handleCastConnected()
             }
             .store(in: &cancellables)
         
-        NotificationCenter.default.publisher(for: Notification.Name(VizbeeWrapper.kVZBCastDisconnected))
+        NotificationCenter.default.publisher(for: Notification.Name(GoogleCastManager.kCastDisconnected))
             .sink { [weak self] _ in
                 self?.handleCastDisconnected()
             }
@@ -92,7 +76,7 @@ class VideoPlayerViewModel: ObservableObject {
         if let currentTime = player?.currentTime().seconds {
             initiateSmartPlay(currentVideo, currentTime)
         }
-        let friendlyName = VizbeeWrapper.shared.getConnectedTVInfo().friendlyName
+        let friendlyName = GoogleCastManager.shared.connectedDeviceName
         self.castingMessage = "Casting to \(friendlyName)"
     }
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		585D62A02FA8A00D001182BE /* VizbeeHomeSSOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */; };
 		847420672C945A950024CFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420662C945A950024CFA4 /* Assets.xcassets */; };
 		8474206A2C945A950024CFA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847420692C945A950024CFA4 /* Preview Assets.xcassets */; };
 		847420742C945A950024CFA4 /* VizbeeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420732C945A950024CFA4 /* VizbeeDemoTests.swift */; };
@@ -21,16 +20,7 @@
 		8474209F2C945FDC0024CFA4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474209E2C945FDC0024CFA4 /* Video.swift */; };
 		847420A12C945FFA0024CFA4 /* VideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */; };
 		847420A32C9460240024CFA4 /* CastingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420A22C9460240024CFA4 /* CastingViewModel.swift */; };
-		847420AA2C9461130024CFA4 /* VizbeeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 847420A92C9461130024CFA4 /* VizbeeKit */; };
-		847420AD2C94611C0024CFA4 /* VizbeeHomeOSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */; };
 		847420B02C9461250024CFA4 /* GoogleCast in Frameworks */ = {isa = PBXBuildFile; productRef = 847420AF2C9461250024CFA4 /* GoogleCast */; };
-		847420B42C9463290024CFA4 /* VizbeeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B32C9463290024CFA4 /* VizbeeAdapter.swift */; };
-		847420B82C9470C70024CFA4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B72C9470C70024CFA4 /* SettingsView.swift */; };
-		847420BA2C9470E80024CFA4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420B92C9470E80024CFA4 /* SettingsViewModel.swift */; };
-		847420BD2C9472610024CFA4 /* VizbeeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */; };
-		847420C12C9473730024CFA4 /* MobileToTVMessager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */; };
-		847420C22C9473730024CFA4 /* DemoAppVizbeeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */; };
-		847420C32C9473730024CFA4 /* VizbeeAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */; };
 		847420C52C947C980024CFA4 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847420C42C947C980024CFA4 /* ImageLoader.swift */; };
 		847EF6562C99821C009877A9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6552C99821C009877A9 /* DetailView.swift */; };
 		847EF6592C998B2F009877A9 /* CustomHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6582C998B2F009877A9 /* CustomHostingController.swift */; };
@@ -42,6 +32,7 @@
 		847EF6662C9AD023009877A9 /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6652C9AD023009877A9 /* PlayerPresenter.swift */; };
 		84B8CC8F2C9B27FB00ED9F80 /* Roboto_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */; };
 		84B8CC902C9B27FB00ED9F80 /* Roboto_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */; };
+		CC702A3FC4B6589B8A05D058 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D48693B2CC19485D53A84B3 /* GoogleCastManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D48693B2CC19485D53A84B3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
 		8474205F2C945A930024CFA4 /* VizbeeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizbeeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847420662C945A950024CFA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847420692C945A950024CFA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -78,13 +70,6 @@
 		8474209E2C945FDC0024CFA4 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewModel.swift; sourceTree = "<group>"; };
 		847420A22C9460240024CFA4 /* CastingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingViewModel.swift; sourceTree = "<group>"; };
-		847420B32C9463290024CFA4 /* VizbeeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizbeeAdapter.swift; sourceTree = "<group>"; };
-		847420B72C9470C70024CFA4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		847420B92C9470E80024CFA4 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VizbeeWrapper.swift; path = VizbeeDemo/VizbeeIntegration/VizbeeWrapper.swift; sourceTree = SOURCE_ROOT; };
-		847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileToTVMessager.swift; sourceTree = "<group>"; };
-		847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppVizbeeStyle.swift; sourceTree = "<group>"; };
-		847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VizbeeAnalyticsHandler.swift; sourceTree = "<group>"; };
 		847420C42C947C980024CFA4 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		847420C82C9480EB0024CFA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		847420C92C9483CF0024CFA4 /* VizbeeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VizbeeDemo.entitlements; sourceTree = "<group>"; };
@@ -106,9 +91,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				847420B02C9461250024CFA4 /* GoogleCast in Frameworks */,
-				847420AA2C9461130024CFA4 /* VizbeeKit in Frameworks */,
-				847420AD2C94611C0024CFA4 /* VizbeeHomeOSKit in Frameworks */,
-				585D62A02FA8A00D001182BE /* VizbeeHomeSSOKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +137,6 @@
 				84B8CC8C2C9B27E300ED9F80 /* Fonts */,
 				847420C92C9483CF0024CFA4 /* VizbeeDemo.entitlements */,
 				847420C82C9480EB0024CFA4 /* Info.plist */,
-				847420BB2C9472400024CFA4 /* VizbeeIntegration */,
 				8474209D2C945FC10024CFA4 /* Models */,
 				8474209C2C945F410024CFA4 /* ViewModels */,
 				847420912C945BCE0024CFA4 /* Views */,
@@ -165,6 +146,7 @@
 				8474208C2C945B5A0024CFA4 /* AppDelegate.swift */,
 				847420662C945A950024CFA4 /* Assets.xcassets */,
 				847420682C945A950024CFA4 /* Preview Content */,
+				BD52702ACD8B728427D76F89 /* CastIntegration */,
 			);
 			path = VizbeeDemo;
 			sourceTree = "<group>";
@@ -201,7 +183,6 @@
 				847420922C945C400024CFA4 /* VideoRow.swift */,
 				847420942C945E550024CFA4 /* PlayerView.swift */,
 				8474209A2C945EB50024CFA4 /* CastButton.swift */,
-				847420B72C9470C70024CFA4 /* SettingsView.swift */,
 				847EF6552C99821C009877A9 /* DetailView.swift */,
 				847EF6612C99A46E009877A9 /* VideoPlayer.swift */,
 				847EF6632C99E7DF009877A9 /* CustomPlayerControls.swift */,
@@ -215,7 +196,6 @@
 			children = (
 				847420A02C945FFA0024CFA4 /* VideoPlayerViewModel.swift */,
 				847420A22C9460240024CFA4 /* CastingViewModel.swift */,
-				847420B92C9470E80024CFA4 /* SettingsViewModel.swift */,
 				847EF65F2C999EA0009877A9 /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -227,18 +207,6 @@
 				8474209E2C945FDC0024CFA4 /* Video.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		847420BB2C9472400024CFA4 /* VizbeeIntegration */ = {
-			isa = PBXGroup;
-			children = (
-				847420B32C9463290024CFA4 /* VizbeeAdapter.swift */,
-				847420BC2C9472610024CFA4 /* VizbeeWrapper.swift */,
-				847420BF2C9473730024CFA4 /* DemoAppVizbeeStyle.swift */,
-				847420BE2C9473730024CFA4 /* MobileToTVMessager.swift */,
-				847420C02C9473730024CFA4 /* VizbeeAnalyticsHandler.swift */,
-			);
-			path = VizbeeIntegration;
 			sourceTree = "<group>";
 		};
 		847EF6572C998B1A009877A9 /* ViewControllers */ = {
@@ -275,6 +243,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		BD52702ACD8B728427D76F89 /* CastIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				4D48693B2CC19485D53A84B3 /* GoogleCastManager.swift */,
+			);
+			name = CastIntegration;
+			path = CastIntegration;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -292,10 +269,7 @@
 			);
 			name = VizbeeDemo;
 			packageProductDependencies = (
-				847420A92C9461130024CFA4 /* VizbeeKit */,
-				847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */,
 				847420AF2C9461250024CFA4 /* GoogleCast */,
-				585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */,
 			);
 			productName = VizbeeDemo;
 			productReference = 8474205F2C945A930024CFA4 /* VizbeeDemo.app */;
@@ -370,10 +344,7 @@
 			);
 			mainGroup = 847420562C945A930024CFA4;
 			packageReferences = (
-				847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */,
-				847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */,
 				847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */,
-				585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */,
 			);
 			productRefGroup = 847420602C945A930024CFA4 /* Products */;
 			projectDirPath = "";
@@ -419,30 +390,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847420BD2C9472610024CFA4 /* VizbeeWrapper.swift in Sources */,
 				8474208D2C945B5A0024CFA4 /* AppDelegate.swift in Sources */,
 				847420C52C947C980024CFA4 /* ImageLoader.swift in Sources */,
 				8474208F2C945BA30024CFA4 /* HomeView.swift in Sources */,
 				847420A12C945FFA0024CFA4 /* VideoPlayerViewModel.swift in Sources */,
-				847420C32C9473730024CFA4 /* VizbeeAnalyticsHandler.swift in Sources */,
 				847420932C945C400024CFA4 /* VideoRow.swift in Sources */,
-				847420C22C9473730024CFA4 /* DemoAppVizbeeStyle.swift in Sources */,
-				847420C12C9473730024CFA4 /* MobileToTVMessager.swift in Sources */,
 				847420952C945E550024CFA4 /* PlayerView.swift in Sources */,
 				847EF65C2C99984E009877A9 /* VideoData.swift in Sources */,
 				8474209B2C945EB50024CFA4 /* CastButton.swift in Sources */,
 				847EF6592C998B2F009877A9 /* CustomHostingController.swift in Sources */,
 				847EF6662C9AD023009877A9 /* PlayerPresenter.swift in Sources */,
-				847420BA2C9470E80024CFA4 /* SettingsViewModel.swift in Sources */,
 				847EF6562C99821C009877A9 /* DetailView.swift in Sources */,
 				847EF65E2C999D40009877A9 /* Constants.swift in Sources */,
 				847EF6602C999EA0009877A9 /* DetailViewModel.swift in Sources */,
-				847420B42C9463290024CFA4 /* VizbeeAdapter.swift in Sources */,
-				847420B82C9470C70024CFA4 /* SettingsView.swift in Sources */,
 				847420A32C9460240024CFA4 /* CastingViewModel.swift in Sources */,
 				847EF6622C99A46E009877A9 /* VideoPlayer.swift in Sources */,
 				847EF6642C99E7DF009877A9 /* CustomPlayerControls.swift in Sources */,
 				8474209F2C945FDC0024CFA4 /* Video.swift in Sources */,
+				CC702A3FC4B6589B8A05D058 /* GoogleCastManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +576,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VizbeeDemo/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app enables you to cast videos and automatically install and login to Roku, FireTV, SamsungTV, LGTV, Chromecast and other streaming devices on your home network.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses the local network to find and cast videos to Chromecast and Google TV devices.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
@@ -643,7 +608,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VizbeeDemo/Info.plist;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app enables you to cast videos and automatically install and login to Roku, FireTV, SamsungTV, LGTV, Chromecast and other streaming devices on your home network.";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses the local network to find and cast videos to Chromecast and Google TV devices.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
@@ -780,30 +745,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ClaspTV/vizbee-homesso-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
-		847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ClaspTV/vizbee-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.10.0;
-			};
-		};
-		847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ClaspTV/vizbee-homeos-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
 		847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ClaspTV/google-cast-sdk-m1.git";
@@ -815,21 +756,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		585D629F2FA8A00D001182BE /* VizbeeHomeSSOKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 585D629E2FA8A00D001182BE /* XCRemoteSwiftPackageReference "vizbee-homesso-sdk" */;
-			productName = VizbeeHomeSSOKit;
-		};
-		847420A92C9461130024CFA4 /* VizbeeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 847420A82C9461130024CFA4 /* XCRemoteSwiftPackageReference "vizbee-ios-sdk" */;
-			productName = VizbeeKit;
-		};
-		847420AC2C94611C0024CFA4 /* VizbeeHomeOSKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 847420AB2C94611C0024CFA4 /* XCRemoteSwiftPackageReference "vizbee-homeos-sdk" */;
-			productName = VizbeeHomeOSKit;
-		};
 		847420AF2C9461250024CFA4 /* GoogleCast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 847420AE2C9461250024CFA4 /* XCRemoteSwiftPackageReference "google-cast-sdk-m1" */;

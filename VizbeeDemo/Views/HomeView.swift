@@ -1,10 +1,7 @@
 import SwiftUI
-import VizbeeKit
 
 struct HomeView: View {
     @ObservedObject private var castingViewModel: CastingViewModel
-    @State private var isSettingsActive = false
-    @Environment(\.colorScheme) private var colorScheme
     
     private let bottomInset: CGFloat = 80
     
@@ -30,21 +27,7 @@ struct HomeView: View {
             }
             .listStyle(PlainListStyle())
             .navigationBarTitle("\(Constants.Labels.appTitle)", displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    isSettingsActive = true
-                }) {
-                    Image(Constants.Images.settings)
-                        .renderingMode(.template)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                },
-                trailing: CastButton()
-            )
-            .background(
-                NavigationLink(destination: SettingsView(), isActive: $isSettingsActive) {
-                    EmptyView()
-                }
-            )
+            .navigationBarItems(trailing: CastButton())
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(castingViewModel)

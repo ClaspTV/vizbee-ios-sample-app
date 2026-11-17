@@ -78,6 +78,7 @@ start_capture_interface() {
 if has_step build; then
     git -C "$ROOT" fetch -q origin
     : > "$OUT/variants.csv"
+    mkdir -p "$OUT/build"
     for i in "${!LABELS[@]}"; do
         label=${LABELS[$i]}
         source="$OUT/src/$label"

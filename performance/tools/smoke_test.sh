@@ -34,7 +34,8 @@ if [ -z "$(app_pid "$DEVICE")" ]; then
     exit 1
 fi
 stop_app "$DEVICE"
-if [ -n "$CHECK" ] && ! tcpdump -r "$OUT/smoke.pcap" -n -v 2> /dev/null | grep -qF -- "$CHECK"; then
+matches=$(tcpdump -r "$OUT/smoke.pcap" -n -v 2> /dev/null | grep -cF -- "$CHECK" || true)
+if [ -n "$CHECK" ] && [ "$matches" -eq 0 ]; then
     echo "FAILED: no discovery traffic matching '$CHECK'. Allow Local Network access for the app on the device (and tap Allow if asked), then run again."
     exit 1
 fi

@@ -94,6 +94,7 @@ if has_step build; then
             || { echo "Build failed for $label, see $OUT/build/$label.log"; exit 1; }
         git -C "$ROOT" worktree remove --force "$source"
     done
+    rmdir "$OUT/src"
 fi
 
 if has_step smoke; then

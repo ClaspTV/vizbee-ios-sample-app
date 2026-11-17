@@ -17,15 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Initialize Google Cast SDK before the window, which creates the mini controller
+        GoogleCastManager.shared.initialize()
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         let castingViewModel = CastingViewModel()
         let homeView = HomeView(castingViewModel: castingViewModel)
         window.rootViewController = CustomHostingController(rootView: homeView)
         self.window = window
         window.makeKeyAndVisible()
-        
-        // Initialize Google Cast SDK
-        GoogleCastManager.shared.initialize()
         
         return true
     }

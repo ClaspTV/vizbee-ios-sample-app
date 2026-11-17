@@ -42,6 +42,11 @@ if [ "$(tcpdump -r "$OUT/smoke.pcap" -n 2> /dev/null | wc -l)" -eq 0 ]; then
     echo "FAILED: the network capture is empty. Reconnect the device and run again."
     exit 1
 fi
+local_packets=$(tcpdump -r "$OUT/smoke.pcap" -n 2> /dev/null | grep -cE ' IP (10|172\.(1[6-9]|2[0-9]|3[01])|192\.168)\.[0-9.]+ > ' || true)
+if [ "$local_packets" -eq 0 ]; then
+    echo "FAILED: the device has no local network address (only 169.254.x.x or none). Join the Wi-Fi network the TVs are on, and run again."
+    exit 1
+fi
 matches=$(tcpdump -r "$OUT/smoke.pcap" -n -v 2> /dev/null | grep -cF -- "$CHECK" || true)
 if [ -n "$CHECK" ] && [ "$matches" -eq 0 ]; then
     echo "FAILED: no discovery traffic matching '$CHECK'. Allow Local Network access for the app on the device (and tap Allow if asked), then run again."

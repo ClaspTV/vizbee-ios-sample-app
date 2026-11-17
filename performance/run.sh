@@ -76,7 +76,7 @@ start_capture_interface() {
     while rvictl -l | grep -q "$DEVICE"; do rvictl -x "$DEVICE" > /dev/null 2>&1 || break; done
     RVI=$(rvictl -s "$DEVICE" 2>&1 | grep -oE 'interface rvi[0-9]+' | awk '{print $2}')
     [ -n "$RVI" ] || { echo "rvictl could not start a capture interface for $DEVICE"; exit 1; }
-    packets=$(tcpdump -i "$RVI" -n -c 20 2> /dev/null & sleep 5; kill $! 2> /dev/null)
+    packets=$(tcpdump -i "$RVI" -n -c 20 2> /dev/null & sleep 5; kill $! 2> /dev/null || true)
     [ -n "$packets" ] || { echo "No packets on $RVI: the device's network capture is not working. Reconnect the device and run again."; exit 1; }
 }
 

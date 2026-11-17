@@ -69,10 +69,15 @@ xctestrun_path() { ls "$OUT/build/$1/Build/Products/"*.xctestrun | head -1; }
 builds() { for label in "${LABELS[@]}"; do echo "$label=$("$1" "$label")"; done; }
 
 # The device's network traffic is mirrored to the Mac through an rvictl interface.
+# Entries left from an earlier connection stop capturing, so start a fresh one and check that packets arrive.
 start_capture_interface() {
+    [ -n "${RVI:-}" ] && return
+    [ -r /dev/bpf0 ] || { echo "tcpdump needs read access to /dev/bpf* (the access_bpf group, installed with Wireshark's ChmodBPF)"; exit 1; }
+    while rvictl -l | grep -q "$DEVICE"; do rvictl -x "$DEVICE" > /dev/null 2>&1 || break; done
     RVI=$(rvictl -s "$DEVICE" 2>&1 | grep -oE 'interface rvi[0-9]+' | awk '{print $2}')
     [ -n "$RVI" ] || { echo "rvictl could not start a capture interface for $DEVICE"; exit 1; }
-    [ -r /dev/bpf0 ] || { echo "tcpdump needs read access to /dev/bpf* (the access_bpf group, installed with Wireshark's ChmodBPF)"; exit 1; }
+    packets=$(tcpdump -i "$RVI" -n -c 20 2> /dev/null & sleep 5; kill $! 2> /dev/null)
+    [ -n "$packets" ] || { echo "No packets on $RVI: the device's network capture is not working. Reconnect the device and run again."; exit 1; }
 }
 
 if has_step build; then

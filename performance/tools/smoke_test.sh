@@ -26,7 +26,8 @@ stop_app "$DEVICE"
 tcpdump -i "$INTERFACE" -n -s 256 -w "$OUT/smoke.pcap" > /dev/null 2>&1 &
 capture=$!
 sleep 2
-if xcrun devicectl device process launch --device "$DEVICE" "$BUNDLE_ID" 2>&1 | grep -q 'Locked'; then
+launch_output=$(xcrun devicectl device process launch --device "$DEVICE" "$BUNDLE_ID" 2>&1 || true)
+if [[ "$launch_output" == *Locked* ]]; then
     kill "$capture"
     echo "FAILED: the device is locked. Unlock it, set Auto-Lock to Never, and run again."
     exit 1

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import VizbeeKit
 
 struct PlayerView: View {
     @ObservedObject var viewModel: VideoPlayerViewModel
@@ -62,22 +61,16 @@ struct PlayerView: View {
                     .aspectRatio(isLandscape || isFullScreen ? nil : 16/9, contentMode: .fit)
                     .frame(maxWidth: .infinity, maxHeight: isLandscape || isFullScreen ? .infinity : nil)
                     .overlay(
-                        Group {
-                            if viewModel.isCasting {
-                                castingOverlay
-                            } else {
-                                CustomPlayerControls(
-                                    isPlaying: $isPlaying,
-                                    showControls: $showControls,
-                                    progress: $progress,
-                                    initialPosition: $viewModel.initialPosition,
-                                    isFullScreen: $isFullScreen,
-                                    player: player,
-                                    isLandscape: isLandscape,
-                                    screenSize: geometry.size
-                                )
-                            }
-                        }
+                        CustomPlayerControls(
+                            isPlaying: $isPlaying,
+                            showControls: $showControls,
+                            progress: $progress,
+                            initialPosition: $viewModel.initialPosition,
+                            isFullScreen: $isFullScreen,
+                            player: player,
+                            isLandscape: isLandscape,
+                            screenSize: geometry.size
+                        )
                     )
                     .onTapGesture {
                         withAnimation {
@@ -90,48 +83,6 @@ struct PlayerView: View {
             }
         }
         .id(viewModel.currentVideo.id)
-    }
-
-    private var castingOverlay: some View {
-        GeometryReader { geometry in
-            ZStack {
-                
-                // black overlay
-                Color.gray.opacity(1)
-            
-                // Background image
-                Group {
-                    CustomAsyncImage(urlString: self.viewModel.currentVideo.imageURL)
-                        .id("\(viewModel.currentVideo.id)-\(imageLoadTrigger)")
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .clipped()
-
-                // Semi-transparent black overlay
-                Color.black.opacity(0.7)
-
-                // Content
-                VStack {
-                    // Top bar with CastButton
-                    HStack {
-                        Spacer()
-                        CastButton(tintColor: UIColor.white)
-                            .frame(width: 30, height: 30)
-                            .padding(8)
-                    }
-
-                    Spacer()
-                }
-
-                // Centered text
-                Text(viewModel.castingMessage)
-                    .foregroundColor(.white)
-                    .padding()
-                    .multilineTextAlignment(.center)
-                    .frame(width: geometry.size.width)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-            }
-        }
     }
 
     private var videoList: some View {

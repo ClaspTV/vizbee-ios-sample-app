@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import VizbeeKit
 import Combine
 
 struct CustomPlayerControls: View {
@@ -45,15 +44,6 @@ struct CustomPlayerControls: View {
                     
                     // Controls
                     VStack {
-                        // Top right cast button
-                        HStack {
-                            Spacer()
-                            CastButton(tintColor: .white)
-                                .frame(width: 30, height: 30)
-                                .padding(.top, 20)
-                                .padding(.trailing, 20)
-                        }
-                        
                         Spacer()
                         
                         // Bottom controls

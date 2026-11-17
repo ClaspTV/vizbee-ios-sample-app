@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VizbeeKit
 
 class DetailViewModel: ObservableObject {
     @Published var video: Video
@@ -24,25 +23,7 @@ class DetailViewModel: ObservableObject {
     }
     
     func playVideo() {
-        initiateSmartPlay(video, nil)
-    }
-    
-    private func initiateSmartPlay(_ video: Video, _ startPosition: Double? = 0.0) {
-        let request = VZBRequest(appVideo: video, guid: video.id, startPosition: UInt(startPosition ?? 0))
-        
-        request.didPlay(onTV: { screen in
-            // Handle TV play if needed
-        })
-        
-        request.doPlay(onPhone: { [weak self] status in
-            DispatchQueue.main.async {
-                self?.presentPlayer()
-            }
-        })
-        
-        if let vc = UIApplication.shared.windows.first?.rootViewController {
-            Vizbee.smartPlay(request, presenting: vc)
-        }
+        presentPlayer()
     }
     
     private func presentPlayer() {

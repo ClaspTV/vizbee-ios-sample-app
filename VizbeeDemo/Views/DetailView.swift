@@ -72,7 +72,6 @@ struct DetailView: View {
             .padding(.bottom, 80) // Add padding for cast bar
         }
         .navigationBarTitle(Text(viewModel.video.title ?? ""), displayMode: .inline)
-        .navigationBarItems(trailing: CastButton())
     }
     
     private var isIpad: Bool {

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import VizbeeKit
 
 class PlayerPresenter: ObservableObject {
     static let shared = PlayerPresenter()

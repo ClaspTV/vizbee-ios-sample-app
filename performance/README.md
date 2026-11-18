@@ -1,5 +1,7 @@
 # SDK performance measurement (iOS)
 
+The method, shared with the other platforms, is described in [SDK Performance Measurement](https://github.com/ClaspTV/Remote_SDK_iOS/blob/develop/docs/Performance/performance-measurement.md). This page covers running it on iOS.
+
 Measures what an SDK costs an app on a real device, by comparing Release builds of this sample app that differ only in the SDK they contain:
 
 | Build | Branch | Contains |
@@ -18,8 +20,8 @@ The builds and the git refs they come from are listed in `variants.conf`. Change
 | launch-phases | Launch time split into phases (process creation, framework loading, `didFinishLaunching`, first frame) | Instruments App Launch | 10 per build |
 | activity | Memory footprint, CPU of the app and of mDNSResponder (the system Bonjour service), network traffic, for discovery (5-35 s after launch) and idle (60-240 s) on the home screen | Instruments Activity Monitor (all processes) and a packet capture of the device's traffic | 5 runs of 4 minutes per build |
 | hangs | Main-thread hangs over 250 ms during launch and discovery | Instruments Time Profiler (Hangs) | 3 runs of 60 s per build |
-| cast | Memory, CPU, threads, Mach ports and network before connecting, while casting and after disconnecting; what is not freed after disconnecting (after minus before) | `CastSessionTests` (connect to the TV, play a video on it for 3 minutes, disconnect, stay 3 minutes), Instruments Activity Monitor (all processes) and a packet capture | 5 runs per build |
-| leaks | Memory growth per cycle over 10 cast sessions (connect, 30 s of playback, disconnect), and leaked memory | `CastSessionTests` with Activity Monitor, then with Instruments Leaks | 2 runs with Activity Monitor and 1 with Leaks per build |
+| cast | Memory, CPU, threads, Mach ports and network before connecting, while casting and after disconnecting; what is not freed after disconnecting (after minus before) | `CastSessionTests` (connect to the TV, play a video on it for 3 minutes, disconnect, stay 3 minutes), Instruments Activity Monitor (all processes) and a packet capture | 3 runs per build |
+| leaks | Memory growth per cycle over 10 cast sessions (connect, 30 s of playback, disconnect), and leaked memory | `CastSessionTests` with Activity Monitor, then with Instruments Leaks | 1 run with Activity Monitor and 1 with Leaks per build |
 
 Every step takes the builds in turn, round by round, so a change on the device during the run (temperature, background activity) affects every build the same way. Each step installs the build it measures; the first launch after an install is not measured.
 

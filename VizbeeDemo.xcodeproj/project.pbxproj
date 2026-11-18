@@ -29,6 +29,7 @@
 		847EF6662C9AD023009877A9 /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847EF6652C9AD023009877A9 /* PlayerPresenter.swift */; };
 		84B8CC8F2C9B27FB00ED9F80 /* Roboto_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8D2C9B27FB00ED9F80 /* Roboto_Regular.ttf */; };
 		84B8CC902C9B27FB00ED9F80 /* Roboto_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B8CC8E2C9B27FB00ED9F80 /* Roboto_Medium.ttf */; };
+		EEBC3763FBC2819820929C8F /* CastSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A81EF9D6944067DB5458C8 /* CastSessionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31A81EF9D6944067DB5458C8 /* CastSessionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CastSessionTests.swift; sourceTree = "<group>"; };
 		8474205F2C945A930024CFA4 /* VizbeeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VizbeeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847420662C945A950024CFA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847420692C945A950024CFA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				8474207D2C945A950024CFA4 /* VizbeeDemoUITests.swift */,
 				8474207F2C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift */,
+				31A81EF9D6944067DB5458C8 /* CastSessionTests.swift */,
 			);
 			path = VizbeeDemoUITests;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			files = (
 				847420802C945A950024CFA4 /* VizbeeDemoUITestsLaunchTests.swift in Sources */,
 				8474207E2C945A950024CFA4 /* VizbeeDemoUITests.swift in Sources */,
+				EEBC3763FBC2819820929C8F /* CastSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

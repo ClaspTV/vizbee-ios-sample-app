@@ -30,7 +30,7 @@ record_trace() {
     local seconds=$1 output=$2 recorder watchdog
     shift 2
     rm -rf "$output" "$output.timed-out"
-    xcrun xctrace record --time-limit "${seconds}s" --output "$output" "$@" > /dev/null 2>&1 &
+    xcrun xctrace record --time-limit "${seconds}s" --output "$output" "$@" > "$output.log" 2>&1 &
     recorder=$!
     ( sleep $((seconds + ${SAVE_SECONDS:-120})); touch "$output.timed-out"; pkill -P "$recorder"; kill "$recorder"; sleep 10; pkill -9 -P "$recorder"; kill -9 "$recorder" ) > /dev/null 2>&1 &
     watchdog=$!

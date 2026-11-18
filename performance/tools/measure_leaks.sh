@@ -3,9 +3,9 @@
 #  measure_leaks.sh
 #
 #  For each build in LEAKS_LABELS (default vizbee-sdk): runs CastSessionTests for several cycles (connect, play, disconnect) and
-#  attaches the Instruments Leaks template to the app once the test has launched it. Leaks
-#  checks the heap for unreferenced memory every 10 s; the last check comes after the last
-#  disconnect.
+#  attaches the Instruments Leaks template to the app once the test has launched it. The
+#  recording stops halfway through the wait after the last disconnect, while the app is still
+#  running, so the final heap check covers every session.
 #
 #  Usage: ./measure_leaks.sh <device udid> <devicectl device id> <output dir> <tv name> <cycles> <seconds per phase> <label>=<path/to/.xctestrun> ...
 #
@@ -39,7 +39,7 @@ for build in "$@"; do
     test=$!
     pid=""
     for _ in $(seq 1 120); do
-        pid=$(app_pid "$DEVICECTL_ID")
+        grep -q 'PERF_MARK launched' "$log" && pid=$(app_pid "$DEVICECTL_ID")
         [ -n "$pid" ] && break
         sleep 1
     done
@@ -50,14 +50,25 @@ for build in "$@"; do
     fi
     record_trace "$LIMIT" "$trace" --template Leaks --device "$DEVICE" --attach "$pid" &
     recorder=$!
-    wait "$test"
-    passed=$?
+    while kill -0 "$test" 2> /dev/null && ! grep -q "PERF_MARK disconnected $CYCLES " "$log"; do
+        sleep 2
+    done
+    sleep $((SECONDS_PER_PHASE / 2))
     pkill -INT -f "xctrace record .*--output $trace"
     wait "$recorder"
+    wait "$test"
+    passed=$?
     if [ "$passed" -ne 0 ]; then
         echo "$label,FAILED: $(grep -m 1 -E 'error: |XCTAssert|failed' "$log" | sed 's/^.*error: //')"
-        continue
     fi
-    xcrun xctrace export --input "$trace" --toc --output "$trace.toc.xml" > /dev/null 2>&1
-    echo "$label: $trace"
+    for table in "Leaks Leaks" "Allocations Statistics"; do
+        read -r track detail <<< "$table"
+        for _ in 1 2 3; do
+            xcrun xctrace export --input "$trace" --output "$OUT/$label.$detail.xml" \
+                --xpath "/trace-toc/run[@number=\"1\"]/tracks/track[@name=\"$track\"]/details/detail[@name=\"$detail\"]" > /dev/null 2>&1
+            [ -s "$OUT/$label.$detail.xml" ] && break
+        done
+    done
+    sessions=$(grep -c 'PERF_MARK end' "$log")
+    /usr/bin/python3 -I "$TOOLS/leaks_summary.py" "$label" "$sessions" "$OUT/$label.Leaks.xml" "$OUT/$label.Statistics.xml" | tee -a "$OUT/leaks.csv"
 done

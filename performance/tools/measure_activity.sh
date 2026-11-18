@@ -12,6 +12,7 @@
 #  does Bonjour discovery for apps) to activity.csv, and network bytes to network.csv.
 #  Runs where the app sent discovery probes (more than the few iOS sends itself) but no TV answered are listed in no_answer.csv.
 #
+#  EXTRA_INSTRUMENT adds an Instruments instrument to the recording; with Hangs, hangs go to hangs.csv.
 #  Builds in ODD_ROUNDS_ONLY (default no-sdk google-cast-sdk) are measured in odd rounds only.
 #
 #  Usage: ./measure_activity.sh <device udid> <devicectl device id> <capture interface> <output dir> <rounds> <seconds> <label>=<path/to/VizbeeDemo.app> ...
@@ -29,6 +30,7 @@ TOOLS=$(cd "$(dirname "$0")" && pwd)
 IDLE_END=$((SECONDS_PER_RUN - 10 < 240 ? SECONDS_PER_RUN - 10 : 240))
 source "$TOOLS/device_app.sh"
 ODD_ROUNDS_ONLY=${ODD_ROUNDS_ONLY-no-sdk google-cast-sdk}
+EXTRA_INSTRUMENT=${EXTRA_INSTRUMENT-}
 mkdir -p "$OUT"
 
 for round in $(seq 1 "$ROUNDS"); do
@@ -45,7 +47,7 @@ for round in $(seq 1 "$ROUNDS"); do
         rm -f "$pcap"
         tcpdump -i "$INTERFACE" -n -s 1024 -w "$pcap" > /dev/null 2>&1 &
         capture=$!
-        record_trace "$SECONDS_PER_RUN" "$trace" --template 'Activity Monitor' --device "$DEVICE" --all-processes &
+        record_trace "$SECONDS_PER_RUN" "$trace" --template 'Activity Monitor' ${EXTRA_INSTRUMENT:+--instrument "$EXTRA_INSTRUMENT"} --device "$DEVICE" --all-processes &
         recorder=$!
         sleep 5
         xcrun devicectl device process launch --device "$DEVICECTL_ID" "$bundle_id" > /dev/null
@@ -67,6 +69,9 @@ for round in $(seq 1 "$ROUNDS"); do
                 /usr/bin/python3 -I "$TOOLS/process_summary.py" "$label" "$scenario" "$round" "$from" "$to" VizbeeDemo mDNSResponder < "$trace.xml" | tee -a "$OUT/activity.csv"
                 /usr/bin/python3 -I "$TOOLS/net_summary.py" "$label" "$scenario" "$round" "$from" "$to" "$launch" "$pcap" >> "$OUT/network.csv"
             done
+            if [ "$EXTRA_INSTRUMENT" = Hangs ] && export_table "$trace" potential-hangs "$trace.hangs.xml"; then
+                /usr/bin/python3 -I "$TOOLS/hang_summary.py" "$label" "$round" 5 < "$trace.hangs.xml" >> "$OUT/hangs.csv"
+            fi
         ) &
     done
 done

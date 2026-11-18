@@ -14,6 +14,7 @@
 #    launch-phases  Instruments App Launch, round-robin, for the phase breakdown (not run by default; for optimisation)
 #    activity    CPU, memory (app and mDNSResponder) and network for discovery and idle
 #    hangs       Instruments Time Profiler hangs during launch and discovery
+#    activity-hangs  activity with the Instruments Hangs instrument added (not run by default)
 #    cast        CPU, memory, threads, ports and network before, while and after casting to --tv
 #    leaks       memory growth over repeated cast sessions, and Instruments Leaks
 #    summary     summary.csv and summary.md from all the results
@@ -136,6 +137,12 @@ if has_step activity; then
     start_capture_interface
     log "Activity and network: $ACTIVITY_ROUNDS rounds of $ACTIVITY_SECONDS s"
     "$TOOLS/measure_activity.sh" "$DEVICE" "$DEVICECTL_ID" "$RVI" "$OUT/activity" "$ACTIVITY_ROUNDS" "$ACTIVITY_SECONDS" $(builds app_path)
+fi
+
+if has_step activity-hangs; then
+    start_capture_interface
+    log "Activity and network with Hangs: $ACTIVITY_ROUNDS rounds of $ACTIVITY_SECONDS s"
+    EXTRA_INSTRUMENT=Hangs "$TOOLS/measure_activity.sh" "$DEVICE" "$DEVICECTL_ID" "$RVI" "$OUT/activity-hangs" "$ACTIVITY_ROUNDS" "$ACTIVITY_SECONDS" $(builds app_path)
 fi
 
 if has_step hangs; then

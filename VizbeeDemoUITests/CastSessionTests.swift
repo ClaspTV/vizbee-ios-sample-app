@@ -118,7 +118,11 @@ final class CastSessionTests: XCTestCase {
     }
 
     private func dismissCard() {
-        let cardBar = app.navigationBars.matching(NSPredicate(format: "identifier BEGINSWITH 'VZB'")).firstMatch
+        let splash = app.navigationBars["VZBSplashCardView"]
+        if splash.exists {
+            waitUntil(splash, "exists == false", timeout: 15, "the splash card did not close")
+        }
+        let cardBar = app.navigationBars.matching(NSPredicate(format: "identifier BEGINSWITH 'VZB' AND identifier != 'VZBSplashCardView'")).firstMatch
         guard cardBar.waitForExistence(timeout: 2) else {
             return
         }

@@ -25,12 +25,12 @@ for round in $(seq 1 "$ROUNDS"); do
         app=${build#*=}
         bundle_id=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$app/Info.plist")
         mkdir -p "$OUT/$label"
-        xcrun devicectl device install app --device "$DEVICECTL_ID" "$app" > /dev/null
-        stop_app "$DEVICECTL_ID"
         trace="$OUT/$label/run-$round.trace"
-        rm -rf "$trace"
-        xcrun xctrace record --template 'Time Profiler' --device "$DEVICE" --time-limit "${SECONDS_PER_RUN}s" \
-            --output "$trace" --launch -- "$bundle_id" > /dev/null 2>&1
+        for attempt in 1 2; do
+            xcrun devicectl device install app --device "$DEVICECTL_ID" "$app" > /dev/null
+            stop_app "$DEVICECTL_ID"
+            record_trace "$SECONDS_PER_RUN" "$trace" --template 'Time Profiler' --device "$DEVICE" --launch -- "$bundle_id" && break
+        done
         stop_app "$DEVICECTL_ID"
         export_table "$trace" potential-hangs "$trace.hangs.xml" || continue
         /usr/bin/python3 -I "$TOOLS/hang_summary.py" "$label" "$round" < "$trace.hangs.xml" | tee -a "$OUT/hangs.csv"

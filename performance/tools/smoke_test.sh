@@ -3,11 +3,12 @@
 #  smoke_test.sh
 #
 #  Installs and launches a build, checks that it is still running after 15 s and, when a
-#  discovery check is given, that the pattern appears in the device's network traffic.
-#  Fails if either check fails, so a crashing build or a missing Local Network permission
-#  is caught before any measurement.
+#  discovery type is given (ssdp, googlecast or any), that the app sent discovery probes and that
+#  at least one TV answered. Writes the device's address and the TVs that answered to
+#  discovery.txt. Fails if a check fails, so a crashing build, a missing Local Network
+#  permission or a network without TVs is caught before any measurement.
 #
-#  Usage: ./smoke_test.sh <devicectl device id> <capture interface> <path/to/VizbeeDemo.app> <output dir> [discovery check]
+#  Usage: ./smoke_test.sh <devicectl device id> <capture interface> <path/to/VizbeeDemo.app> <output dir> [ssdp|googlecast|any]
 #
 set -uo pipefail
 
@@ -48,9 +49,15 @@ if [ "$local_packets" -eq 0 ]; then
     echo "FAILED: the device has no local network address (only 169.254.x.x or none). Join the Wi-Fi network the TVs are on, and run again."
     exit 1
 fi
-matches=$(tcpdump -r "$OUT/smoke.pcap" -n -v 2> /dev/null | grep -cF -- "$CHECK" || true)
-if [ -n "$CHECK" ] && [ "$matches" -eq 0 ]; then
-    echo "FAILED: no discovery traffic matching '$CHECK'. Allow Local Network access for the app on the device (and tap Allow if asked), then run again."
+"$TOOLS/discovery_check.sh" "$OUT/smoke.pcap" "${CHECK:-any}" > "$OUT/discovery.txt"
+probes=$(awk '/^Probes:/ {print $2}' "$OUT/discovery.txt")
+answers=$(grep -cE '^(SSDP|Cast) ' "$OUT/discovery.txt" || true)
+if [ -n "$CHECK" ] && [ "$probes" -eq 0 ]; then
+    echo "FAILED: the app sent no $CHECK discovery probes. Allow Local Network access for the app on the device (and tap Allow if asked), then run again."
     exit 1
 fi
-echo "OK"
+if [ -n "$CHECK" ] && [ "$answers" -eq 0 ]; then
+    echo "FAILED: no TV answered the $CHECK probes. Join the Wi-Fi network the TVs are on, switch the TVs on, and run again."
+    exit 1
+fi
+echo "OK${CHECK:+, devices that answered: $answers}"

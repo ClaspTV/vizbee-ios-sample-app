@@ -1,5 +1,6 @@
 # Shared helpers for the measurement scripts: find and stop the sample app on the device.
-# Usage: source device_app.sh; app_pid <devicectl device id>; stop_app <devicectl device id>
+# Usage: source device_app.sh; app_pid <devicectl device id>; stop_app <devicectl device id>;
+#        record_trace <seconds> <output.trace> <xctrace record options>
 
 app_pid() {
     xcrun devicectl device info processes --device "$1" 2> /dev/null | awk '/VizbeeDemo.app\/VizbeeDemo/ {print $1}' | head -1
@@ -21,4 +22,25 @@ export_table() {
     done
     echo "Could not export $schema from $trace" >&2
     return 1
+}
+
+# Runs xctrace record for the given time, and stops it if it is still running 2 minutes
+# after that (a recording can hang when the connection to the device stalls).
+record_trace() {
+    local seconds=$1 output=$2 recorder watchdog
+    shift 2
+    rm -rf "$output" "$output.timed-out"
+    xcrun xctrace record --time-limit "${seconds}s" --output "$output" "$@" > /dev/null 2>&1 &
+    recorder=$!
+    ( sleep $((seconds + 120)); touch "$output.timed-out"; pkill -P "$recorder"; kill "$recorder"; sleep 10; pkill -9 -P "$recorder"; kill -9 "$recorder" ) > /dev/null 2>&1 &
+    watchdog=$!
+    wait "$recorder"
+    pkill -P "$watchdog" 2> /dev/null
+    kill "$watchdog" 2> /dev/null
+    wait "$watchdog" 2> /dev/null
+    if [ -e "$output.timed-out" ]; then
+        rm -f "$output.timed-out"
+        echo "Recording did not finish within $((seconds + 120)) s, stopped: $output" >&2
+        return 1
+    fi
 }

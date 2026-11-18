@@ -81,7 +81,7 @@ for i, name in enumerate(PHASES):
 # Discovery and idle: CPU and memory of the app and of mDNSResponder.
 activity = {}
 for row in read('activity/activity.csv'):
-    if len(row) == 7:
+    if len(row) in (7, 9):
         activity.setdefault((row[1], row[3]), {}).setdefault(row[0], []).append([float(x) for x in row[4:]])
 network = {}
 for row in read('activity/network.csv'):
@@ -120,6 +120,66 @@ add('Launch + Discovery', 'Longest hang', 'ms', {k: [h[2] for h in x] for k, x i
     tool='Instruments: Time Profiler (Hangs)')
 
 
+# Casting: before connecting, while casting and after disconnecting, from the cast and cycles steps.
+def cast_rows(folder):
+    """(label, run, window, process) -> [CPU %, median MB, peak MB, threads, ports]"""
+    return {(r[0], r[2], r[1], r[3]): [float(x) for x in r[4:]] for r in read(f'{folder}/activity.csv') if len(r) == 9}
+
+
+def per_run(rows, value):
+    """label -> [value(run) for each run], skipping runs value() cannot compute."""
+    out = {}
+    for label, run in sorted({(k[0], k[1]) for k in rows}, key=lambda k: int(k[1])):
+        try:
+            out.setdefault(label, []).append(value(lambda window, process='VizbeeDemo': rows[(label, run, window, process)]))
+        except KeyError:
+            pass
+    return out
+
+
+cast = cast_rows('cast')
+cast_network = {(r[0], r[2], r[1], r[3]): float(r[5]) for r in read('cast/network.csv')}
+tool = 'Instruments: Activity Monitor (all processes), CastSessionTests'
+windows = {'before': 'the 30 s before connecting', 'casting-1': 'the last 2 minutes of playback on the TV',
+           'after-1': 'the last minute of 3 minutes after disconnecting'}
+for window, scenario in (('before', 'Cast: before connecting'), ('casting-1', 'Cast: casting'), ('after-1', 'Cast: after disconnecting')):
+    note = windows[window]
+    add(scenario, 'Memory footprint', 'MB', per_run(cast, lambda w: w(window)[1]), tool=tool, note=f'Median footprint, {note}')
+    add(scenario, 'CPU usage (app)', '%', per_run(cast, lambda w: w(window)[0]), tool=tool, note=note)
+    add(scenario, 'CPU usage (app + mDNSResponder)', '%', per_run(cast, lambda w: w(window)[0] + w(window, 'mDNSResponder')[0]), tool=tool, note=note)
+    add(scenario, 'Threads', 'count', per_run(cast, lambda w: w(window)[3]), tool=tool, note=f'Median, {note}')
+    add(scenario, 'Mach ports', 'count', per_run(cast, lambda w: w(window)[4]), tool=tool, note=f'Median, {note}')
+    for kind, name in (('lan', 'LAN, to the TVs'), ('total', 'total')):
+        add(scenario, f'Network traffic ({name})', 'KB per min',
+            {label: [v for (l, _, w, k), v in cast_network.items() if (l, w, k) == (label, window, kind)] for label in LABELS},
+            statistic=statistics.median, tool='Packet capture (rvictl + tcpdump)', note=note)
+scenario = 'Cast: not freed after disconnecting'
+note = 'After disconnecting minus before connecting, per run; near 0 when the session\'s resources are released'
+add(scenario, 'Memory footprint', 'MB', per_run(cast, lambda w: w('after-1')[1] - w('before')[1]), tool=tool, note=note)
+add(scenario, 'Threads', 'count', per_run(cast, lambda w: w('after-1')[3] - w('before')[3]), tool=tool, note=note)
+add(scenario, 'Mach ports', 'count', per_run(cast, lambda w: w('after-1')[4] - w('before')[4]), tool=tool, note=note)
+add(scenario, 'CPU usage (app)', '%', per_run(cast, lambda w: w('after-1')[0] - w('before')[0]), tool=tool, note=note)
+
+
+def slope(points):
+    """Least-squares slope of (x, y) points."""
+    mx, my = statistics.mean(p[0] for p in points), statistics.mean(p[1] for p in points)
+    return sum((x - mx) * (y - my) for x, y in points) / sum((x - mx) ** 2 for x, _ in points)
+
+
+cycles = cast_rows('cycles')
+count = max([int(k[2].split('-')[1]) for k in cycles if k[2].startswith('after-')] or [0])
+if count > 1:
+    note = f'{count} cycles of connect, 30 s of playback and disconnect'
+    add('Repeated cast sessions', 'Memory growth per cycle', 'MB per cycle',
+        per_run(cycles, lambda w: slope([(n, w(f'after-{n}')[1]) for n in range(1, count + 1)])), tool=tool,
+        note=f'Slope of the footprint after each disconnect; {note}')
+    add('Repeated cast sessions', 'Memory after the last cycle minus before the first', 'MB',
+        per_run(cycles, lambda w: w(f'after-{count}')[1] - w('before')[1]), tool=tool, note=note)
+    add('Repeated cast sessions', 'Threads after the last cycle minus before the first', 'count',
+        per_run(cycles, lambda w: w(f'after-{count}')[3] - w('before')[3]), tool=tool, note=note)
+
+
 def fmt(value, signed=False):
     if value is None:
         return ''
@@ -149,6 +209,16 @@ variants = read('variants.csv')
 lines = [f'# SDK performance: {device_name}', '',
          f"Device: {device['name']} ({device['model']}, {device['product_type']}), iOS {device['os_version']}", '', '| Build | Git ref | Commit | Packages |', '|---|---|---|---|']
 lines += [f'| {v[0]} | {v[1]} | {v[2][:10]} | {v[3]} |' for v in variants]
+discovery = {label: open(path).read().splitlines() for label in LABELS
+             if os.path.exists(path := os.path.join(OUT, 'smoke', label, 'discovery.txt'))}
+if discovery:
+    address = next((line.split(': ', 1)[1] for found in discovery.values() for line in found if line.startswith('Device address:')), '')
+    lines += ['', f'Network: device address {address}. Devices that answered discovery in the smoke test:', '']
+    lines += [f'- {label}: {line}' for label, found in discovery.items() for line in found if line.startswith(('SSDP ', 'Cast '))]
+no_answer = read('activity/no_answer.csv')
+if no_answer:
+    lines += ['', 'Warning: in these activity runs the app sent discovery probes but no TV answered, so their discovery and idle values '
+              'do not include talking to TVs: ' + ', '.join(f'{label} run {run}' for label, run in no_answer) + '.']
 lines += ['', 'Values are the statistic over all runs; differences are against ' + BASE + ', with the 95% range in brackets.', '',
           '| Scenario | Metric | Unit | ' + ' | '.join(LABELS) + ' | Runs |', '|' + '---|' * (len(LABELS) + 4)]
 for m in metrics:

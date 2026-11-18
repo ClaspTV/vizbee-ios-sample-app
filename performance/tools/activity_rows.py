@@ -1,5 +1,5 @@
 # Parses an exported activity-monitor-process-live table into
-# (process name, time s, cumulative CPU time s, physical footprint MB) samples.
+# (process name, time s, cumulative CPU time s, physical footprint MB, threads, Mach ports) samples.
 import re
 
 
@@ -24,4 +24,5 @@ def rows(xml):
             cells.append(text)
         if len(cells) < 8 or cells[4] is None or cells[7] is None:
             continue
-        yield process, float(cells[0]) / 1e9, float(cells[4]) / 1e9, float(cells[7]) / 1048576
+        count = lambda cell: int(cell) if cell and cell.isdigit() else None
+        yield process, float(cells[0]) / 1e9, float(cells[4]) / 1e9, float(cells[7]) / 1048576, count(cells[5]), count(cells[6])

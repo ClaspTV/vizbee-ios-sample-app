@@ -5,15 +5,17 @@
 #  Measures the performance impact of an SDK on a connected iOS device by comparing
 #  Release builds of the sample app listed in variants.conf. See README.md.
 #
-#  Usage: performance/run.sh --device <udid> [--out <dir>] [--steps <step,step>] [--quick]
+#  Usage: performance/run.sh --device <udid> [--tv <name>] [--out <dir>] [--steps <step,step>] [--quick]
 #
 #  Steps (default: all, in this order):
 #    build       check out and build every variant (Release, app + launch test)
-#    smoke       launch every build, check it stays up and that discovery runs
+#    smoke       launch every build, check it stays up, sends discovery probes and a TV answers
 #    launch      Xcode launch test (XCTApplicationLaunchMetric), round-robin
 #    launch-phases  Instruments App Launch, round-robin, for the phase breakdown
 #    activity    CPU, memory (app and mDNSResponder) and network for discovery and idle
 #    hangs       Instruments Time Profiler hangs during launch and discovery
+#    cast        CPU, memory, threads, ports and network before, while and after casting to --tv
+#    leaks       memory growth over repeated cast sessions, and Instruments Leaks
 #    summary     summary.csv and summary.md from all the results
 #
 set -euo pipefail
@@ -23,27 +25,37 @@ ROOT=$(cd "$PERF/.." && pwd)
 TOOLS=$PERF/tools
 DEVICE=""
 OUT=""
-STEPS=build,smoke,launch,launch-phases,activity,hangs,summary
+STEPS=build,smoke,launch,launch-phases,activity,hangs,cast,leaks,summary
+TV=""
 LAUNCH_ROUNDS=6
 LAUNCH_PHASE_ROUNDS=10
 ACTIVITY_ROUNDS=5
 ACTIVITY_SECONDS=245
 HANG_ROUNDS=3
 HANG_SECONDS=60
+CAST_ROUNDS=5
+CAST_SECONDS=180
+CYCLE_ROUNDS=2
+CYCLES=10
+CYCLE_SECONDS=30
 
 while [ $# -gt 0 ]; do
     case "$1" in
         --device) DEVICE=$2; shift 2 ;;
+        --tv) TV=$2; shift 2 ;;
         --out) OUT=$2; shift 2 ;;
         --steps) STEPS=$2; shift 2 ;;
-        --quick) LAUNCH_ROUNDS=1; LAUNCH_PHASE_ROUNDS=1; ACTIVITY_ROUNDS=1; ACTIVITY_SECONDS=80; HANG_ROUNDS=1; shift ;;
+        --quick) LAUNCH_ROUNDS=1; LAUNCH_PHASE_ROUNDS=1; ACTIVITY_ROUNDS=1; ACTIVITY_SECONDS=80; HANG_ROUNDS=1; CAST_ROUNDS=1; CAST_SECONDS=90; CYCLE_ROUNDS=1; CYCLES=3; shift ;;
         *) echo "Unknown option $1"; exit 1 ;;
     esac
 done
-[ -n "$DEVICE" ] || { echo "Usage: performance/run.sh --device <udid> [--out <dir>] [--steps <steps>] [--quick]"; exit 1; }
+[ -n "$DEVICE" ] || { echo "Usage: performance/run.sh --device <udid> [--tv <name>] [--out <dir>] [--steps <steps>] [--quick]"; exit 1; }
 
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 has_step() { [[ ",$STEPS," == *",$1,"* ]]; }
+if [ -z "$TV" ] && { has_step cast || has_step leaks; }; then
+    echo "The cast and leaks steps need --tv <name>: part of the TV's name as the device list shows it"; exit 1
+fi
 
 # Device details, from the device's UDID.
 DEVICE_JSON=$(mktemp)
@@ -129,6 +141,20 @@ fi
 if has_step hangs; then
     log "Hangs: $HANG_ROUNDS rounds of $HANG_SECONDS s"
     "$TOOLS/measure_hangs.sh" "$DEVICE" "$DEVICECTL_ID" "$OUT/hangs" "$HANG_ROUNDS" "$HANG_SECONDS" $(builds app_path)
+fi
+
+if has_step cast; then
+    start_capture_interface
+    log "Casting to $TV: $CAST_ROUNDS rounds"
+    "$TOOLS/measure_cast.sh" "$DEVICE" "$RVI" "$OUT/cast" "$CAST_ROUNDS" "$TV" 1 60 "$CAST_SECONDS" "$CAST_SECONDS" $(builds xctestrun_path)
+fi
+
+if has_step leaks; then
+    start_capture_interface
+    log "Repeated cast sessions to $TV: $CYCLE_ROUNDS rounds of $CYCLES cycles"
+    "$TOOLS/measure_cast.sh" "$DEVICE" "$RVI" "$OUT/cycles" "$CYCLE_ROUNDS" "$TV" "$CYCLES" 60 "$CYCLE_SECONDS" "$CYCLE_SECONDS" $(builds xctestrun_path)
+    log "Leaks: $CYCLES cycles per build"
+    "$TOOLS/measure_leaks.sh" "$DEVICE" "$DEVICECTL_ID" "$OUT/leaks" "$TV" "$CYCLES" "$CYCLE_SECONDS" $(builds xctestrun_path)
 fi
 
 if has_step summary; then

@@ -23,8 +23,7 @@ source "$TOOLS/device_app.sh"
 mkdir -p "$OUT"
 
 record_launch() {
-    rm -rf "$2"
-    xcrun xctrace record --template 'App Launch' --device "$DEVICE" --time-limit 10s --output "$2" --launch -- "$1" > /dev/null 2>&1
+    record_trace 10 "$2" --template 'App Launch' --device "$DEVICE" --launch -- "$1"
 }
 
 for round in $(seq 1 "$ROUNDS"); do

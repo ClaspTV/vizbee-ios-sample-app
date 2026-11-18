@@ -10,6 +10,7 @@
 #    idle       60-240 s  (passive scan: a probe every 60 s), no casting
 #  Writes CPU and memory of the app and of mDNSResponder (the system Bonjour service, which
 #  does Bonjour discovery for apps) to activity.csv, and network bytes to network.csv.
+#  Runs where the app sent discovery probes (more than the few iOS sends itself) but no TV answered are listed in no_answer.csv.
 #
 #  Usage: ./measure_activity.sh <device udid> <devicectl device id> <capture interface> <output dir> <rounds> <seconds> <label>=<path/to/VizbeeDemo.app> ...
 #
@@ -37,18 +38,24 @@ for round in $(seq 1 "$ROUNDS"); do
         stop_app "$DEVICECTL_ID"
         trace="$OUT/$label/run-$round.trace"
         pcap="$OUT/$label/run-$round.pcap"
-        rm -rf "$trace" "$pcap"
-        tcpdump -i "$INTERFACE" -n -s 128 -w "$pcap" > /dev/null 2>&1 &
+        rm -f "$pcap"
+        tcpdump -i "$INTERFACE" -n -s 1024 -w "$pcap" > /dev/null 2>&1 &
         capture=$!
-        xcrun xctrace record --template 'Activity Monitor' --device "$DEVICE" --all-processes \
-            --time-limit "${SECONDS_PER_RUN}s" --output "$trace" > /dev/null 2>&1 &
+        record_trace "$SECONDS_PER_RUN" "$trace" --template 'Activity Monitor' --device "$DEVICE" --all-processes &
         recorder=$!
         sleep 5
         xcrun devicectl device process launch --device "$DEVICECTL_ID" "$bundle_id" > /dev/null
         launch=$(date +%s.%N)
         wait "$recorder"
+        recorded=$?
         kill "$capture"
         stop_app "$DEVICECTL_ID"
+        [ "$recorded" -eq 0 ] || continue
+        "$TOOLS/discovery_check.sh" "$pcap" any > "${pcap%.pcap}.discovery.txt"
+        if [ "$(awk '/^Probes:/ {print $2}' "${pcap%.pcap}.discovery.txt")" -gt 10 ] && ! grep -qE '^(SSDP|Cast) ' "${pcap%.pcap}.discovery.txt"; then
+            echo "Warning: $label run $round sent discovery probes but no TV answered" >&2
+            echo "$label,$round" >> "$OUT/no_answer.csv"
+        fi
         export_table "$trace" activity-monitor-process-live "$trace.xml" || continue
         for window in "discovery 5 35" "idle 60 $IDLE_END"; do
             read -r scenario from to <<< "$window"

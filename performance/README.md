@@ -1,6 +1,6 @@
 # SDK performance measurement (iOS)
 
-The method, shared with the other platforms, is described in [SDK Performance Measurement](https://github.com/ClaspTV/Remote_SDK_iOS/blob/develop/docs/Performance/performance-measurement.md). This page covers running it on iOS.
+The method, shared with the other platforms, is described in [SDK Performance Measurement](performance-measurement.md). This page covers running it on iOS.
 
 Measures what an SDK costs an app on a real device, by comparing Release builds of this sample app that differ only in the SDK they contain:
 
@@ -51,7 +51,7 @@ performance/run.sh --device <device udid> --out performance/results/<folder> --s
 
 `--tv` is part of the TV's name as the cast device list shows it, for example `BRAVIA`. Both SDKs cast to this TV, each to its usual receiver app (Vizbee's receiver for the Vizbee SDK, the Default Media Receiver for Google Cast), so use a TV that supports both, such as a Chromecast or a TV with Google Cast built in. The build without an SDK goes through the same screens without casting.
 
-Find the device UDID with `xcrun devicectl list devices` or in Xcode's Devices window. Results go to `performance/results/<date>-<device>-iOS-<version>/` (not checked in):
+Find the device UDID with `xcrun devicectl list devices` or in Xcode's Devices window. Results go to `performance/results/<date>-<device>-iOS-<version>/`. Only `summary.md`, `summary.csv`, `device.json` and `variants.csv` are checked in; recordings, captures and logs stay local:
 
 | File | What it holds |
 |---|---|

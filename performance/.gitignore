@@ -1,1 +1,5 @@
-results/
+results/*/*
+!results/*/summary.md
+!results/*/summary.csv
+!results/*/device.json
+!results/*/variants.csv

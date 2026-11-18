@@ -27,7 +27,7 @@ final class CastSessionTests: XCTestCase {
             mark("connect", cycle)
             connect(to: tv)
             mark("connected", cycle)
-            app.staticTexts["Tears of Steel"].firstMatch.tap()
+            app.staticTexts["Big Buck Bunny"].firstMatch.tap()
             play()
             mark("playing", cycle)
             hold("PERF_CASTING_SECONDS", 180)
@@ -38,6 +38,11 @@ final class CastSessionTests: XCTestCase {
             hold("PERF_AFTER_SECONDS", 180)
             mark("end", cycle)
         }
+    }
+
+    override func record(_ issue: XCTIssue) {
+        print(app.debugDescription)
+        super.record(issue)
     }
 
     private func setting(_ name: String, _ defaultValue: String) -> String {
@@ -94,9 +99,17 @@ final class CastSessionTests: XCTestCase {
 
     private func play() {
         tapButton(labelled: "Play")
+        waitUntil(app.buttons["pauseButton"], "exists == true", timeout: 60, "the video did not start playing on the TV")
     }
 
     private func disconnect() {
+        let playerCard = app.navigationBars["VZBSplitPlayerCardView"]
+        if !playerCard.exists {
+            castButton.tap()
+        }
+        waitUntil(playerCard, "exists == true", timeout: 10, "the player card did not open")
+        tapButton(labelled: "Stop")
+        waitUntil(app.buttons["pauseButton"], "exists == false", timeout: 30, "the video did not stop")
         dismissCard()
         castButton.tap()
         tapButton(labelled: "Disconnect")
@@ -106,10 +119,15 @@ final class CastSessionTests: XCTestCase {
 
     private func dismissCard() {
         let cardBar = app.navigationBars.matching(NSPredicate(format: "identifier BEGINSWITH 'VZB'")).firstMatch
-        guard cardBar.waitForExistence(timeout: 2), cardBar.buttons["Stop"].exists else {
+        guard cardBar.waitForExistence(timeout: 2) else {
             return
         }
-        cardBar.buttons["Stop"].tap()
+        let stop = cardBar.buttons["Stop"]
+        let close = cardBar.buttons["VZBCloseButton"]
+        guard stop.exists || close.exists else {
+            return
+        }
+        (stop.exists ? stop : close).tap()
         waitUntil(cardBar, "exists == false", timeout: 10, "the Vizbee card did not close")
     }
 }

@@ -17,6 +17,7 @@
 #    activity-hangs  activity with the Instruments Hangs instrument added (not run by default)
 #    cast        CPU, memory, threads, ports and network before, while and after casting to --tv
 #    leaks       memory growth over repeated cast sessions, and Instruments Leaks
+#    memgraph    memory graphs after the first and last of repeated cast sessions: leaks, and which classes and regions grew
 #    summary     summary.csv and summary.md from all the results
 #
 set -euo pipefail
@@ -26,7 +27,7 @@ ROOT=$(cd "$PERF/.." && pwd)
 TOOLS=$PERF/tools
 DEVICE=""
 OUT=""
-STEPS=build,smoke,launch,activity,hangs,cast,leaks,summary
+STEPS=build,smoke,launch,activity,hangs,cast,leaks,memgraph,summary
 TV=""
 LAUNCH_ROUNDS=6
 LAUNCH_PHASE_ROUNDS=10
@@ -54,8 +55,8 @@ done
 
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 has_step() { [[ ",$STEPS," == *",$1,"* ]]; }
-if [ -z "$TV" ] && { has_step cast || has_step leaks; }; then
-    echo "The cast and leaks steps need --tv <name>: part of the TV's name as the device list shows it"; exit 1
+if [ -z "$TV" ] && { has_step cast || has_step leaks || has_step memgraph; }; then
+    echo "The cast, leaks and memgraph steps need --tv <name>: part of the TV's name as the device list shows it"; exit 1
 fi
 
 # Device details, from the device's UDID.
@@ -162,6 +163,11 @@ if has_step leaks; then
     "$TOOLS/measure_cast.sh" "$DEVICE" "$RVI" "$OUT/cycles" "$CYCLE_ROUNDS" "$TV" "$CYCLES" 60 "$CYCLE_SECONDS" "$CYCLE_SECONDS" $(builds xctestrun_path)
     log "Leaks: $CYCLES cycles per build"
     "$TOOLS/measure_leaks.sh" "$DEVICE" "$DEVICECTL_ID" "$OUT/leaks" "$TV" "$CYCLES" "$CYCLE_SECONDS" $(builds xctestrun_path)
+fi
+
+if has_step memgraph; then
+    log "Memory graphs: $CYCLES cycles per build"
+    "$TOOLS/measure_memgraph.sh" "$DEVICE" "$OUT/memgraph" "$TV" "$CYCLES" "$CYCLE_SECONDS" $(builds xctestrun_path)
 fi
 
 if has_step summary; then

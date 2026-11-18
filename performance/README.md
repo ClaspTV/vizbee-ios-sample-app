@@ -22,6 +22,7 @@ The builds and the git refs they come from are listed in `variants.conf`. Change
 | hangs | Main-thread hangs over 250 ms during launch and discovery | Instruments Time Profiler (Hangs) | 3 runs of 60 s per build |
 | cast | Memory, CPU, threads, Mach ports and network before connecting, while casting and after disconnecting; what is not freed after disconnecting (after minus before) | `CastSessionTests` (connect to the TV, play a video on it for 3 minutes, disconnect, stay 3 minutes), Instruments Activity Monitor (all processes) and a packet capture | 3 runs for vizbee-sdk, 2 for the others |
 | leaks | Memory growth per cycle over 10 cast sessions (connect, 30 s of playback, disconnect), and leaked memory | `CastSessionTests` with Activity Monitor, then with Instruments Leaks | 1 run with Activity Monitor per build; 1 with Leaks for vizbee-sdk (set LEAKS_LABELS for others) |
+| memgraph | Leaked objects, and the heap classes and memory regions that grew between the first and last of 10 cast sessions | `CastSessionTests/testCastSessionsMemory` with `-enablePerformanceTestsDiagnostics YES`: Xcode saves a memory graph on the device before and after; `leaks`, `heap` and `vmmap` compare them | 1 run for vizbee-sdk (set MEMGRAPH_LABELS for others) |
 
 Every step takes the builds in turn, round by round, so a change on the device during the run (temperature, background activity) affects every build the same way. Each step installs the build it measures; the first launch after an install is not measured.
 
@@ -65,6 +66,7 @@ Find the device UDID with `xcrun devicectl list devices` or in Xcode's Devices w
 | `cast/<build>/run-N.trace`, `run-N.pcap`, `run-N.log` | Activity Monitor traces, packet captures, and the test log with the time of each step (`PERF_MARK` lines) |
 | `cycles/<build>/run-N.*` | The same, for the repeated cast sessions |
 | `leaks/<build>.trace` | Instruments Leaks traces; open in Instruments to see each leak and its backtrace |
+| `memgraph/<build>.txt`, `memgraph/<build>/` | Memory graph comparison, and the two memory graphs; open a graph in Xcode, or run `leaks`, `heap` or `vmmap` on it |
 | `*.csv` in each folder | Every run's values |
 
 The smoke test stops the run if a build crashes, sends no discovery probes, or no TV answers its probes (the discovery type for each build is in `variants.conf`). The devices that answered are listed in `summary.md`. During the activity step, a run where the app sent probes but no TV answered (for example because a TV went to standby) is listed in `activity/no_answer.csv` and flagged in `summary.md`. An Instruments recording still running 2 minutes after its time limit is stopped; a hangs or launch-phases recording is then tried once more, and an activity run is skipped.

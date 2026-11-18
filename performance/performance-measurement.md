@@ -39,7 +39,7 @@ performance/run.sh --device <device id> --tv "<TV name>" --quick   # 1 round of 
 1. **build**: check out each branch from origin and build it.
 2. **smoke**: launch each build once, and check that it sends discovery probes and that a TV answers. The run stops here if the network or the TVs are wrong.
 3. **launch**, **activity**, **hangs**: launch and home-screen measurements.
-4. **cast**, **leaks**: cast sessions with the TV named in `--tv`.
+4. **cast**, **leaks**, **memgraph**: cast sessions with the TV named in `--tv`.
 5. **summary**: one table, `summary.md` and `summary.csv`, with each build's value, the difference from Without SDK and its 95% range.
 
 **launch-phases** is not in the default steps. It splits launch time into phases, such as framework loading and SDK setup in `didFinishLaunching`, to show what to optimise. Run it with `--steps launch-phases` when working on launch time. The launch time difference from the **launch** step is the measurement.
@@ -66,6 +66,7 @@ Run counts are per build, per device.
 | hangs | Hangs over 250 ms, longest hang | Instruments Time Profiler | 3 runs of 60 s |
 | cast | CPU, memory, threads, Mach ports and network before connecting, while playing on the TV and after disconnecting; what is not freed (after minus before) | Cast session test with Activity Monitor and a packet capture | Vizbee 3 sessions, others 2 |
 | leaks | Memory growth per connect/disconnect cycle, leaked memory | Cast session test, 10 cycles, with Activity Monitor, then with Instruments Leaks | 1 + 1 |
+| memgraph | Leaked objects, and which classes and memory regions grew from the first to the last session | Cast session test, 10 cycles, as an Xcode memory performance test that saves a memory graph on the device before and after | 1 |
 
 How the numbers are computed:
 

@@ -30,7 +30,7 @@ The same sample app (same screens, same videos) is kept on three branches that d
 ## How it is automated
 
 ```
-performance/run.sh --device <device id> --tv "<TV name>"           # about 5 h on iOS
+performance/run.sh --device <device id> --tv "<TV name>"           # about 3.5 h on iOS
 performance/run.sh --device <device id> --tv "<TV name>" --quick   # 1 round of each, to check the setup
 ```
 
@@ -38,13 +38,16 @@ performance/run.sh --device <device id> --tv "<TV name>" --quick   # 1 round of 
 
 1. **build**: check out each branch from origin and build it.
 2. **smoke**: launch each build once, and check that it sends discovery probes and that a TV answers. The run stops here if the network or the TVs are wrong.
-3. **launch**, **launch-phases**, **activity**, **hangs**: launch and home-screen measurements.
+3. **launch**, **activity**, **hangs**: launch and home-screen measurements.
 4. **cast**, **leaks**: cast sessions with the TV named in `--tv`.
 5. **summary**: one table, `summary.md` and `summary.csv`, with each build's value, the difference from Without SDK and its 95% range.
+
+**launch-phases** is not in the default steps. It splits launch time into phases, such as framework loading and SDK setup in `didFinishLaunching`, to show what to optimise. Run it with `--steps launch-phases` when working on launch time. The launch time difference from the **launch** step is the measurement.
 
 Rules that keep runs comparable:
 
 - Within each round the builds run in turn (Without, Vizbee, Google Cast). If the device slows down during the run, all builds are affected equally.
+- Builds that vary little from run to run (Without SDK, Google Cast) are measured in odd rounds only in the activity and cast steps. The precision of a difference depends on the build that varies most, which is measured in every round.
 - Every recording has a time limit. A stuck recording is stopped and only that run is dropped.
 - Every run is checked for TV answers. Runs where no TV answered are listed in the summary.
 - The cast test fails, and its run is dropped, if the video does not start playing on the TV.
@@ -58,10 +61,10 @@ Run counts are per build, per device.
 | Step | Metrics | How (iOS) | Runs |
 |---|---|---|---|
 | launch | Cold launch time | Xcode launch test (`XCTApplicationLaunchMetric`) | 6 rounds of 5 launches |
-| launch-phases | Process start to first frame, and each launch phase, including SDK setup in `didFinishLaunching` | Instruments App Launch | 10 |
-| activity | CPU of the app and of the system Bonjour service, memory footprint, network traffic by type (SSDP, mDNS, LAN, internet). Windows: discovery 5–35 s after launch, idle 60–240 s | Instruments Activity Monitor (all processes) and a packet capture of the device's Wi-Fi traffic | 5 runs of 4 min |
+| launch-phases (optional) | Process start to first frame, and each launch phase, including SDK setup in `didFinishLaunching` | Instruments App Launch | 10 |
+| activity | CPU of the app and of the system Bonjour service, memory footprint, network traffic by type (SSDP, mDNS, LAN, internet). Windows: discovery 5–35 s after launch, idle 60–240 s | Instruments Activity Monitor (all processes) and a packet capture of the device's Wi-Fi traffic | 4-min runs: Vizbee 5, others 3 |
 | hangs | Hangs over 250 ms, longest hang | Instruments Time Profiler | 3 runs of 60 s |
-| cast | CPU, memory, threads, Mach ports and network before connecting, while playing on the TV and after disconnecting; what is not freed (after minus before) | Cast session test with Activity Monitor and a packet capture | 3 sessions |
+| cast | CPU, memory, threads, Mach ports and network before connecting, while playing on the TV and after disconnecting; what is not freed (after minus before) | Cast session test with Activity Monitor and a packet capture | Vizbee 3 sessions, others 2 |
 | leaks | Memory growth per connect/disconnect cycle, leaked memory | Cast session test, 10 cycles, with Activity Monitor, then with Instruments Leaks | 1 + 1 |
 
 How the numbers are computed:

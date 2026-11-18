@@ -32,7 +32,7 @@ record_trace() {
     rm -rf "$output" "$output.timed-out"
     xcrun xctrace record --time-limit "${seconds}s" --output "$output" "$@" > /dev/null 2>&1 &
     recorder=$!
-    ( sleep $((seconds + 120)); touch "$output.timed-out"; pkill -P "$recorder"; kill "$recorder"; sleep 10; pkill -9 -P "$recorder"; kill -9 "$recorder" ) > /dev/null 2>&1 &
+    ( sleep $((seconds + ${SAVE_SECONDS:-120})); touch "$output.timed-out"; pkill -P "$recorder"; kill "$recorder"; sleep 10; pkill -9 -P "$recorder"; kill -9 "$recorder" ) > /dev/null 2>&1 &
     watchdog=$!
     wait "$recorder"
     pkill -P "$watchdog" 2> /dev/null
@@ -40,7 +40,7 @@ record_trace() {
     wait "$watchdog" 2> /dev/null
     if [ -e "$output.timed-out" ]; then
         rm -f "$output.timed-out"
-        echo "Recording did not finish within $((seconds + 120)) s, stopped: $output" >&2
+        echo "Recording did not finish within $((seconds + ${SAVE_SECONDS:-120})) s, stopped: $output" >&2
         return 1
     fi
 }

@@ -34,14 +34,17 @@ for round in $(seq 1 "$ROUNDS"); do
         mkdir -p "$OUT/$label"
         xcrun devicectl device install app --device "$DEVICECTL_ID" "$app" > /dev/null
         stop_app "$DEVICECTL_ID"
-        record_launch "$bundle_id" "$OUT/$label/warmup.trace"
+        xcrun devicectl device process launch --device "$DEVICECTL_ID" "$bundle_id" > /dev/null
+        sleep 10
         stop_app "$DEVICECTL_ID"
         sleep "$COOL_DOWN"
         trace="$OUT/$label/run-$round.trace"
         record_launch "$bundle_id" "$trace"
         stop_app "$DEVICECTL_ID"
-        export_table "$trace" life-cycle-period "$trace.xml" || continue
-        /usr/bin/python3 -I "$TOOLS/launch_phases.py" "$label" "$round" < "$trace.xml" | tee -a "$OUT/launch_phases.csv"
+        (
+            export_table "$trace" life-cycle-period "$trace.xml" || exit
+            /usr/bin/python3 -I "$TOOLS/launch_phases.py" "$label" "$round" < "$trace.xml" | tee -a "$OUT/launch_phases.csv"
+        ) &
     done
 done
-rm -rf "$OUT"/*/warmup.trace
+wait

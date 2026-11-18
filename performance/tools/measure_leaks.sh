@@ -2,7 +2,7 @@
 #
 #  measure_leaks.sh
 #
-#  For each build: runs CastSessionTests for several cycles (connect, play, disconnect) and
+#  For each build in LEAKS_LABELS (default vizbee-sdk): runs CastSessionTests for several cycles (connect, play, disconnect) and
 #  attaches the Instruments Leaks template to the app once the test has launched it. Leaks
 #  checks the heap for unreferenced memory every 10 s; the last check comes after the last
 #  disconnect.
@@ -20,11 +20,14 @@ SECONDS_PER_PHASE=$6
 shift 6
 TOOLS=$(cd "$(dirname "$0")" && pwd)
 source "$TOOLS/device_app.sh"
+LEAKS_LABELS=${LEAKS_LABELS:-vizbee-sdk}
 mkdir -p "$OUT"
-LIMIT=$((60 + CYCLES * (2 * SECONDS_PER_PHASE + 60) + 120))
+LIMIT=$((60 + CYCLES * (2 * SECONDS_PER_PHASE + 120) + 300))
+SAVE_SECONDS=1200
 
 for build in "$@"; do
     label=${build%%=*}
+    [[ " $LEAKS_LABELS " == *" $label "* ]] || continue
     xctestrun=${build#*=}
     trace="$OUT/$label.trace"
     log="$OUT/$label.log"

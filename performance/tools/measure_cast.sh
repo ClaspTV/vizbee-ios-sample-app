@@ -10,6 +10,8 @@
 #  Writes CPU, memory, threads and Mach ports of the app and of mDNSResponder to activity.csv,
 #  and network bytes to network.csv.
 #
+#  Builds in ODD_ROUNDS_ONLY (default no-sdk google-cast-sdk) are measured in odd rounds only.
+#
 #  Usage: ./measure_cast.sh <device udid> <capture interface> <output dir> <rounds> <tv name> <cycles> <before s> <casting s> <after s> <label>=<path/to/.xctestrun> ...
 #
 set -uo pipefail
@@ -26,12 +28,14 @@ AFTER=$9
 shift 9
 TOOLS=$(cd "$(dirname "$0")" && pwd)
 source "$TOOLS/device_app.sh"
+ODD_ROUNDS_ONLY=${ODD_ROUNDS_ONLY-no-sdk google-cast-sdk}
 mkdir -p "$OUT"
 LIMIT=$((BEFORE + CYCLES * (CASTING + AFTER + 60) + 120))
 
 for round in $(seq 1 "$ROUNDS"); do
     for build in "$@"; do
         label=${build%%=*}
+        [[ " $ODD_ROUNDS_ONLY " == *" $label "* ]] && [ $((round % 2)) -eq 0 ] && continue
         xctestrun=${build#*=}
         mkdir -p "$OUT/$label"
         trace="$OUT/$label/run-$round.trace"

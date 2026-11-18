@@ -17,11 +17,11 @@ The builds and the git refs they come from are listed in `variants.conf`. Change
 | Step | Metric | Tool | Runs (default) |
 |---|---|---|---|
 | launch | Cold launch time | Xcode launch test (`XCTApplicationLaunchMetric`, `testLaunchPerformance`) | 6 rounds of 5 launches per build |
-| launch-phases | Launch time split into phases (process creation, framework loading, `didFinishLaunching`, first frame) | Instruments App Launch | 10 per build |
-| activity | Memory footprint, CPU of the app and of mDNSResponder (the system Bonjour service), network traffic, for discovery (5-35 s after launch) and idle (60-240 s) on the home screen | Instruments Activity Monitor (all processes) and a packet capture of the device's traffic | 5 runs of 4 minutes per build |
+| launch-phases | Launch time split into phases (process creation, framework loading, `didFinishLaunching`, first frame) | Instruments App Launch | 10 per build; not in the default steps, run with `--steps launch-phases` when optimising |
+| activity | Memory footprint, CPU of the app and of mDNSResponder (the system Bonjour service), network traffic, for discovery (5-35 s after launch) and idle (60-240 s) on the home screen | Instruments Activity Monitor (all processes) and a packet capture of the device's traffic | 4-minute runs: 5 for vizbee-sdk, 3 for the others (odd rounds only) |
 | hangs | Main-thread hangs over 250 ms during launch and discovery | Instruments Time Profiler (Hangs) | 3 runs of 60 s per build |
-| cast | Memory, CPU, threads, Mach ports and network before connecting, while casting and after disconnecting; what is not freed after disconnecting (after minus before) | `CastSessionTests` (connect to the TV, play a video on it for 3 minutes, disconnect, stay 3 minutes), Instruments Activity Monitor (all processes) and a packet capture | 3 runs per build |
-| leaks | Memory growth per cycle over 10 cast sessions (connect, 30 s of playback, disconnect), and leaked memory | `CastSessionTests` with Activity Monitor, then with Instruments Leaks | 1 run with Activity Monitor and 1 with Leaks per build |
+| cast | Memory, CPU, threads, Mach ports and network before connecting, while casting and after disconnecting; what is not freed after disconnecting (after minus before) | `CastSessionTests` (connect to the TV, play a video on it for 3 minutes, disconnect, stay 3 minutes), Instruments Activity Monitor (all processes) and a packet capture | 3 runs for vizbee-sdk, 2 for the others |
+| leaks | Memory growth per cycle over 10 cast sessions (connect, 30 s of playback, disconnect), and leaked memory | `CastSessionTests` with Activity Monitor, then with Instruments Leaks | 1 run with Activity Monitor per build; 1 with Leaks for vizbee-sdk (set LEAKS_LABELS for others) |
 
 Every step takes the builds in turn, round by round, so a change on the device during the run (temperature, background activity) affects every build the same way. Each step installs the build it measures; the first launch after an install is not measured.
 
@@ -39,7 +39,7 @@ Every step takes the builds in turn, round by round, so a change on the device d
 ## Running
 
 ```bash
-# All steps, about 5 hours
+# All default steps, about 3.5 hours
 performance/run.sh --device <device udid> --tv <TV name>
 
 # A quick check of the setup: every step once

@@ -149,10 +149,10 @@ for window, scenario in (('before', 'Cast: before connecting'), ('casting-1', 'C
     add(scenario, 'CPU usage (app + mDNSResponder)', '%', per_run(cast, lambda w: w(window)[0] + w(window, 'mDNSResponder')[0]), tool=tool, note=note)
     add(scenario, 'Threads', 'count', per_run(cast, lambda w: w(window)[3]), tool=tool, note=f'Median, {note}')
     add(scenario, 'Mach ports', 'count', per_run(cast, lambda w: w(window)[4]), tool=tool, note=f'Median, {note}')
-    for kind, name in (('lan', 'LAN, to the TVs'), ('total', 'total')):
+    for kind, name, statistic in (('lan', 'LAN, to the TVs', statistics.mean), ('total', 'total', statistics.median)):
         add(scenario, f'Network traffic ({name})', 'KB per min',
             {label: [v for (l, _, w, k), v in cast_network.items() if (l, w, k) == (label, window, kind)] for label in LABELS},
-            statistic=statistics.median, tool='Packet capture (rvictl + tcpdump)', note=note)
+            statistic=statistic, tool='Packet capture (rvictl + tcpdump)', note=note)
 scenario = 'Cast: not freed after disconnecting'
 note = 'After disconnecting minus before connecting, per run; near 0 when the session\'s resources are released'
 add(scenario, 'Memory footprint', 'MB', per_run(cast, lambda w: w('after-1')[1] - w('before')[1]), tool=tool, note=note)

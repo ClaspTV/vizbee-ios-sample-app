@@ -7,11 +7,11 @@
 #
 #  Usage: performance/run.sh --device <udid> [--tv <name>] [--out <dir>] [--steps <step,step>] [--quick]
 #
-#  Steps (default: all, in this order):
+#  Steps (default: all but launch-phases, in this order):
 #    build       check out and build every variant (Release, app + launch test)
 #    smoke       launch every build, check it stays up, sends discovery probes and a TV answers
 #    launch      Xcode launch test (XCTApplicationLaunchMetric), round-robin
-#    launch-phases  Instruments App Launch, round-robin, for the phase breakdown
+#    launch-phases  Instruments App Launch, round-robin, for the phase breakdown (not run by default; for optimisation)
 #    activity    CPU, memory (app and mDNSResponder) and network for discovery and idle
 #    hangs       Instruments Time Profiler hangs during launch and discovery
 #    cast        CPU, memory, threads, ports and network before, while and after casting to --tv
@@ -25,7 +25,7 @@ ROOT=$(cd "$PERF/.." && pwd)
 TOOLS=$PERF/tools
 DEVICE=""
 OUT=""
-STEPS=build,smoke,launch,launch-phases,activity,hangs,cast,leaks,summary
+STEPS=build,smoke,launch,activity,hangs,cast,leaks,summary
 TV=""
 LAUNCH_ROUNDS=6
 LAUNCH_PHASE_ROUNDS=10

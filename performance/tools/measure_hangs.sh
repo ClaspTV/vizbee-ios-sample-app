@@ -32,7 +32,10 @@ for round in $(seq 1 "$ROUNDS"); do
             record_trace "$SECONDS_PER_RUN" "$trace" --template 'Time Profiler' --device "$DEVICE" --launch -- "$bundle_id" && break
         done
         stop_app "$DEVICECTL_ID"
-        export_table "$trace" potential-hangs "$trace.hangs.xml" || continue
-        /usr/bin/python3 -I "$TOOLS/hang_summary.py" "$label" "$round" < "$trace.hangs.xml" | tee -a "$OUT/hangs.csv"
+        (
+            export_table "$trace" potential-hangs "$trace.hangs.xml" || exit
+            /usr/bin/python3 -I "$TOOLS/hang_summary.py" "$label" "$round" < "$trace.hangs.xml" | tee -a "$OUT/hangs.csv"
+        ) &
     done
 done
+wait

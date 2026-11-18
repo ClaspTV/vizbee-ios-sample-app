@@ -11,7 +11,8 @@ import XCTest
 /// connects to the TV named in PERF_TV, plays a video on it, disconnects, and prints a timestamped
 /// mark at each step. PERF_CYCLES repeats the session; PERF_BEFORE_SECONDS, PERF_CASTING_SECONDS
 /// and PERF_AFTER_SECONDS set how long the app stays before connecting, while casting, and after
-/// disconnecting.
+/// disconnecting. testCastSessionsMemory runs with xcodebuild -enablePerformanceTestsDiagnostics YES:
+/// after the first session, Xcode saves a memory graph before and after the remaining sessions.
 final class CastSessionTests: XCTestCase {
 
     private let app = XCUIApplication()
@@ -24,20 +25,47 @@ final class CastSessionTests: XCTestCase {
         mark("launched", 0)
         hold("PERF_BEFORE_SECONDS", 60)
         for cycle in 1...cycles {
-            mark("connect", cycle)
-            connect(to: tv)
-            mark("connected", cycle)
-            app.staticTexts["Big Buck Bunny"].firstMatch.tap()
-            play()
-            mark("playing", cycle)
-            hold("PERF_CASTING_SECONDS", 180)
-            mark("disconnect", cycle)
-            disconnect()
-            mark("disconnected", cycle)
-            app.navigationBars.buttons.element(boundBy: 0).tap()
-            hold("PERF_AFTER_SECONDS", 180)
-            mark("end", cycle)
+            castSession(cycle, to: tv)
         }
+    }
+
+    func testCastSessionsMemory() throws {
+        continueAfterFailure = false
+        let tv = setting("PERF_TV", "")
+        let cycles = Int(setting("PERF_CYCLES", "10")) ?? 10
+        app.launch()
+        mark("launched", 0)
+        hold("PERF_BEFORE_SECONDS", 60)
+        castSession(1, to: tv)
+        let options = XCTMeasureOptions()
+        options.iterationCount = 1
+        var iteration = 0
+        measure(metrics: [XCTMemoryMetric(application: app)], options: options) {
+            iteration += 1
+            mark("iteration", iteration)
+            guard iteration == options.iterationCount + 2 else {
+                return
+            }
+            for cycle in 2...cycles {
+                castSession(cycle, to: tv)
+            }
+        }
+    }
+
+    private func castSession(_ cycle: Int, to tv: String) {
+        mark("connect", cycle)
+        connect(to: tv)
+        mark("connected", cycle)
+        app.staticTexts["Big Buck Bunny"].firstMatch.tap()
+        play()
+        mark("playing", cycle)
+        hold("PERF_CASTING_SECONDS", 180)
+        mark("disconnect", cycle)
+        disconnect()
+        mark("disconnected", cycle)
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        hold("PERF_AFTER_SECONDS", 180)
+        mark("end", cycle)
     }
 
     override func record(_ issue: XCTIssue) {
@@ -91,6 +119,12 @@ final class CastSessionTests: XCTestCase {
 
     private func connect(to tv: String) {
         dismissCard()
+        if castButton.value as? String == "Connected" {
+            castButton.tap()
+            tapButton(labelled: "Disconnect")
+            waitUntil(castButton, "value != 'Connected'", timeout: 30, "still connected after Disconnect")
+            dismissCard()
+        }
         castButton.tap()
         tapDevice(named: tv)
         waitUntil(castButton, "value == 'Connected'", timeout: 60, "not connected to '\(tv)'")
@@ -124,6 +158,10 @@ final class CastSessionTests: XCTestCase {
         }
         let cardBar = app.navigationBars.matching(NSPredicate(format: "identifier BEGINSWITH 'VZB' AND identifier != 'VZBSplashCardView'")).firstMatch
         guard cardBar.waitForExistence(timeout: 2) else {
+            return
+        }
+        let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cardBar)
+        guard XCTWaiter().wait(for: [closed], timeout: 5) != .completed else {
             return
         }
         let stop = cardBar.buttons["Stop"]

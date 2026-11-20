@@ -64,9 +64,9 @@ for row in read('launch/xcode_launch.csv'):
     if len(row) == 4 and number(row[3]) is not None:
         launches.setdefault(row[0], []).append((int(row[2]), number(row[3]) * 1000))
 add('Launch', 'Cold launch time (Xcode launch test)', 'ms', {k: [v for _, v in x] for k, x in launches.items()},
-    tool='XCTest: XCTApplicationLaunchMetric', note='Every measured launch, rounds of 5 taken in turn across builds')
+    statistics.median, tool='XCTest: XCTApplicationLaunchMetric', note='Every measured launch, rounds of 5 taken in turn across builds; median, so a launch slowed by iOS background work does not move the result')
 add('Launch', 'Cold launch time, without the first launch of each round', 'ms', {k: [v for i, v in x if i > 1] for k, x in launches.items()},
-    tool='XCTest: XCTApplicationLaunchMetric')
+    statistics.median, tool='XCTest: XCTApplicationLaunchMetric')
 
 # Launch phases from Instruments.
 phases = {}

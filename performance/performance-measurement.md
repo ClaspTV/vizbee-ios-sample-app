@@ -72,7 +72,7 @@ How the numbers are computed:
 
 - **CPU** in a window is the CPU time used divided by the window's length.
 - **Memory, threads and ports** in a window are the median of the samples. Peak memory is the highest sample.
-- **Across runs**: mean for launch, CPU and memory. Median for network, because iOS's own internet traffic sometimes spikes in one run. Maximum for peaks and the longest hang. Total for hang counts.
+- **Across runs**: mean for CPU and memory. Median for launch, because iOS background work sometimes slows a whole round of launches (on the iPhone 13 one round ran at 540 ms instead of 280 ms, which made the mean show Vizbee faster than no SDK). Median for network, because iOS's own internet traffic sometimes spikes in one run. Maximum for peaks and the longest hang. Total for hang counts.
 - **Difference** from Without SDK, with a 95% range from a bootstrap (10,000 resamples).
 - **Memory growth per cycle** is the slope of the memory left after each disconnect, over the 10 cycles.
 
@@ -88,7 +88,7 @@ Every platform writes the same `summary.csv`, one row per metric:
 
 ```csv
 Device,Scenario,Metric,Unit,no-sdk,vizbee-sdk,vizbee-sdk difference,vizbee-sdk difference %,vizbee-sdk difference 95% range,google-cast-sdk,google-cast-sdk difference,google-cast-sdk difference %,google-cast-sdk difference 95% range,Runs,Statistic,Tool,Notes
-"iPad (6th generation), iOS 17.7.11",Launch,Cold launch time (Xcode launch test),ms,848.81,996.84,+148.04,+17.4%,+97.09 to +199.23,1007.36,+158.55,+18.7%,+107.36 to +213.62,20,mean,XCTest: XCTApplicationLaunchMetric,"Every measured launch, rounds of 5 taken in turn across builds"
+"iPad (6th generation), iOS 17.7.11",Launch,Cold launch time (Xcode launch test),ms,826.91,992.41,+165.5,+20.0%,+59.59 to +207.75,1013.55,+186.64,+22.6%,+89.08 to +226.81,20,median,XCTest: XCTApplicationLaunchMetric,"Every measured launch, rounds of 5 taken in turn across builds"
 ```
 
 - Scenario and metric names, units and windows are the same on every platform. A metric a platform cannot measure is left out, not filled with a substitute.

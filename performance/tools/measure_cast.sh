@@ -11,6 +11,8 @@
 #  and network bytes to network.csv.
 #
 #  Builds in ODD_ROUNDS_ONLY (default no-sdk google-cast-sdk) are measured in odd rounds only.
+#  TEST (default testCastSession) picks the test; testDiscoveryCycles prints the same marks for
+#  active scans (background and back), so the windows are: casting-N during scan N, after-N once it settled.
 #
 #  Usage: ./measure_cast.sh <device udid> <capture interface> <output dir> <rounds> <tv name> <cycles> <before s> <casting s> <after s> <label>=<path/to/.xctestrun> ...
 #
@@ -29,6 +31,7 @@ shift 9
 TOOLS=$(cd "$(dirname "$0")" && pwd)
 source "$TOOLS/device_app.sh"
 ODD_ROUNDS_ONLY=${ODD_ROUNDS_ONLY-no-sdk google-cast-sdk}
+TEST=${TEST:-testCastSession}
 mkdir -p "$OUT"
 LIMIT=$((BEFORE + CYCLES * (CASTING + AFTER + 60) + 120))
 
@@ -50,7 +53,7 @@ for round in $(seq 1 "$ROUNDS"); do
         TEST_RUNNER_PERF_TV="$TV" TEST_RUNNER_PERF_CYCLES="$CYCLES" TEST_RUNNER_PERF_BEFORE_SECONDS="$BEFORE" \
             TEST_RUNNER_PERF_CASTING_SECONDS="$CASTING" TEST_RUNNER_PERF_AFTER_SECONDS="$AFTER" \
             xcodebuild test-without-building -xctestrun "$xctestrun" -destination "id=$DEVICE" \
-            -only-testing:VizbeeDemoUITests/CastSessionTests/testCastSession > "$log" 2>&1
+            -only-testing:VizbeeDemoUITests/CastSessionTests/$TEST > "$log" 2>&1
         passed=$?
         pkill -INT -f "xctrace record .*--output $trace"
         wait "$recorder"

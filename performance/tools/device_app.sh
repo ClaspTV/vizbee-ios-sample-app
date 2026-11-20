@@ -1,6 +1,6 @@
 # Shared helpers for the measurement scripts: find and stop the sample app on the device.
 # Usage: source device_app.sh; app_pid <devicectl device id>; stop_app <devicectl device id>;
-#        record_trace <seconds> <output.trace> <xctrace record options>
+#        record_trace <seconds> <output.trace> <xctrace record options>; export_schema <trace> <schema> <output.xml>
 
 app_pid() {
     xcrun devicectl device info processes --device "$1" 2> /dev/null | awk '/VizbeeDemo.app\/VizbeeDemo/ {print $1}' | head -1
@@ -21,6 +21,25 @@ export_table() {
         xcrun xctrace export --input "$trace" --xpath "//table[@schema=\"$schema\"]" --output "$output" > /dev/null 2>&1 && return 0
     done
     echo "Could not export $schema from $trace" >&2
+    return 1
+}
+
+# Exports one table by schema name; Power Profiler's tables only export when selected by position.
+export_schema() {
+    local trace=$1 schema=$2 output=$3 index
+    for _ in 1 2 3; do
+        (xcrun xctrace export --input "$trace" --toc > "$output.toc" 2> /dev/null) 2> /dev/null && [ -s "$output.toc" ] && break
+        sleep 2
+    done
+    index=$(/usr/bin/python3 -I -c "
+import sys, xml.etree.ElementTree as ET
+tables = ET.parse(sys.argv[1]).getroot().find('run').find('data').findall('table')
+print(next(i for i, t in enumerate(tables, 1) if t.get('schema') == sys.argv[2]))" "$output.toc" "$schema")
+    rm -f "$output.toc"
+    for _ in 1 2 3; do
+        (xcrun xctrace export --input "$trace" --xpath "//trace-toc[1]/run[1]/data[1]/table[$index]" > "$output" 2> /dev/null) 2> /dev/null && [ -s "$output" ] && return 0
+        sleep 2
+    done
     return 1
 }
 

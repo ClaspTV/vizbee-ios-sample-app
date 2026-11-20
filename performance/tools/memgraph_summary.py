@@ -5,6 +5,8 @@ Prints leaked objects in each graph (leaks), the heap classes that grew the most
 the memory regions whose dirty and swapped memory grew (vmmap --summary).
 
 Usage: memgraph_summary.py <before.memgraph> <after.memgraph> [rows]
+       memgraph_summary.py --csv <label> <scenario> <before.memgraph> <after.memgraph>
+         prints: label, scenario, leaked objects before, leaked objects after, leaked bytes after, heap growth bytes
 """
 import re
 import subprocess
@@ -51,7 +53,17 @@ def megabytes(value):
     return f"{value / 1024 ** 2:+.2f} MB"
 
 
+def csv_line(label, scenario, before, after):
+    leaked_before, _ = leaks(before)
+    leaked_after, leaked_bytes = leaks(after)
+    growth = sum(b for _, b in heap(after).values()) - sum(b for _, b in heap(before).values())
+    print(f"{label},{scenario},{leaked_before},{leaked_after},{leaked_bytes},{growth}")
+
+
 def main():
+    if sys.argv[1] == "--csv":
+        csv_line(*sys.argv[2:6])
+        return
     before, after = sys.argv[1], sys.argv[2]
     rows = int(sys.argv[3]) if len(sys.argv) > 3 else 25
     for label, graph in (("before", before), ("after", after)):

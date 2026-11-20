@@ -11,7 +11,9 @@ import XCTest
 /// connects to the TV named in PERF_TV, plays a video on it, disconnects, and prints a timestamped
 /// mark at each step. PERF_CYCLES repeats the session; PERF_BEFORE_SECONDS, PERF_CASTING_SECONDS
 /// and PERF_AFTER_SECONDS set how long the app stays before connecting, while casting, and after
-/// disconnecting.
+/// disconnecting. testDiscoveryCycles sends the app to the background and back PERF_CYCLES times, which
+/// restarts the active scan, and prints the same marks so the windows match the cast step: "playing" when the
+/// scan starts, "disconnected" when it ends, "end" after PERF_AFTER_SECONDS of settling.
 final class CastSessionTests: XCTestCase {
 
     private let app = XCUIApplication()
@@ -38,6 +40,29 @@ final class CastSessionTests: XCTestCase {
             hold("PERF_AFTER_SECONDS", 180)
             mark("end", cycle)
         }
+    }
+
+    func testDiscoveryCycles() throws {
+        let cycles = Int(setting("PERF_CYCLES", "10")) ?? 10
+        app.launch()
+        mark("launched", 0)
+        hold("PERF_BEFORE_SECONDS", 60)
+        mark("connect", 1)
+        for cycle in 1...cycles {
+            rescan(cycle)
+        }
+    }
+
+    private func rescan(_ cycle: Int) {
+        XCUIDevice.shared.press(.home)
+        Thread.sleep(forTimeInterval: 5)
+        app.activate()
+        mark("playing", cycle)
+        hold("PERF_CASTING_SECONDS", 35)
+        mark("disconnect", cycle)
+        mark("disconnected", cycle)
+        hold("PERF_AFTER_SECONDS", 30)
+        mark("end", cycle)
     }
 
     override func record(_ issue: XCTIssue) {

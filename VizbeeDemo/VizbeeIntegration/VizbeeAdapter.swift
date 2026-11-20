@@ -34,9 +34,6 @@ class VizbeeAdapter: NSObject, VZBAppAdapterDelegate {
             // cuepoints
             metadata.setCuePointsInSeconds(video.adBreaks)
             
-            // custom metadata
-            metadata.customMetadata = ["mkey1": "mvalue1", "mkey2" : "mvalue2"];
-            
             successCallback(metadata);
             
         } else {
@@ -71,21 +68,6 @@ class VizbeeAdapter: NSObject, VZBAppAdapterDelegate {
                 } else {
                     streamInfo.protocolType = screenType.suggestedProtocolType;
                 }
-                
-                // drm info
-                if screenType.suggestedDRMType == .any {
-                    streamInfo.drmType = .playReady
-                } else {
-                    streamInfo.drmType = screenType.suggestedDRMType
-                }
-                streamInfo.drmLicenseURL = URL(string: "http://drm.vizbee.tv/my/custom/url")
-                streamInfo.drmCustomData = "myCustomDRMData";
-                
-                // custom stream infos
-                streamInfo.customStreamInfo = ["skey1": "svalue1",
-                                               "skey2": "svalue2",
-                                               "skey3": ["key1": "value1", "key2": "valu2"]
-                                              ];
                 
                 print("Success - \(streamInfo)");
                 successCallback(streamInfo);

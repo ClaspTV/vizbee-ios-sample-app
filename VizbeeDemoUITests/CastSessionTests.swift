@@ -11,8 +11,12 @@ import XCTest
 /// connects to the TV named in PERF_TV, plays a video on it, disconnects, and prints a timestamped
 /// mark at each step. PERF_CYCLES repeats the session; PERF_BEFORE_SECONDS, PERF_CASTING_SECONDS
 /// and PERF_AFTER_SECONDS set how long the app stays before connecting, while casting, and after
-/// disconnecting. testCastSessionsMemory runs with xcodebuild -enablePerformanceTestsDiagnostics YES:
+/// disconnecting. testDiscoveryCycles sends the app to the background and back PERF_CYCLES times, which
+/// restarts the active scan, and prints the same marks so the windows match the cast step: "playing" when the
+/// scan starts, "disconnected" when it ends, "end" after PERF_AFTER_SECONDS of settling. testCastSessionsMemory runs with xcodebuild -enablePerformanceTestsDiagnostics YES:
 /// after the first session, Xcode saves a memory graph before and after the remaining sessions.
+/// testIdleMemory does the same for the home screen without casting: graphs after PERF_BEFORE_SECONDS
+/// and after a further PERF_HOLD_SECONDS.
 final class CastSessionTests: XCTestCase {
 
     private let app = XCUIApplication()
@@ -21,6 +25,9 @@ final class CastSessionTests: XCTestCase {
         continueAfterFailure = false
         let tv = setting("PERF_TV", "")
         let cycles = Int(setting("PERF_CYCLES", "1")) ?? 1
+        if !setting("PERF_MALLOC_STACK", "").isEmpty {
+            app.launchEnvironment["MallocStackLogging"] = "lite"
+        }
         app.launch()
         mark("launched", 0)
         hold("PERF_BEFORE_SECONDS", 60)
@@ -52,10 +59,29 @@ final class CastSessionTests: XCTestCase {
         }
     }
 
+    func testIdleMemory() throws {
+        app.launch()
+        mark("launched", 0)
+        hold("PERF_BEFORE_SECONDS", 60)
+        let options = XCTMeasureOptions()
+        options.iterationCount = 1
+        var iteration = 0
+        measure(metrics: [XCTMemoryMetric(application: app)], options: options) {
+            iteration += 1
+            mark("iteration", iteration)
+            guard iteration == options.iterationCount + 2 else {
+                return
+            }
+            hold("PERF_HOLD_SECONDS", 180)
+            mark("end", 0)
+        }
+    }
+
     private func castSession(_ cycle: Int, to tv: String) {
         mark("connect", cycle)
         connect(to: tv)
         mark("connected", cycle)
+        hold("PERF_CONNECTED_SECONDS", 0)
         app.staticTexts["Big Buck Bunny"].firstMatch.tap()
         play()
         mark("playing", cycle)
@@ -65,6 +91,50 @@ final class CastSessionTests: XCTestCase {
         mark("disconnected", cycle)
         app.navigationBars.buttons.element(boundBy: 0).tap()
         hold("PERF_AFTER_SECONDS", 180)
+        mark("end", cycle)
+    }
+
+    func testDiscoveryCycles() throws {
+        let cycles = Int(setting("PERF_CYCLES", "10")) ?? 10
+        app.launch()
+        mark("launched", 0)
+        hold("PERF_BEFORE_SECONDS", 60)
+        mark("connect", 1)
+        for cycle in 1...cycles {
+            rescan(cycle)
+        }
+    }
+
+    func testDiscoveryCyclesMemory() throws {
+        let cycles = Int(setting("PERF_CYCLES", "10")) ?? 10
+        app.launch()
+        mark("launched", 0)
+        hold("PERF_BEFORE_SECONDS", 60)
+        rescan(1)
+        let options = XCTMeasureOptions()
+        options.iterationCount = 1
+        var iteration = 0
+        measure(metrics: [XCTMemoryMetric(application: app)], options: options) {
+            iteration += 1
+            mark("iteration", iteration)
+            guard iteration == options.iterationCount + 2 else {
+                return
+            }
+            for cycle in 2...cycles {
+                rescan(cycle)
+            }
+        }
+    }
+
+    private func rescan(_ cycle: Int) {
+        XCUIDevice.shared.press(.home)
+        Thread.sleep(forTimeInterval: 5)
+        app.activate()
+        mark("playing", cycle)
+        hold("PERF_CASTING_SECONDS", 35)
+        mark("disconnect", cycle)
+        mark("disconnected", cycle)
+        hold("PERF_AFTER_SECONDS", 30)
         mark("end", cycle)
     }
 
@@ -106,6 +176,10 @@ final class CastSessionTests: XCTestCase {
         }
         let row = button.exists ? button : cell
         XCTAssertTrue(row.exists, "no device named '\(name)' in the device list")
+        let list = app.tables.firstMatch.exists ? app.tables.firstMatch : app.collectionViews.firstMatch
+        for _ in 0..<5 where !row.isHittable && list.exists {
+            list.swipeUp()
+        }
         waitUntil(row, "isHittable == true", timeout: 20, "the device row for '\(name)' cannot be tapped")
         Thread.sleep(forTimeInterval: 1)
         row.tap()
